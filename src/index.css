@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&family=Roboto:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-body bg-gray-50 text-gray-800 transition-colors dark:bg-dark-bg dark:text-dark-text;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  /* Matrix mode styling */
+  .matrix-mode {
+    @apply bg-black text-green-400;
+  }
+  
+  .matrix-mode .card {
+    @apply bg-opacity-80 bg-black border-green-400;
+  }
+  
+  .matrix-overlay {
+    @apply fixed top-0 left-0 w-screen h-screen pointer-events-none z-10;
+  }
+  
+  .matrix-character {
+    @apply absolute top-[-20px] text-green-400 font-mono text-xl opacity-70 animate-matrix-fall;
+  }
+  
+  /* Easter egg letter styling */
+  .easter-egg-letter {
+    @apply text-primary font-bold animate-pulse;
+  }
+  
+  /* Ripple animation for buttons */
+  .ripple {
+    @apply absolute rounded-full scale-0 animate-ripple bg-white bg-opacity-70;
+  }
+}
+
+/* Custom classes not provided by Tailwind */
+@layer utilities {
+  .card-hover {
+    @apply transition-all hover:shadow-lg hover:-translate-y-1;
+  }
+  
+  .section-heading {
+    @apply text-primary font-heading mb-4 relative inline-block after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-0.5 after:bg-secondary after:transition-all hover:after:w-full;
+  }
+}
