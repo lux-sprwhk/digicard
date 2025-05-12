@@ -8,7 +8,7 @@ import {
 const LinkItem = ({ href, icon: Icon, label }) => (
   <a 
     href={href} 
-    className="flex flex-col items-center justify-center p-4 h-24 bg-gray-50 dark:bg-dark-bg rounded-lg text-gray-700 dark:text-dark-text no-underline transition-all hover:bg-primary hover:text-white hover:-translate-y-1 hover:shadow-md"
+    className="flex flex-col items-center justify-center p-4 h-24 bg-white dark:bg-dracula-currentLine rounded-lg text-github-text dark:text-dracula-foreground no-underline transition-all hover:bg-github-blue hover:text-white dark:hover:bg-dracula-purple hover:-translate-y-1 hover:shadow-md"
   >
     <Icon className="text-3xl mb-2 transition-transform duration-300 hover:scale-125" />
     <span>{label}</span>
@@ -24,14 +24,14 @@ const Links = () => {
   ]
 
   return (
-    <section className="p-5 border-t border-gray-200 dark:border-dark-border">
+    <section className="p-5 border-t border-github-lightGray dark:border-dracula-currentLine">
       
       <h2 className="section-heading">
         <span className="group relative inline-block">
           <span className="easter-egg-letter">C</span>
-          <div className="absolute hidden group-hover:block bg-gray-800 text-white text-sm rounded p-2 -mt-2 -translate-y-full translate-x-4 top-0 left-1/2 -translate-x-1/2 whitespace-nowrap">
+          <div className="absolute hidden group-hover:block bg-github-text dark:bg-dracula-currentLine text-white text-sm rounded p-2 -mt-2 -translate-y-full translate-x-4 top-0 left-1/2 -translate-x-1/2 whitespace-nowrap">
             Dev tools hold secrets they hide from the masses 
-            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-800"></div>
+            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-github-text dark:border-t-dracula-currentLine"></div>
           </div>
         </span>onnect & Follow
       </h2>

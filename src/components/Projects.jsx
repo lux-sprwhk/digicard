@@ -53,11 +53,11 @@ const Projects = () => {
   }, [])
 
   return (
-    <section className="p-5 border-t border-gray-200 dark:border-dark-border">
+    <section className="p-5 border-t border-github-lightGray dark:border-dracula-currentLine">
       <h2 className="section-heading">Featured Projects</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div 
-          className="bg-gray-50 dark:bg-dark-bg rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+          className="bg-white dark:bg-dracula-currentLine rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
           ref={(el) => (projectRefs.current[0] = el)}
         >
           <div className="h-40 overflow-hidden">
@@ -67,11 +67,13 @@ const Projects = () => {
               className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
             />
           </div>
-          <h3 className="px-4 pt-4 pb-2 font-heading text-primary">Seagull Bukowskis</h3>
-          <p className="px-4 pb-4 text-sm">Brief description of the project and your role in it.</p>
+          <h3 className="px-4 pt-4 pb-2 font-heading text-github-blue dark:text-dracula-purple">Seagull Bukowskis</h3>
+          <p className="px-4 pb-4 text-sm text-github-text dark:text-dracula-foreground">
+            Nihilistic animals philosophize in Austin dumpsters - dark satire webcomic
+          </p>
           <a 
             href="#" 
-            className="block text-center py-2 bg-primary text-white no-underline transition-colors hover:bg-secondary relative overflow-hidden"
+            className="block text-center py-2 bg-github-blue text-white no-underline transition-colors hover:bg-github-lightBlue dark:bg-dracula-purple dark:hover:bg-dracula-pink relative overflow-hidden"
             onClick={createRipple}
           >
             View Project
@@ -79,7 +81,7 @@ const Projects = () => {
         </div>
         
         <div 
-          className="bg-gray-50 dark:bg-dark-bg rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+          className="bg-white dark:bg-dracula-currentLine rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
           ref={(el) => (projectRefs.current[1] = el)}
         >
           <div className="h-40 overflow-hidden">
@@ -89,11 +91,13 @@ const Projects = () => {
               className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
             />
           </div>
-          <h3 className="px-4 pt-4 pb-2 font-heading text-primary">HypeHall</h3>
-          <p className="px-4 pb-4 text-sm">Brief description of the project and your role in it.</p>
+          <h3 className="px-4 pt-4 pb-2 font-heading text-github-blue dark:text-dracula-purple">HypeHall</h3>
+          <p className="px-4 pb-4 text-sm text-github-text dark:text-dracula-foreground">
+            AI-powered app for discovering local bands through curated video feeds  
+          </p>
           <a 
             href="#" 
-            className="block text-center py-2 bg-primary text-white no-underline transition-colors hover:bg-secondary relative overflow-hidden"
+            className="block text-center py-2 bg-github-blue text-white no-underline transition-colors hover:bg-github-lightBlue dark:bg-dracula-purple dark:hover:bg-dracula-pink relative overflow-hidden"
             onClick={createRipple}
           >
             View Project

@@ -10,11 +10,11 @@ const featuredPostData = {
 
 const FeaturedPost = () => {
     return (
-        <section className="p-5 border-t border-gray-200 dark:border-dark-border">
+        <section className="p-5 border-t border-github-lightGray dark:border-dracula-currentLine">
             <h2 className="section-heading mb-4">Featured Post</h2>
 
-            <div className="bg-gray-50 dark:bg-dark-bg rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all">
-                <a href="#" className="block no-underline text-inherit">
+            <div className="bg-white dark:bg-dracula-currentLine rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all">
+                <a href={featuredPostData.link} className="block no-underline text-inherit">
                     <div className="aspect-video overflow-hidden">
                         <img
                             src={featuredPostData.image}
@@ -24,15 +24,15 @@ const FeaturedPost = () => {
                     </div>
 
                     <div className="p-4">
-                        <h3 className="font-heading text-xl text-primary mb-2">
+                        <h3 className="font-heading text-xl text-github-blue dark:text-dracula-purple mb-2">
                             {featuredPostData.title}
                         </h3>
 
-                        <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">
+                        <p className="text-github-secondaryText dark:text-dracula-foreground mb-4 line-clamp-2">
                             {featuredPostData.description}
                         </p>
 
-                        <div className="flex items-center text-primary">
+                        <div className="flex items-center text-github-blue dark:text-dracula-cyan hover:text-github-lightBlue dark:hover:text-dracula-pink transition-colors">
                             <span>Read more</span>
                             <FaArrowRight className="ml-2 text-sm transition-transform group-hover:translate-x-1" />
                         </div>

@@ -5,6 +5,11 @@ const Header = ({ theme, setTheme }) => {
     setTheme(prevTheme => prevTheme === 'dark' ? 'light' : 'dark')
   }
 
+  // Don't show the toggle at all in matrix mode
+  if (theme === 'matrix') {
+    return <header className="mb-5" />;
+  }
+
   return (
     <header className="flex justify-end mb-5">
       <div className="relative">

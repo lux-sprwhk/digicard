@@ -25,7 +25,7 @@ const Profile = () => {
   return (
     <section className="text-center py-8 px-5">
       <div className="relative mx-auto mb-5 w-36 h-36">
-        <div className="w-36 h-36 rounded-full overflow-hidden border-3 border-primary">
+        <div className="w-36 h-36 rounded-full overflow-hidden border-3 border-github-blue dark:border-dracula-purple">
           {/* Placeholder for profile image */}
           <img 
             src={profileImg} 
@@ -34,12 +34,12 @@ const Profile = () => {
           />
         </div>
       </div>
-      <h1 className="font-heading font-semibold text-4xl mb-1 text-primary">Luh Sprwhk</h1>
-      <p className="text-xl text-secondary font-light mb-2">Vapourware Dealer</p>
-      <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 opacity-80 flex justify-center items-center gap-1">
+      <h1 className="font-heading font-semibold text-4xl mb-1 text-github-text dark:text-dracula-foreground">Luh Sprwhk</h1>
+      <p className="text-xl text-github-blue dark:text-dracula-purple font-light mb-2">Vapourware Dealer</p>
+      <p className="text-sm text-github-secondaryText dark:text-dracula-comment mb-4 opacity-80 flex justify-center items-center gap-1">
         <FaMapMarkerAlt /> Austin, TX
       </p>
-      <p className="max-w-md mx-auto text-base">{typedText}</p>
+      <p className="max-w-md mx-auto text-base text-github-text dark:text-dracula-foreground">{typedText}</p>
     </section>
   )
 }

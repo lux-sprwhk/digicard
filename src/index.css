@@ -6,39 +6,74 @@
 
 @layer base {
   body {
-    @apply font-body bg-gray-50 text-gray-800 transition-colors dark:bg-dark-bg dark:text-dark-text;
+    @apply font-body bg-github-bgGray text-github-text transition-colors 
+           dark:bg-dracula-background dark:text-dracula-foreground
+           matrix:bg-matrix-background matrix:text-matrix-text;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
+    @apply font-heading matrix:text-matrix-highlight matrix:drop-shadow-[0_0_5px_theme(colors.matrix.glow)];
   }
 }
 
 @layer components {
   /* Matrix mode styling */
   .matrix-mode {
-    @apply bg-black text-green-400;
+    @apply bg-matrix-background text-matrix-text;
   }
   
   .matrix-mode .card {
-    @apply bg-opacity-80 bg-black border-green-400;
+    @apply bg-matrix-terminal bg-opacity-80 border border-matrix-glow shadow-lg shadow-matrix-glow;
   }
   
   .matrix-overlay {
-    @apply fixed top-0 left-0 w-screen h-screen pointer-events-none z-10;
+    @apply fixed top-0 left-0 w-screen h-screen pointer-events-none z-10 bg-matrix-background bg-opacity-90;
   }
   
   .matrix-character {
-    @apply absolute top-[-20px] text-green-400 font-mono text-xl opacity-70 animate-matrix-fall;
+    @apply absolute top-[-20px] text-matrix-rain font-mono text-xl opacity-70 animate-matrix-fall hover:text-matrix-highlight hover:opacity-100 transition-colors;
+  }
+  
+  /* Matrix mode text effects */
+  .matrix-mode h1,
+  .matrix-mode h2,
+  .matrix-mode h3 {
+    @apply text-matrix-highlight drop-shadow-[0_0_5px_theme(colors.matrix.glow)];
+  }
+  
+  .matrix-mode p {
+    @apply text-matrix-text;
+  }
+  
+  .matrix-mode .link {
+    @apply text-matrix-highlight hover:text-matrix-glow hover:drop-shadow-[0_0_8px_theme(colors.matrix.glow)];
   }
   
   /* Easter egg letter styling */
   .easter-egg-letter {
-    @apply text-primary font-bold animate-pulse;
+    @apply text-github-blue dark:text-dracula-purple font-bold animate-pulse;
   }
   
   /* Ripple animation for buttons */
   .ripple {
     @apply absolute rounded-full scale-0 animate-ripple bg-white bg-opacity-70;
+  }
+
+  /* Card styling */
+  .card {
+    @apply bg-white dark:bg-dracula-currentLine matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:shadow-matrix-glow rounded-lg shadow-sm;
+  }
+
+  /* Links styling */
+  .link {
+    @apply text-github-blue hover:text-github-lightBlue 
+           dark:text-dracula-cyan dark:hover:text-dracula-pink 
+           matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_8px_theme(colors.matrix.glow)]
+           transition-colors;
+  }
+
+  /* Button styling */
+  .btn-primary {
+    @apply bg-github-blue text-white hover:bg-github-lightBlue dark:bg-dracula-purple dark:hover:bg-dracula-pink transition-colors;
   }
 }
 
@@ -49,6 +84,6 @@
   }
   
   .section-heading {
-    @apply text-primary font-heading mb-4 relative inline-block after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-0.5 after:bg-secondary after:transition-all hover:after:w-full;
+    @apply text-2xl font-heading mb-4 text-github-text dark:text-dracula-foreground;
   }
 }

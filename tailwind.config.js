@@ -8,6 +8,39 @@ export default {
     theme: {
       extend: {
         colors: {
+          github: {
+            white: '#ffffff',
+            text: '#24292e',
+            blue: '#0366d6',
+            lightBlue: '#005cc5',
+            gray: '#6a737d',
+            lightGray: '#e1e4e8',
+            green: '#22863a',
+            bgGray: '#f6f8fa',
+          },
+          dracula: {
+            background: '#282a36',
+            currentLine: '#44475a',
+            foreground: '#f8f8f2',
+            comment: '#6272a4',
+            cyan: '#8be9fd',
+            green: '#50fa7b',
+            orange: '#ffb86c',
+            pink: '#ff79c6',
+            purple: '#bd93f9',
+            red: '#ff5555',
+            yellow: '#f1fa8c'
+          },
+          matrix: {
+            background: '#000000',
+            text: '#00ff00',
+            glow: '#0f0',
+            dimText: '#003b00',
+            highlight: '#00ff41',
+            shadow: '#003b00',
+            terminal: '#0D0208',
+            rain: '#008F11'
+          },
           primary: {
             DEFAULT: '#3498db',
             dark: '#2980b9',
@@ -97,5 +130,17 @@ export default {
         }
       }
     },
-    plugins: [],
+    variants: {
+      extend: {
+        backgroundColor: ['matrix'],
+        textColor: ['matrix'],
+        borderColor: ['matrix'],
+        dropShadow: ['matrix']
+      }
+    },
+    plugins: [
+      function({ addVariant }) {
+        addVariant('matrix', '.matrix &')
+      }
+    ]
   }

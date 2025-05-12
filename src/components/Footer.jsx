@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { FaTerminal } from 'react-icons/fa'
 
 const Footer = () => {
-  const [currentYear, setCurrentYear] = useState(new Date().getFullYear())
+  const [currentYear] = useState(new Date().getFullYear())
   const [cursorVisible, setCursorVisible] = useState(false)
   
   // Blinking cursor effect for the easter egg hint
@@ -16,7 +16,7 @@ const Footer = () => {
 
   return (
     <footer className="text-center py-5 px-4 text-sm text-gray-500 dark:text-gray-400">
-      <p>&copy; {currentYear} Your Name. All rights reserved.</p>
+      <p>&copy; {currentYear}. All rights reserved.</p>
       <div className="footer-details mt-2">
         <span className="group relative inline-block">
           <FaTerminal 
