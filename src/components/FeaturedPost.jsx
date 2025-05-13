@@ -14,7 +14,7 @@ const FeaturedPost = () => {
             <h2 className="section-heading mb-4">Featured Post</h2>
 
             <div className="bg-white dark:bg-dracula-currentLine matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:hover:shadow-matrix-glow rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all">
-                <a href={featuredPostData.link} className="block no-underline text-inherit">
+                <a href={featuredPostData.link} target="_blank" rel="noopener noreferrer" className="block no-underline text-inherit">
                     <div className="aspect-video overflow-hidden">
                         <img
                             src={featuredPostData.image}

@@ -20,6 +20,8 @@ const ProjectCard = ({ img, alt, title, description, link, refCb, createRipple }
       href={link} 
       className="block text-center py-2 bg-github-blue text-white no-underline transition-colors matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)] hover:bg-github-lightBlue dark:bg-dracula-purple dark:hover:bg-dracula-pink matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg relative overflow-hidden"
       onClick={createRipple}
+      target="_blank"
+      rel="noopener noreferrer"
     >
       View Project
     </a>
@@ -30,16 +32,16 @@ const projects = [
   {
     img: sbBukowskisImg,
     alt: "Seagull Bukowskis",
-    title: "Seagull Bukowskis",
+    title: "SQUAWK!: The Scavenger Diaries",
     description: "Nihilistic animals philosophize in Austin dumpsters - dark satire webcomic",
-    link: "https://seagullbukowskis.com/"
+    link: "https://gjc.beehiiv.com/subscribe"
   },
   {
     img: hypehallImg,
     alt: "HypeHall",
     title: "HypeHall",
     description: "AI-powered app for discovering local bands through curated video feeds",
-    link: "https://hypehall.com/"
+    link: "https://hypehall.beehiiv.com/subscribe"
   }
 ]
 
