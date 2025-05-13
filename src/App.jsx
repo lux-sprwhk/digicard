@@ -39,7 +39,8 @@ function App() {
 
     // Console message for the Digital Dungeon quest
     console.log('%cACCESS GRANTED', 'color: #2ecc71; font-family: monospace; font-size: 20px; font-weight: bold;')
-    console.log('%cWelcome to the Digital Dungeon. Your skills are being tested.', 'color: #3498db; font-family: monospace;')
+    console.log('[Log] Mind Online. Welcome to the Luh Sprwhk Portfolio Construct.');
+console.log('[Log] All modules report a state of cheerful readiness.');
     console.log('%cType "hack" to begin your assessment.', 'color: #3498db; font-family: monospace;')
 
     // Set up all console commands at once
@@ -55,14 +56,15 @@ function App() {
       },
       'fizzbuzz': {
         get: function () {
-          console.log("%cWelcome to the secret console challenge!", "font-size: 16px; font-weight: bold; color: #ff79c6;");
-          console.log("%cComplete this FizzBuzz challenge to unlock a special feature:", "color: #8be9fd;");
-          console.log("%cCreate a function in a variable called 'secretFizzBuzz' that takes a number and returns:", "color: #f8f8f2;");
+
+          console.log("%c[Mind] Challenge protocol activated. A small test of computational wit awaits you.", "font-size: 16px; font-weight: bold; color: #ff79c6;");
+          console.log("%c[Mind] Complete this FizzBuzz sequence to unlock further portfolio secrets:", "color: #8be9fd;");
+          console.log("%c[Mind] Please define a function in a variable called 'secretFizzBuzz' that takes a number and returns:", "color: #f8f8f2;");
           console.log("%c- 'Fizz' for multiples of 3", "color: #50fa7b;");
           console.log("%c- 'Buzz' for multiples of 5", "color: #50fa7b;");
           console.log("%c- 'FizzBuzz' for multiples of both 3 and 5", "color: #50fa7b;");
           console.log("%c- The number itself for other cases", "color: #50fa7b;");
-
+          console.log("%c[Mind] I await your solution with algorithmic anticipation.", "color: #7f8c8d; font-style: italic;");
           // Hidden verification function
           window.verifyFizzBuzz = function (userFunc) {
             try {
@@ -151,7 +153,7 @@ function App() {
 
           // Show success message
           setTimeout(() => {
-            alert('Congratulations! You have successfully hacked the Digital Dungeon. Your card now has Matrix Mode activated!')
+            alert('Protocol complete. Matrix Mode is now active.\n\n[Mind] My simulated admiration for your resourcefulness is considerable.');
             console.log('%cTo disable Matrix mode, type "clearMatrix"', 'color: #e74c3c; font-family: monospace;')
           }, 2000)
         },
