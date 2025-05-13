@@ -22,6 +22,17 @@ function App() {
     sessionStorage.setItem('theme', theme)
   }, [theme])
 
+  // NEW: Toggle matrix background on <body>
+  useEffect(() => {
+    if (theme === 'matrix') {
+      document.body.classList.add('matrix-bg');
+    } else {
+      document.body.classList.remove('matrix-bg');
+    }
+    // Cleanup in case of hot reloads/unmount
+    return () => document.body.classList.remove('matrix-bg');
+  }, [theme]);
+
   // Initialize console easter egg
   useEffect(() => {
     let matrixOverlay = null
@@ -46,7 +57,7 @@ function App() {
         get: function () {
           console.log("%cWelcome to the secret console challenge!", "font-size: 16px; font-weight: bold; color: #ff79c6;");
           console.log("%cComplete this FizzBuzz challenge to unlock a special feature:", "color: #8be9fd;");
-          console.log("%cCreate a function called 'secretFizzBuzz' that takes a number and returns:", "color: #f8f8f2;");
+          console.log("%cCreate a function in a variable called 'secretFizzBuzz' that takes a number and returns:", "color: #f8f8f2;");
           console.log("%c- 'Fizz' for multiples of 3", "color: #50fa7b;");
           console.log("%c- 'Buzz' for multiples of 5", "color: #50fa7b;");
           console.log("%c- 'FizzBuzz' for multiples of both 3 and 5", "color: #50fa7b;");
@@ -181,16 +192,17 @@ function App() {
     <div className="max-w-2xl mx-auto px-4 py-6">
       <Header theme={theme} setTheme={setTheme} />
 
-      <main className="bg-white dark:bg-dracula-currentLine rounded-xl shadow-md overflow-hidden mb-6 opacity-0 transform translate-y-5 animate-fade-in">
-        <Profile />
-        <Links />
+      <main className="bg-white dark:bg-dracula-currentLine rounded-xl shadow-md overflow-hidden mb-6 opacity-0 transform translate-y-5 animate-fade-in matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:shadow-matrix-glow">
+        <Profile theme={theme} />
+        <Links theme={theme} />
         <Projects />
         <FeaturedPost />
       </main>
 
-      <Footer />
+      <Footer theme={theme} />
     </div>
   )
 }
+
 
 export default App

@@ -13,7 +13,7 @@ const FeaturedPost = () => {
         <section className="p-5 border-t border-github-lightGray dark:border-dracula-currentLine">
             <h2 className="section-heading mb-4">Featured Post</h2>
 
-            <div className="bg-white dark:bg-dracula-currentLine rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all">
+            <div className="bg-white dark:bg-dracula-currentLine matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:shadow-matrix-glow rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all">
                 <a href={featuredPostData.link} className="block no-underline text-inherit">
                     <div className="aspect-video overflow-hidden">
                         <img
@@ -28,11 +28,11 @@ const FeaturedPost = () => {
                             {featuredPostData.title}
                         </h3>
 
-                        <p className="text-github-secondaryText dark:text-dracula-foreground mb-4 line-clamp-2">
+                        <p className="text-github-secondaryText dark:text-dracula-foreground matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)] mb-4 line-clamp-2">
                             {featuredPostData.description}
                         </p>
 
-                        <div className="flex items-center text-github-blue dark:text-dracula-cyan hover:text-github-lightBlue dark:hover:text-dracula-pink transition-colors">
+                        <div className="flex items-center text-github-blue dark:text-dracula-cyan matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)] hover:text-github-lightBlue dark:hover:text-dracula-pink transition-colors">
                             <span>Read more</span>
                             <FaArrowRight className="ml-2 text-sm transition-transform group-hover:translate-x-1" />
                         </div>

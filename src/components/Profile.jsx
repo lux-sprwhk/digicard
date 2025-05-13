@@ -1,32 +1,13 @@
 import { useState, useEffect } from 'react'
-import { FaMapMarkerAlt } from 'react-icons/fa'
 import profileImg from '../assets/profile.jpg'
+import { FaMapMarkerAlt } from 'react-icons/fa'
+import TypewriterBio from './TypewriterBio';
 
-const Profile = () => {
-  const [typedText, setTypedText] = useState('')
-  const bio = "Writer & coder making games, satire, and AI mischief."
-  
-  useEffect(() => {
-    let i = 0
-    const typeWriter = () => {
-      if (i < bio.length) {
-        setTypedText(prevText => prevText + bio.charAt(i))
-        i++
-        setTimeout(typeWriter, 50)
-      }
-    }
-    
-    // Start typing animation after a short delay
-    const timerId = setTimeout(typeWriter, 1000)
-    
-    return () => clearTimeout(timerId)
-  }, [])
-
+const Profile = ({ theme }) => {
   return (
     <section className="text-center py-8 px-5">
       <div className="relative mx-auto mb-5 w-36 h-36">
-        <div className="w-36 h-36 rounded-full overflow-hidden border-3 border-github-blue dark:border-dracula-purple">
-          {/* Placeholder for profile image */}
+        <div className="w-36 h-36 rounded-full overflow-hidden border-3 border-github-blue dark:border-dracula-purple matrix:border-matrix-glow">
           <img 
             src={profileImg} 
             alt="Profile" 
@@ -34,12 +15,12 @@ const Profile = () => {
           />
         </div>
       </div>
-      <h1 className="font-heading font-semibold text-4xl mb-1 text-github-text dark:text-dracula-foreground">Luh Sprwhk</h1>
-      <p className="text-xl text-github-blue dark:text-dracula-purple font-light mb-2">Vapourware Dealer</p>
-      <p className="text-sm text-github-secondaryText dark:text-dracula-comment mb-4 opacity-80 flex justify-center items-center gap-1">
+      <h1 className="font-heading font-semibold text-4xl mb-1 text-github-text dark:text-dracula-foreground matrix:text-matrix-highlight matrix:drop-shadow-[0_0_5px_theme(colors.matrix.glow)]">Luh Sprwhk</h1>
+      <p className="text-xl text-github-blue dark:text-dracula-purple matrix:text-matrix-highlight font-light mb-2">Vapourware Dealer</p>
+      <p className="text-sm text-github-secondaryText dark:text-dracula-pink matrix:text-matrix-glow mb-4 opacity-80 flex justify-center items-center gap-1">
         <FaMapMarkerAlt /> Austin, TX
       </p>
-      <p className="max-w-md mx-auto text-base text-github-text dark:text-dracula-foreground">{typedText}</p>
+      <TypewriterBio theme={theme} />
     </section>
   )
 }

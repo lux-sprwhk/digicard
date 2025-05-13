@@ -1,6 +1,47 @@
 import { useRef, useEffect } from 'react'
-import sbBukowskisImg from '../assets/sb-bukowskis.jpeg'
+import sbBukowskisImg from '../assets/sb-bukowskis.jpg'
 import hypehallImg from '../assets/hypehall-thumb.jpg'
+
+const ProjectCard = ({ img, alt, title, description, link, refCb, createRipple }) => (
+  <div 
+    className="bg-white dark:bg-dracula-currentLine matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:shadow-matrix-glow rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+    ref={refCb}
+  >
+    <div className="h-40 overflow-hidden">
+      <img 
+        src={img} 
+        alt={alt} 
+        className={`w-full h-full transition-transform duration-500 hover:scale-110 ${img === hypehallImg ? 'object-fill' : 'object-cover'}`}
+      />
+    </div>
+    <h3 className="px-4 pt-4 pb-2 font-heading text-github-blue dark:text-dracula-purple matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)]">{title}</h3>
+    <p className="px-4 pb-4 text-sm text-github-text dark:text-dracula-foreground matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)]">{description}</p>
+    <a 
+      href={link} 
+      className="block text-center py-2 bg-github-blue text-white no-underline transition-colors matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)] hover:bg-github-lightBlue dark:bg-dracula-purple dark:hover:bg-dracula-pink matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:shadow-matrix-glow relative overflow-hidden"
+      onClick={createRipple}
+    >
+      View Project
+    </a>
+  </div>
+)
+
+const projects = [
+  {
+    img: sbBukowskisImg,
+    alt: "Seagull Bukowskis",
+    title: "Seagull Bukowskis",
+    description: "Nihilistic animals philosophize in Austin dumpsters - dark satire webcomic",
+    link: "https://seagullbukowskis.com/"
+  },
+  {
+    img: hypehallImg,
+    alt: "HypeHall",
+    title: "HypeHall",
+    description: "AI-powered app for discovering local bands through curated video feeds",
+    link: "https://hypehall.com/"
+  }
+]
 
 const Projects = () => {
   const projectRefs = useRef([])
@@ -53,56 +94,17 @@ const Projects = () => {
   }, [])
 
   return (
-    <section className="p-5 border-t border-github-lightGray dark:border-dracula-currentLine">
+    <section className="p-5 border-t border-github-lightGray dark:border-dracula-currentLine matrix:border-matrix-glow matrix:shadow-lg matrix:shadow-matrix-glow">
       <h2 className="section-heading">Featured Projects</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div 
-          className="bg-white dark:bg-dracula-currentLine rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-          ref={(el) => (projectRefs.current[0] = el)}
-        >
-          <div className="h-40 overflow-hidden">
-            <img 
-              src={sbBukowskisImg} 
-              alt="Seagull Bukowskis" 
-              className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-            />
-          </div>
-          <h3 className="px-4 pt-4 pb-2 font-heading text-github-blue dark:text-dracula-purple">Seagull Bukowskis</h3>
-          <p className="px-4 pb-4 text-sm text-github-text dark:text-dracula-foreground">
-            Nihilistic animals philosophize in Austin dumpsters - dark satire webcomic
-          </p>
-          <a 
-            href="#" 
-            className="block text-center py-2 bg-github-blue text-white no-underline transition-colors hover:bg-github-lightBlue dark:bg-dracula-purple dark:hover:bg-dracula-pink relative overflow-hidden"
-            onClick={createRipple}
-          >
-            View Project
-          </a>
-        </div>
-        
-        <div 
-          className="bg-white dark:bg-dracula-currentLine rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-          ref={(el) => (projectRefs.current[1] = el)}
-        >
-          <div className="h-40 overflow-hidden">
-            <img 
-              src={hypehallImg} 
-              alt="HypeHall" 
-              className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-            />
-          </div>
-          <h3 className="px-4 pt-4 pb-2 font-heading text-github-blue dark:text-dracula-purple">HypeHall</h3>
-          <p className="px-4 pb-4 text-sm text-github-text dark:text-dracula-foreground">
-            AI-powered app for discovering local bands through curated video feeds  
-          </p>
-          <a 
-            href="#" 
-            className="block text-center py-2 bg-github-blue text-white no-underline transition-colors hover:bg-github-lightBlue dark:bg-dracula-purple dark:hover:bg-dracula-pink relative overflow-hidden"
-            onClick={createRipple}
-          >
-            View Project
-          </a>
-        </div>
+        {projects.map((project, idx) => (
+          <ProjectCard
+            key={project.title}
+            {...project}
+            refCb={el => projectRefs.current[idx] = el}
+            createRipple={createRipple}
+          />
+        ))}
       </div>
     </section>
   )

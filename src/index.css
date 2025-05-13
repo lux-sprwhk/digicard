@@ -86,4 +86,9 @@
   .section-heading {
     @apply text-2xl font-heading mb-4 text-github-text dark:text-dracula-foreground;
   }
-}
+
+  body.matrix-bg {
+    background: url('/src/assets/matrix-bg.gif') repeat center center fixed;
+    background-size: cover;
+    /* Optional: Add a dark overlay for readability */
+  }}
