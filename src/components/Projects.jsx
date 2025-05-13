@@ -4,7 +4,7 @@ import hypehallImg from '../assets/hypehall-thumb.jpg'
 
 const ProjectCard = ({ img, alt, title, description, link, refCb, createRipple }) => (
   <div 
-    className="bg-white dark:bg-dracula-currentLine matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:shadow-matrix-glow rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+    className="bg-white dark:bg-dracula-currentLine matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:hover:shadow-matrix-glow rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
     ref={refCb}
   >
     <div className="h-40 overflow-hidden">
@@ -18,7 +18,7 @@ const ProjectCard = ({ img, alt, title, description, link, refCb, createRipple }
     <p className="px-4 pb-4 text-sm text-github-text dark:text-dracula-foreground matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)]">{description}</p>
     <a 
       href={link} 
-      className="block text-center py-2 bg-github-blue text-white no-underline transition-colors matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)] hover:bg-github-lightBlue dark:bg-dracula-purple dark:hover:bg-dracula-pink matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:shadow-matrix-glow relative overflow-hidden"
+      className="block text-center py-2 bg-github-blue text-white no-underline transition-colors matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)] hover:bg-github-lightBlue dark:bg-dracula-purple dark:hover:bg-dracula-pink matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg relative overflow-hidden"
       onClick={createRipple}
     >
       View Project
@@ -94,7 +94,7 @@ const Projects = () => {
   }, [])
 
   return (
-    <section className="p-5 border-t border-github-lightGray dark:border-dracula-currentLine matrix:border-matrix-glow matrix:shadow-lg matrix:shadow-matrix-glow">
+    <section className="p-5 border-t border-github-lightGray dark:border-dracula-currentLine matrix:border-matrix-glow matrix:shadow-lg ">
       <h2 className="section-heading">Featured Projects</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {projects.map((project, idx) => (

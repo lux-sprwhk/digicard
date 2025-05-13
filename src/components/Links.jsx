@@ -24,7 +24,7 @@ const Links = ({ theme }) => {
   ]
 
   return (
-    <section className="p-5 border-t border-github-lightGray dark:border-dracula-currentLine matrix:border-matrix-glow matrix:shadow-lg">
+    <section className="p-5 border-t border-github-lightGray dark:border-dracula-currentLine matrix:border-matrix-glow matrix:shadow-lg ">
       
       <h2 className="section-heading">
         <span className="group relative inline-block">
