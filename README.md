@@ -1,12 +1,68 @@
-# React + Vite
+# DigiCard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A dynamic, interactive digital business card and portfolio built with React + Vite.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Multiple Themes
 
-## Expanding the ESLint configuration
+* Classic dark/light modes (Github and Dracula)
+* Ultra-stylish Matrix mode with animated background
+* Animated Typewriter Bio
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Project Gallery
+
+* Responsive cards with custom image fit per project
+
+## Social Links
+
+* Connect & follow with animated, theme-aware icons
+
+## Matrix Mode Extras
+
+* Animated Matrix “digital rain” background (GIF)
+* Neon highlights and custom fonts
+
+## Console Easter Eggs
+
+* Hidden challenges and messages for the curious
+
+🚀 Getting Started
+
+Install dependencies
+bash
+CopyInsert in Terminal
+npm install
+Run the development server
+bash
+CopyInsert in Terminal
+npm run dev
+Build for production
+bash
+CopyInsert in Terminal
+npm run build
+🖼️ Assets
+Place your Matrix background GIF at:
+src/assets/matrix-bg.gif
+Place the Matrix theme song (OGG) at:
+src/assets/matrix-theme.ogg
+Project images and profile photo go in src/assets/
+🛠️ Tech Stack
+React
+Vite
+Tailwind CSS
+react-typed
+Custom hooks, effects, and a sprinkle of console magic
+🧑‍💻 Customization
+Add/Remove Projects:
+Edit src/components/Projects.jsx
+Change Bio or Themes:
+Edit src/components/TypewriterBio.jsx and theme logic in App.jsx
+Add Social Links:
+Edit src/components/Links.jsx
+🎹 Credits
+Matrix theme song: [Royalty Free Source]
+Matrix background: [GIF Source or credit]
+Icons: react-icons
+🕶️ License
+MIT — use, remix, and enjoy.
