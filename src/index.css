@@ -92,3 +92,27 @@
     background-size: cover;
     /* Optional: Add a dark overlay for readability */
   }}
+
+  @layer utilities {
+    /* Light theme glow: github blue */
+    .glow-light {
+      animation: glow-light 2.5s ease-in-out infinite alternate;
+    }
+    @keyframes glow-light {
+      from { filter: drop-shadow(0 0 0px #2563eb); }
+      to   { filter: drop-shadow(0 0 8px #2563eb); }
+    }
+  
+    /* Dark theme glow: dracula purple */
+    .glow-dark {
+      animation: glow-dark 2.5s ease-in-out infinite alternate;
+    }
+    @keyframes glow-dark {
+      from { filter: drop-shadow(0 0 0px #bd93f9); }
+      to   { filter: drop-shadow(0 0 8px #bd93f9); }
+    }
+  }
+
+  .typed-cursor-hidden .typed-cursor {
+    opacity: 0 !important;
+  }
