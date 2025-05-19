@@ -6,7 +6,9 @@ const matrixBio = "Welcome to the Matrix, hacker. Reality is what you make it.";
 
 const BasicBio = ({ theme }) => {
     return (
-        <p className="text-lg font-mono min-h-[2em] matrix:text-matrix-glow w-full">
+        <p className="text-lg font-mono min-h-[2em] 
+        web2:text-4xl 
+        web2:text-web2-secondary matrix:text-matrix-glow w-full">
             {theme === 'matrix' ? matrixBio : normalBio}
         </p>
     );
