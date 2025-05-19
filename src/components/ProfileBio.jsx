@@ -4,6 +4,14 @@ import { useState, useEffect } from 'react'
 const normalBio = "Web dev since the Flash days, now building digital experiences and writing AI-powered fiction";
 const matrixBio = "Welcome to the Matrix, hacker. Reality is what you make it.";
 
+const BasicBio = ({ theme }) => {
+    return (
+        <p className="text-lg font-mono min-h-[2em] matrix:text-matrix-glow w-full">
+            {theme === 'matrix' ? matrixBio : normalBio}
+        </p>
+    );
+}
+
 const TypewriterBio = ({ theme }) => {
     const [hideCursor, setHideCursor] = useState(false);
 
@@ -25,4 +33,4 @@ const TypewriterBio = ({ theme }) => {
 
 };
 
-export default TypewriterBio;
+export { BasicBio, TypewriterBio }

@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react'
 import profileImg from '../assets/profile.jpg'
 import { FaMapMarkerAlt } from 'react-icons/fa'
-import TypewriterBio from './TypewriterBio';
+import { BasicBio } from './ProfileBio';
 
 const Profile = ({ theme }) => {
   return (
@@ -20,7 +19,7 @@ const Profile = ({ theme }) => {
       <p className="text-sm text-github-secondaryText dark:text-dracula-pink matrix:text-matrix-glow mb-4 opacity-80 flex justify-center items-center gap-1">
         <FaMapMarkerAlt /> Austin, TX
       </p>
-      <TypewriterBio theme={theme} />
+      <BasicBio theme={theme} />
     </section>
   )
 }
