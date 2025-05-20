@@ -129,7 +129,7 @@ const SuperFooter = () => {
           <div className="flex gap-3 items-center flex-col">
             <a href="https://luhsprwhk.beehiiv.com" target="_blank" rel="noopener noreferrer" className={clsx(
             )}>
-                Blog
+                Beehiiv
             </a>
             <a href="https://github.com/luhsprwhk" target="_blank" rel="noopener noreferrer">
             Github
