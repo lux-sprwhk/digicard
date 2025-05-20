@@ -1,24 +1,57 @@
 import { useRef, useEffect } from 'react'
+import clsx from 'clsx'
 import sbBukowskisImg from '../assets/sb-bukowskis.jpg'
 import hypehallImg from '../assets/hypehall-thumb.jpg'
 
 const ProjectCard = ({ img, alt, title, description, link, refCb, createRipple }) => (
-  <div 
-    className="bg-white dark:bg-dracula-currentLine matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:hover:shadow-matrix-glow rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+  <div
+    className={clsx(
+      "rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1",
+      "bg-white dark:bg-dracula-currentLine",
+      "web2:bg-web2-cardBg",
+      "matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:hover:shadow-matrix-glow"
+    )}
     ref={refCb}
   >
     <div className="h-40 overflow-hidden">
-      <img 
-        src={img} 
-        alt={alt} 
-        className={`w-full h-full transition-transform duration-500 hover:scale-110 ${img === hypehallImg ? 'object-fill' : 'object-cover'}`}
+      <img
+        src={img}
+        alt={alt}
+        className={clsx(
+          "w-full h-full transition-transform duration-500 hover:scale-110",
+          img === hypehallImg ? 'object-fill' : 'object-cover'
+        )}
       />
     </div>
-    <h3 className="px-4 pt-4 pb-2 font-heading text-github-blue dark:text-dracula-purple matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)]">{title}</h3>
-    <p className="px-4 pb-4 text-sm text-github-text dark:text-dracula-foreground matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)]">{description}</p>
-    <a 
-      href={link} 
-      className="block text-center py-2 bg-github-blue text-white no-underline transition-colors matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)] hover:bg-github-lightBlue dark:bg-dracula-purple dark:hover:bg-dracula-pink matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg relative overflow-hidden"
+    <h3
+      className={clsx(
+        "px-4 pt-4 pb-2 font-heading text-github-blue",
+        "dark:text-dracula-purple",
+        "web2:text-web2-secondary web2:font-web2Heading web2:text-web2-text",
+        "matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)]"
+      )}
+    >
+      {title}
+    </h3>
+    <p
+      className={clsx(
+        "px-4 pb-4 text-sm text-github-text",
+        "dark:text-dracula-foreground",
+        "web2:text-web2-text",
+        "matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)]"
+      )}
+    >
+      {description}
+    </p>
+    <a
+      href={link}
+      className={clsx(
+        "block text-center py-2 bg-github-blue text-white no-underline transition-colors hover:bg-github-lightBlue",
+        "dark:bg-dracula-purple dark:hover:bg-dracula-pink",
+        "web2:bg-web2-primary web2:text-white web2:hover:bg-web2-secondary web2:hover:bg-web2-success web2:border-web2-border web2:shadow-web2-border web2:drop-shadow-web2-border",
+        "matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)] matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg",
+        "relative overflow-hidden"
+      )}
       onClick={createRipple}
       target="_blank"
       rel="noopener noreferrer"
@@ -45,7 +78,7 @@ const projects = [
   }
 ]
 
-const Projects = () => {
+const Projects = ({ theme }) => {
   const projectRefs = useRef([])
   
   // Create ripple effect on project links
@@ -96,9 +129,19 @@ const Projects = () => {
   }, [])
 
   return (
-    <section className="p-5 border-t border-github-lightGray dark:border-dracula-currentLine matrix:border-matrix-glow matrix:shadow-lg ">
+    <section
+      className={clsx(
+        "p-5",
+        theme !== "web2" && "border-t",
+        "border-github-lightGray dark:border-dracula-currentLine",
+        "matrix:border-matrix-glow matrix:shadow-lg"
+      )}
+    >
       <h2 className="section-heading">Featured Projects</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className={clsx(
+        "grid gap-6",
+        "grid-cols-1 md:grid-cols-2"
+      )}>
         {projects.map((project, idx) => (
           <ProjectCard
             key={project.title}
@@ -110,6 +153,7 @@ const Projects = () => {
       </div>
     </section>
   )
+
 }
 
 export default Projects

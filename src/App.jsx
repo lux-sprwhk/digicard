@@ -53,20 +53,35 @@ function App() {
       >
 
         {theme === 'web2' && (
-          <nav className="flex justify-between items-center bg-web2-primaryDark web2:border-web2-border web2:shadow-web2-border web2:drop-shadow-web2-border
-          web2:p-4 
-          ">
+          <nav className="flex justify-between items-center bg-web2-primaryDark web2:border-web2-border web2:shadow-web2-border web2:drop-shadow-web2-border web2:p-4">
             <div className="text-2xl font-bold tracking-tight flex items-center gap-2">
-              <span className="web2:text-web2-accent">Luh Sprwhk</span>
+              <span className="web2:text-web2-accent web2:font-web2Heading transition-all duration-200 hover:web2:text-web2-accent hover:drop-shadow-md cursor-pointer">
+                Luh Sprwhk
+              </span>
             </div>
             <div className="flex gap-4 text-xl">
-              <a href="https://github.com/luhsprwhk" target="_blank" rel="noopener noreferrer" className="web2:text-web2-secondary">
+              <a
+                href="https://github.com/luhsprwhk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="web2:text-web2-secondary transition-all duration-200 hover:web2:text-web2-accent hover:scale-125"
+              >
                 <FaGithub />
               </a>
-              <a href="https://twitter.com/luhsprwhk" target="_blank" rel="noopener noreferrer" className="web2:text-web2-secondary">
+              <a
+                href="https://twitter.com/luhsprwhk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="web2:text-web2-secondary transition-all duration-200 hover:web2:text-web2-accent hover:scale-125"
+              >
                 <FaTwitter />
               </a>
-              <a href="https://youtube.com/@luhsprwhk" target="_blank" rel="noopener noreferrer" className="web2:text-web2-secondary">
+              <a
+                href="https://youtube.com/@luhsprwhk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="web2:text-web2-secondary transition-all duration-200 hover:web2:text-web2-accent hover:scale-125"
+              >
                 <FaYoutube />
               </a>
             </div>
@@ -74,7 +89,7 @@ function App() {
         )}
         <Profile theme={theme} />
         {theme !== 'web2' ? <Links theme={theme} /> : null}
-        <Projects />
+        <Projects theme={theme} />
         <FeaturedPost />
       </main>
 

@@ -61,7 +61,9 @@ export default {
       },
       fontFamily: {
         heading: ['"Raleway"', 'sans-serif'],
-        body: ['"Roboto"', 'sans-serif']
+        body: ['"Roboto"', 'sans-serif'],
+        web2: ['"Lucida Grande"', '"Segoe UI"', '"Trebuchet MS"', 'Tahoma', 'sans-serif'],
+        web2Heading: ['"Myriad Pro"', '"Segoe UI"', 'Helvetica', 'Arial', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.8s forwards',

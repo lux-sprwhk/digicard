@@ -8,7 +8,8 @@ const BasicBio = ({ theme }) => {
     return (
         <p className="text-lg font-mono min-h-[2em] 
         web2:text-4xl 
-        web2:text-web2-secondary matrix:text-matrix-glow w-full">
+        web2:text-web2-secondary matrix:text-matrix-glow w-full
+        web2:font-web2Heading">
             {theme === 'matrix' ? matrixBio : normalBio}
         </p>
     );

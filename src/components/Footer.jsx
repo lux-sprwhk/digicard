@@ -42,8 +42,6 @@ const Footer = ({ theme }) => {
 }
 
 
-import profileImg from '../assets/profile.jpg';
-
 const techBadges = [
   {
     name: 'React',
@@ -138,20 +136,8 @@ const SuperFooter = () => {
   return (
     <footer className="relative bg-gradient-to-br from-white via-blue-50 to-cyan-50 border-t border-blue-200 shadow-inner mt-8 text-xs md:text-sm text-gray-700 dark:text-gray-300 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="max-w-4xl mx-auto px-2 py-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Profile Pic + Mini About Me + Tech stack badges */}
+        {/* Tech stack badges */}
         <div className="flex flex-col gap-2 items-center md:items-start">
-          {/* Mini Profile */}
-          <div className="flex flex-col items-center md:items-start w-full mb-2">
-            <img
-              src={profileImg}
-              alt="Profile"
-              className="w-16 h-16 rounded-full border-2 border-web2-primaryDark shadow-md mb-1"
-            />
-            <div className="text-base font-bold text-web2-primaryDark dark:text-blue-400">Luh Sprwhk</div>
-            <div className="text-xs text-web2-text dark:text-gray-300 text-center md:text-left max-w-[180px]">
-              Web tinkerer, vaporwave enjoyer, and lover of all things retro-futurist. Building playful things on the internet since 2003.
-            </div>
-          </div>
           <div className="flex gap-2 mb-1">
             {techBadges.map(badge => (
               <a
@@ -184,10 +170,19 @@ const SuperFooter = () => {
 
         {/* Microblog and Guestbook */}
         <div className="flex flex-col gap-4 items-center">
+          {/* Easter egg link */}
+          <button onClick={triggerMatrix} className="inline-flex items-center gap-1 px-2 py-1 bg-black text-green-400 border border-green-600 rounded shadow hover:bg-green-900 hover:text-white transition-all cursor-pointer text-xs">
+            <span className="font-mono">[Matrix Mode]</span>
+            <span className="animate-pulse">☰</span>
+          </button>
 
           {/* Microblog/status */}
           <div className="w-full max-w-xs">
             <div className="font-bold text-blue-900 dark:text-blue-200 mb-1">Microblog</div>
+            <form onSubmit={addStatus} className="flex gap-1 mb-1">
+              <input ref={statusRef} type="text" value={statusInput} onChange={e => setStatusInput(e.target.value)} placeholder="What's up?" className="flex-1 px-2 py-1 border rounded text-xs" />
+              <button type="submit" className="bg-blue-300 text-blue-900 px-2 rounded hover:bg-blue-400">Post</button>
+            </form>
             <ul className="max-h-16 overflow-y-auto space-y-1">
               {statuses.map((s, i) => (
                 <li key={i} className="bg-blue-50 border-l-4 border-blue-300 px-2 py-0.5 rounded text-xs flex justify-between items-center">
@@ -219,7 +214,21 @@ const SuperFooter = () => {
 
         {/* Sitemap, badges, webring */}
         <div className="flex flex-col gap-3 items-center md:items-end">
+          <h5>About</h5>
           <div className="flex gap-2 items-center">
+            {techBadges.map(badge => (
+              <a
+                key={badge.name}
+                href={badge.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center gap-1 px-2 py-1 rounded border ${badge.color} shadow-sm hover:scale-110 transition-transform`}
+                title={badge.name}
+              >
+                <img src={badge.logo} alt={badge.name} className="w-5 h-5" />
+                <span className="font-bold">{badge.name}</span>
+              </a>
+            ))}
             <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-200 border border-green-400 rounded text-green-800 font-bold text-xs">
               <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M4 11V9a4 4 0 018 0v2a2 2 0 002 2v3a2 2 0 01-2 2H6a2 2 0 01-2-2v-3a2 2 0 002-2zm2-2a2 2 0 114 0v2H6v-2z"/></svg>
               This site is ad-free
