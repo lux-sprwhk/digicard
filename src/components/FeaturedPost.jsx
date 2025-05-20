@@ -43,13 +43,14 @@ const FeaturedPost = ({ theme }) => {
         'matrix:shadow-lg'
       )}
     >
-      <h2 className={clsx('section-heading', 'mb-4')}>Featured Post</h2>
+      <h2 className={clsx('section-heading', 'mb-4')}>Blog</h2>
       <div
         className={clsx(
           'bg-white dark:bg-dracula-currentLine',
           'matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:hover:shadow-matrix-glow',
           'web2:bg-web2-cardBg web2:border-web2-border',
-          'rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all'
+          'rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all',
+          'border dark:border-dracula-purple matrix:border-matrix-glow web2:border-web2-border dark:hover:border-dracula-pink'
         )}
       >
         <a
@@ -70,8 +71,20 @@ const FeaturedPost = ({ theme }) => {
           <div className={clsx("p-4")}>
             <h3 className={clsx("text-lg font-semibold mb-2")}>{featuredPost.title}</h3>
             <p className={clsx("mb-4")}>{featuredPost.description}</p>
-            <span className={clsx("inline-flex items-center gap-2 text-matrix-green font-medium")}>Read more <FaArrowRight /></span>
+            <span className={clsx("inline-flex items-center gap-2 text-matrix-green font-medium")}>Read More<FaArrowRight /></span>
           </div>
+        </a>
+      </div>
+      <div>
+        <a
+          href="https://luhsprwhk.beehiiv.com"
+          className={clsx(
+            "block w-full mt-4 py-2 text-center rounded bg-github-blue text-white font-medium transition-colors hover:bg-github-lightBlue",
+            "dark:bg-dracula-purple dark:hover:bg-dracula-pink",
+            "matrix:bg-matrix-terminal matrix:border matrix:border-matrix-glow matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)]"
+          )}
+        >
+          View Archives
         </a>
       </div>
     </section>

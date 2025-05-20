@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { FaTerminal } from 'react-icons/fa'
 import profileImg from '../assets/profile.jpg'
+import clsx from 'clsx'
 
 const Footer = ({ theme }) => {
   const [currentYear] = useState(new Date().getFullYear())
@@ -126,6 +127,10 @@ const SuperFooter = () => {
         <div className="flex flex-col gap-4 items-center">
           <h5>Connect</h5>
           <div className="flex gap-3 items-center flex-col">
+            <a href="https://luhsprwhk.beehiiv.com" target="_blank" rel="noopener noreferrer" className={clsx(
+            )}>
+                Blog
+            </a>
             <a href="https://github.com/luhsprwhk" target="_blank" rel="noopener noreferrer">
             Github
             </a>

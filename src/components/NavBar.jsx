@@ -1,4 +1,4 @@
-import { FaGithub, FaTwitter, FaYoutube } from 'react-icons/fa'
+import { FaGithub, FaTwitter, FaYoutube, FaRssSquare } from 'react-icons/fa'
 import clsx from 'clsx';
 
 import { useState } from 'react';
@@ -50,6 +50,12 @@ const Web2NavBar = ({ theme }) => {
                 </span>
             </div>
             <div className={clsx("flex gap-4 text-xl")}>
+                <a href="https://luhsprwhk.beehiiv.com" target="_blank" rel="noopener noreferrer" className={clsx(
+                    "web2:text-web2-secondary transition-all duration-200",
+                    "hover:web2:text-web2-accent hover:scale-125"
+                )}>
+                    <FaRssSquare />
+                </a>
                 <a
                     href="https://github.com/luhsprwhk"
                     target="_blank"

@@ -18,7 +18,7 @@ const ClassicFeaturedPost = ({ featuredPost }) => {
         'text-2xl',
         'mb-6',
       )}>
-        Featured Post
+        Blog
       </h2>
       <div className={clsx(
         'flex flex-row items-start gap-6',
@@ -52,6 +52,22 @@ const ClassicFeaturedPost = ({ featuredPost }) => {
           </a>
         </div>
       </div>
+      <a
+        href="https://luhsprwhk.beehiiv.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={clsx(
+          'mt-4 block',
+          'underline',
+          'web2:text-web2-primary csszen:text-csszen-text',
+          'hover:text-blue-800 csszen:hover:text-[#8b7c4a]',
+          'transition-colors',
+          'text-base',
+          'font-normal',
+        )}
+      >
+        View Archives
+      </a>
     </section>
   );
 };
