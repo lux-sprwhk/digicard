@@ -8,7 +8,7 @@ A dynamic, interactive digital business card and portfolio built with React + Vi
 
 * Classic dark/light modes (Github and Dracula)
 * Ultra-stylish Matrix mode with animated background
-* Animated Typewriter Bio
+* Web 2.0 mode
 
 ## Project Gallery
 
@@ -27,42 +27,28 @@ A dynamic, interactive digital business card and portfolio built with React + Vi
 
 * Hidden challenges and messages for the curious
 
-🚀 Getting Started
+## 🚀 Getting Started
 
-Install dependencies
-bash
-CopyInsert in Terminal
-npm install
-Run the development server
-bash
-CopyInsert in Terminal
-npm run dev
-Build for production
-bash
-CopyInsert in Terminal
-npm run build
-🖼️ Assets
+1. `npm install`
+2. `npm run dev`
+
+Build for production: `npm run build`
+
+## 🖼️ Assets
+
 Place your Matrix background GIF at:
 src/assets/matrix-bg.gif
 Place the Matrix theme song (OGG) at:
 src/assets/matrix-theme.ogg
 Project images and profile photo go in src/assets/
-🛠️ Tech Stack
-React
-Vite
-Tailwind CSS
-react-typed
-Custom hooks, effects, and a sprinkle of console magic
-🧑‍💻 Customization
-Add/Remove Projects:
-Edit src/components/Projects.jsx
-Change Bio or Themes:
-Edit src/components/TypewriterBio.jsx and theme logic in App.jsx
-Add Social Links:
-Edit src/components/Links.jsx
-🎹 Credits
-Matrix theme song: [Royalty Free Source]
-Matrix background: [GIF Source or credit]
-Icons: react-icons
-🕶️ License
+
+## 🛠️ Tech Stack
+
+* React
+* Vite
+* Tailwind CSS
+* Custom hooks, effects, and a sprinkle of console magic
+
+## 🕶️ License
+
 MIT — use, remix, and enjoy.
