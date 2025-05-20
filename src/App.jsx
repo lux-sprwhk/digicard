@@ -97,8 +97,8 @@ function App() {
         <Profile theme={theme} />
         {/* Only show Links inline for non-csszen and non-web2 themes */}
         {theme !== 'web2' && theme !== 'csszen' ? <Links theme={theme} /> : null}
-        <Projects theme={theme} />
         <FeaturedPost theme={theme} />
+        <Projects theme={theme} />
       </main>
 
       {theme === 'web2' ? <MountainFooter /> : <Footer theme={theme} />}

@@ -14,7 +14,7 @@ const ClassicProjectsList = ({ projects }) => (
       'text-2xl',
       'mb-6',
     )}>
-      Featured Projects
+      Projects
     </h2>
     <div className={clsx('flex flex-col gap-8')}>
       {projects.map((project) => (

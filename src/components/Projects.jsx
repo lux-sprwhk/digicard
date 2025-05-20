@@ -145,7 +145,7 @@ const Projects = ({ theme }) => {
         'matrix:shadow-lg'
       )}
     >
-      <h2 className={clsx('section-heading')}>Featured Projects</h2>
+      <h2 className={clsx('section-heading')}>Projects</h2>
       <div className={clsx('grid gap-6', 'grid-cols-1 md:grid-cols-2')}>
         {projects.map((project, idx) => (
           <ProjectCard
