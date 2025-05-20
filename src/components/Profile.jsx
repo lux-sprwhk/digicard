@@ -8,7 +8,7 @@ const Profile = ({ theme }) => {
     <section
       className={clsx(
         'relative text-center py-8 px-5 web2:bg-web2-primary overflow-hidden',
-        theme === 'web2' && 'pt-7 pb-40'
+        theme === 'web2' && 'pt-10 pb-44'
       )}
     >
       {/* Clouds BG at bottom */}

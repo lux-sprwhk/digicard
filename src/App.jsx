@@ -3,10 +3,11 @@ import Header from './components/Header'
 import Profile from './components/Profile'
 import Links from './components/Links'
 import Projects from './components/Projects'
-import { Footer, SuperFooter } from './components/Footer'
+import { Footer } from './components/Footer'
 import FeaturedPost from './components/FeaturedPost'
 import consoleEasterEgg from './utils/consoleEasterEgg'
-import {FaGithub, FaTwitter, FaYoutube} from 'react-icons/fa'
+import MountainFooter from './components/MountainFooter'
+import { Web2NavBar } from './components/NavBar'
 
 function App() {
   const [theme, setTheme] = useState(() => {
@@ -53,39 +54,7 @@ function App() {
       >
 
         {theme === 'web2' && (
-          <nav className="flex justify-between items-center bg-web2-primaryDark web2:border-web2-border web2:shadow-web2-border web2:drop-shadow-web2-border web2:p-4">
-            <div className="text-2xl font-bold tracking-tight flex items-center gap-2">
-              <span className="web2:text-web2-accent web2:font-web2Heading transition-all duration-200 hover:web2:text-web2-accent hover:drop-shadow-md cursor-pointer">
-                Luh Sprwhk
-              </span>
-            </div>
-            <div className="flex gap-4 text-xl">
-              <a
-                href="https://github.com/luhsprwhk"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="web2:text-web2-secondary transition-all duration-200 hover:web2:text-web2-accent hover:scale-125"
-              >
-                <FaGithub />
-              </a>
-              <a
-                href="https://twitter.com/luhsprwhk"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="web2:text-web2-secondary transition-all duration-200 hover:web2:text-web2-accent hover:scale-125"
-              >
-                <FaTwitter />
-              </a>
-              <a
-                href="https://youtube.com/@luhsprwhk"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="web2:text-web2-secondary transition-all duration-200 hover:web2:text-web2-accent hover:scale-125"
-              >
-                <FaYoutube />
-              </a>
-            </div>
-          </nav>
+         <Web2NavBar theme={theme} />
         )}
         <Profile theme={theme} />
         {theme !== 'web2' ? <Links theme={theme} /> : null}
@@ -94,7 +63,7 @@ function App() {
       </main>
 
 
-      {theme === 'web2' ? <SuperFooter /> : <Footer theme={theme} />}
+      {theme === 'web2' ? <MountainFooter /> : <Footer theme={theme} /> }
     </div>
   )
 }

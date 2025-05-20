@@ -30,7 +30,8 @@ const Header = ({ theme, setTheme }) => {
           <option value="light">Github</option>
           <option value="dark">Dracula</option>
           <option value="web2">Web 2.0</option>
-          <option value="csszen">CSS Zen Garden</option>
+          {/* TODO: Add CSS Zen Garden */}
+          {/* TODO: <option value="csszen">CSS Zen Garden</option> */}
         </select>
 
       </div>
