@@ -24,7 +24,13 @@ const Links = ({ theme }) => {
   ]
 
   return (
-    <section className="p-5 border-t border-github-lightGray dark:border-dracula-currentLine matrix:border-matrix-glow matrix:shadow-lg ">
+    <section className="p-5 border-t border-github-lightGray
+      dark:border-dracula-currentLine
+      matrix:border-matrix-glow matrix:shadow-lg
+      web2:border-web2-border web2:shadow-web2-border web2:drop-shadow-web2-border
+      web2:bg-web2-background
+      ">
+    
       
       <h2 className="section-heading">
         <span className="group relative inline-block">
@@ -40,7 +46,6 @@ const Links = ({ theme }) => {
         </span>onnect & Follow
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto matrix:bg-matrix-terminal">
-      
         {links.map((link, index) => (
           <LinkItem 
             key={index}

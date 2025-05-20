@@ -116,3 +116,15 @@
   .typed-cursor-hidden .typed-cursor {
     opacity: 0 !important;
   }
+
+.clouds-bg {
+  background: url('/src/assets/clouds-bg-2.png');
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+  position: absolute;
+  margin-top: -12em;
+  height: 15rem; /* or whatever fits your layout */
+  min-height: 3rem;
+  /* opacity: 0.5; */
+  pointer-events: none;
+}

@@ -1,9 +1,4 @@
-import { FaMoon, FaSun } from 'react-icons/fa'
-
 const Header = ({ theme, setTheme }) => {
-  const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'dark' ? 'light' : 'dark')
-  }
 
   // Don't show the toggle at all in matrix mode
   if (theme === 'matrix') {
@@ -12,26 +7,33 @@ const Header = ({ theme, setTheme }) => {
 
   return (
     <header className="flex justify-end mb-5">
-      <div className="relative">
-        <input 
-          type="checkbox" 
-          id="theme-switch" 
-          className="opacity-0 absolute"
-          checked={theme === 'dark'}
-          onChange={toggleTheme}
-        />
-        <label 
-          htmlFor="theme-switch" 
-          className="flex items-center justify-between p-1 w-14 h-7 rounded-full bg-white dark:bg-dark-card matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:shadow-matrix-glow border border-gray-200 dark:border-dark-border cursor-pointer relative transition-colors"
-        >
-          <FaMoon className="text-sm text-gray-600 dark:text-dark-text matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)] pl-1 z-10" />
-          <FaSun className="text-sm text-gray-600 dark:text-dark-text matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)] pr-1 z-10" />
-          <div 
-            className={`absolute left-1 w-5 h-5 rounded-full bg-primary transition-transform matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:shadow-matrix-glow ${
-              theme === 'dark' ? 'transform translate-x-7' : ''
-            }`}
-          ></div>
+      <div className="relative text-rleft">
+        <label>
+          <small>Site Theme</small>
         </label>
+        {/* Spacing is now handled by select's margin-top */}
+        <select
+          value={theme}
+          onChange={e => setTheme(e.target.value)}
+          className="
+            w-full mt-1 px-2 py-1 rounded
+            bg-white
+            dark:bg-dracula-currentLine
+            matrix:bg-matrix-terminal
+            web2:bg-web2-primaryDark web2:border-web2-primaryDark
+            web2:text-white
+            border border-gray-200
+            dark:border-dracula-currentLine
+            text-sm focus:outline-none transition-colors
+          "
+        >
+          <option value="light">Github</option>
+          <option value="dark">Dracula</option>
+          <option value="web2">Web 2.0</option>
+          {/* TODO: Add CSS Zen Garden */}
+          {/* TODO: <option value="csszen">CSS Zen Garden</option> */}
+        </select>
+
       </div>
     </header>
   )
