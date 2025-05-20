@@ -23,6 +23,31 @@ const Links = ({ theme }) => {
     { href: 'https://youtube.com/luhsprwhk', icon: FaYoutube, label: 'Youtube' },
   ]
 
+  if (theme === 'csszen') {
+    // CSS Zen sidebar: vertical, text-only links
+    return (
+      <aside className="csszen-links-sidebar p-4 bg-[#fffbe6] border-l border-[#b6a16b] rounded-xl shadow-md flex flex-col items-end">
+        <h2 className="font-bold mb-4 text-[#b6a16b] text-lg">Connect & Follow</h2>
+        <nav>
+          <ul className="flex flex-col gap-3 items-end">
+            {links.map((link, idx) => (
+              <li key={idx}>
+                <a
+                  href={link.href}
+                  className="text-[#b6a16b] underline hover:text-[#8b7c4a] transition-colors text-base"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </aside>
+    );
+  }
+
   return (
     <section className="p-5 border-t border-github-lightGray
       dark:border-dracula-currentLine

@@ -1,7 +1,8 @@
-import { useRef, useEffect } from 'react'
-import clsx from 'clsx'
-import sbBukowskisImg from '../assets/sb-bukowskis.jpg'
-import hypehallImg from '../assets/hypehall-thumb.jpg'
+import { useRef, useEffect } from 'react';
+import clsx from 'clsx';
+import sbBukowskisImg from '../assets/sb-bukowskis.jpg';
+import hypehallImg from '../assets/hypehall-thumb.jpg';
+import ClassicProjectsList from './ClassicProjectsList';
 
 const ProjectCard = ({ img, alt, title, description, link, refCb, createRipple }) => (
   <div
@@ -128,20 +129,24 @@ const Projects = ({ theme }) => {
     }
   }, [])
 
+  if (theme === 'web2' || theme === 'csszen') {
+    return <ClassicProjectsList projects={projects} />;
+  }
+
+  // Modern card layout for other themes
   return (
     <section
       className={clsx(
-        "p-5",
-        theme !== "web2" && "border-t",
-        "border-github-lightGray dark:border-dracula-currentLine",
-        "matrix:border-matrix-glow matrix:shadow-lg"
+        'p-5',
+        theme !== 'web2' && 'border-t',
+        'border-github-lightGray',
+        'dark:border-dracula-currentLine',
+        'matrix:border-matrix-glow',
+        'matrix:shadow-lg'
       )}
     >
-      <h2 className="section-heading">Featured Projects</h2>
-      <div className={clsx(
-        "grid gap-6",
-        "grid-cols-1 md:grid-cols-2"
-      )}>
+      <h2 className={clsx('section-heading')}>Featured Projects</h2>
+      <div className={clsx('grid gap-6', 'grid-cols-1 md:grid-cols-2')}>
         {projects.map((project, idx) => (
           <ProjectCard
             key={project.title}
@@ -152,8 +157,8 @@ const Projects = ({ theme }) => {
         ))}
       </div>
     </section>
-  )
-
+  );
 }
+
 
 export default Projects

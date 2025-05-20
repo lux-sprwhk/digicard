@@ -58,12 +58,28 @@ export default {
           terminal: '#0D0208',
           rain: '#008F11'
         },
+        csszen: {
+          brown: {
+            light: '#d3cbb8', // lighter brown/beige
+            DEFAULT: '#9b8e70', // main brown
+            dark: '#776b53',   // darker brown
+          },
+          green: {
+            light: '#e2eddf', // light sage
+            DEFAULT: '#c0cba2', // main sage green
+            dark: '#8fa061',  // darker sage
+          },
+          cream: '#f8f7f3',    // background cream
+          accent: '#6d7e59',   // accent green for links/highlights
+        },
       },
       fontFamily: {
         heading: ['"Raleway"', 'sans-serif'],
         body: ['"Roboto"', 'sans-serif'],
         web2: ['"Lucida Grande"', '"Segoe UI"', '"Trebuchet MS"', 'Tahoma', 'sans-serif'],
         web2Heading: ['"Myriad Pro"', '"Segoe UI"', 'Helvetica', 'Arial', 'sans-serif'],
+        'zengarden-serif': ['Georgia', 'Times New Roman', 'serif'],
+        'zengarden-sans': ['Verdana', 'Arial', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.8s forwards',
@@ -125,7 +141,11 @@ export default {
       },
       transitionTimingFunction: {
         DEFAULT: 'cubic-bezier(0.4, 0, 0.2, 1)'
-      }
+      },
+      backgroundImage: {
+        'zengarden-pattern': "url('/src/assets/zengarden-bg-pattern.png')",
+        'zengarden-lotus': "url('/src/assets/zengarden-lotus.svg')",
+      },
     }
   },
   variants: {

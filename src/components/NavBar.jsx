@@ -89,3 +89,4 @@ const Web2NavBar = ({ theme }) => {
 }
 
 export { Web2NavBar };
+export default Web2NavBar;

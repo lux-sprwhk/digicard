@@ -3,11 +3,13 @@ import Header from './components/Header'
 import Profile from './components/Profile'
 import Links from './components/Links'
 import Projects from './components/Projects'
-import { Footer } from './components/Footer'
 import FeaturedPost from './components/FeaturedPost'
-import consoleEasterEgg from './utils/consoleEasterEgg'
+import Footer, { SuperFooter } from './components/Footer'
 import MountainFooter from './components/MountainFooter'
 import { Web2NavBar } from './components/NavBar'
+import consoleEasterEgg from './utils/consoleEasterEgg'
+import clsx from 'clsx'
+import cssZenBanner from './assets/css-zen-banner.png'
 
 function App() {
   const [theme, setTheme] = useState(() => {
@@ -25,15 +27,25 @@ function App() {
     sessionStorage.setItem('theme', theme)
   }, [theme])
 
-  // NEW: Toggle matrix background on <body>
+  // NEW: Toggle matrix and web2-bg background on <body>
   useEffect(() => {
     if (theme === 'matrix') {
       document.body.classList.add('matrix-bg');
     } else {
       document.body.classList.remove('matrix-bg');
     }
+    if (theme === 'csszen') {
+      document.body.classList.add('csszen');
+      document.body.classList.add('csszen-bg');
+    } else {
+      document.body.classList.remove('csszen');
+      document.body.classList.remove('csszen-bg');
+    }
     // Cleanup in case of hot reloads/unmount
-    return () => document.body.classList.remove('matrix-bg');
+    return () => {
+      document.body.classList.remove('matrix-bg');
+      document.body.classList.remove('csszen-bg');
+    };
   }, [theme]);
 
 
@@ -43,28 +55,61 @@ function App() {
   }, [setTheme]);
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-6">
-      <Header theme={theme} setTheme={setTheme} />
-
-      <main className={`bg-white dark:bg-dracula-currentLine rounded-xl shadow-md overflow-hidden mb-6
-        opacity-0 transform translate-y-5 animate-fade-in
-        matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:shadow-matrix-glow
-        web2:bg-web2-background web2:border-web2-border
-      `}
+    <div
+      className={clsx(
+        theme === 'csszen'
+          ? 'max-w-5xl mx-auto px-4 py-6 relative flex flex-row gap-8'
+          : 'max-w-2xl mx-auto px-4 py-6 relative flex'
+      )}
+    >
+      {theme === 'csszen' && (
+        <img
+          src={cssZenBanner}
+          alt="CSS Zen Garden Banner"
+          className="csszen-banner-img hidden sm:block"
+          style={{
+            position: 'absolute',
+            left: '-80px',
+            top: '80px',
+            width: '120px',
+            zIndex: 10,
+            boxShadow: '2px 4px 16px rgba(0,0,0,0.13)',
+            borderRadius: '0 1.5rem 1.5rem 0',
+            height: '20rem',
+          }}
+        />
+      )}
+      {/* Main content */}
+      <div style={{ flex: 1 }}>
+        <Header theme={theme} setTheme={setTheme} />
+        <main
+        className={clsx(
+          "bg-white dark:bg-dracula-currentLine rounded-xl shadow-md overflow-hidden mb-6",
+          "opacity-0 transform translate-y-5 animate-fade-in",
+          "matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:shadow-matrix-glow",
+          "web2:bg-web2-background web2:border-web2-border",
+          "csszen:bg-csszen-cream csszen:text-csszen-text csszen:border-csszen-text"
+        )}
       >
-
         {theme === 'web2' && (
-         <Web2NavBar theme={theme} />
+          <Web2NavBar theme={theme} />
         )}
         <Profile theme={theme} />
-        {theme !== 'web2' ? <Links theme={theme} /> : null}
+        {/* Only show Links inline for non-csszen and non-web2 themes */}
+        {theme !== 'web2' && theme !== 'csszen' ? <Links theme={theme} /> : null}
         <Projects theme={theme} />
-        <FeaturedPost />
+        <FeaturedPost theme={theme} />
       </main>
 
-
-      {theme === 'web2' ? <MountainFooter /> : <Footer theme={theme} /> }
+      {theme === 'web2' ? <MountainFooter /> : <Footer theme={theme} />}
     </div>
+    {/* CSS Zen sidebar */}
+    {theme === 'csszen' && (
+      <aside className="csszen-sidebar hidden md:block" style={{ minWidth: 180, marginLeft: -25, marginTop: '20rem' }}>
+        <Links theme={theme} />
+      </aside>
+    )}
+  </div>
   )
 }
 

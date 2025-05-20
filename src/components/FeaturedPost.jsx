@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import clsx from 'clsx';
 
-const FeaturedPost = () => {
+import ClassicFeaturedPost from './ClassicFeaturedPost';
+
+const FeaturedPost = ({ theme }) => {
   const [featuredPost, setFeaturedPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -27,30 +29,36 @@ const FeaturedPost = () => {
   if (error) return <div>Error: {error}</div>;
   if (!featuredPost) return null;
 
+  if (theme === 'web2' || theme === 'csszen') {
+    return <ClassicFeaturedPost featuredPost={featuredPost} />;
+  }
+
   return (
     <section
       className={clsx(
-        "p-5 border-t border-github-lightGray",
-        "dark:border-dracula-currentLine",
-        "matrix:border-matrix-glow matrix:shadow-lg"
+        'p-5',
+        'border-t border-github-lightGray',
+        'dark:border-dracula-currentLine',
+        'matrix:border-matrix-glow',
+        'matrix:shadow-lg'
       )}
     >
-      <h2 className={clsx("section-heading", "mb-4")}>Featured Post</h2>
+      <h2 className={clsx('section-heading', 'mb-4')}>Featured Post</h2>
       <div
         className={clsx(
-          "bg-white dark:bg-dracula-currentLine",
-          "matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:hover:shadow-matrix-glow",
-          "web2:bg-web2-cardBg web2:border-web2-border",
-          "rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all"
+          'bg-white dark:bg-dracula-currentLine',
+          'matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:hover:shadow-matrix-glow',
+          'web2:bg-web2-cardBg web2:border-web2-border',
+          'rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all'
         )}
       >
         <a
           href={featuredPost.link}
           target="_blank"
           rel="noopener noreferrer"
-          className={clsx("block no-underline text-inherit")}
+          className={clsx('block no-underline text-inherit')}
         >
-          <div className={clsx("aspect-video overflow-hidden")}>
+          <div className={clsx('aspect-video overflow-hidden')}>
             <img
               src={featuredPost.image}
               alt="Featured post thumbnail"
