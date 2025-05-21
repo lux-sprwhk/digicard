@@ -47,7 +47,9 @@ const ClassicProjectsList = ({ projects }) => (
             )}>
               <a
                 href={project.link}
-                className={clsx('', 'underline', 'hover:text-web2-primary', 'transition-colors')}
+                className={clsx('web2:hover:text-web2-accent', 'underline', 'hover:text-web2-primary', 'transition-colors',
+                  'csszen:hover:text-[#8b7c4a]'
+                )}
                 target="_blank"
                 rel="noopener noreferrer"
               >

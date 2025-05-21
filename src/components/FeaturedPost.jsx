@@ -30,14 +30,14 @@ const FeaturedPost = ({ theme }) => {
   if (!featuredPost) return null;
 
   if (theme === 'web2' || theme === 'csszen') {
-    return <ClassicFeaturedPost featuredPost={featuredPost} />;
+    return <ClassicFeaturedPost featuredPost={featuredPost} theme={theme} />;
   }
 
   return (
     <section
       className={clsx(
         'p-5',
-        'border-t border-github-lightGray',
+        theme !== 'web2' && 'border-t border-github-lightGray',
         'dark:border-dracula-currentLine',
         'matrix:border-matrix-glow',
         'matrix:shadow-lg'
@@ -50,7 +50,7 @@ const FeaturedPost = ({ theme }) => {
           'matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:hover:shadow-matrix-glow',
           'web2:bg-web2-cardBg web2:border-web2-border',
           'rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all',
-          'border dark:border-dracula-purple matrix:border-matrix-glow web2:border-web2-border dark:hover:border-dracula-pink'
+          'border dark:border-dracula-purple matrix:border-matrix-glow web2:border-web2-border dark:hover:border-'
         )}
       >
         <a

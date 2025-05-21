@@ -47,7 +47,8 @@ const Profile = ({ theme }) => {
             'text-github-text',
             'dark:text-dracula-foreground',
             'matrix:text-matrix-highlight matrix:drop-shadow-[0_0_5px_theme(colors.matrix.glow)]',
-            'web2:text-white'
+            'web2:text-white',
+            'csszen:text-csszen-text'
           )}
         >
           Luh Sprwhk
@@ -60,7 +61,8 @@ const Profile = ({ theme }) => {
             'text-github-blue',
             'dark:text-dracula-purple',
             'matrix:text-matrix-highlight',
-            'web2:text-white'
+            'web2:text-white',
+            'csszen:text-csszen-green-dark'
           )}
         >
           Vapourware Dealer
