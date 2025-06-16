@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react';
 import clsx from 'clsx';
 import sbBukowskisImg from '../assets/sb-bukowskis.jpg';
 import hypehallImg from '../assets/hypehall-thumb.jpg';
+import liveLaughDieImg from '../assets/LiveLaughDie-thumb.png';
 import ClassicProjectsList from './ClassicProjectsList';
 
 const ProjectCard = ({
@@ -88,6 +89,14 @@ const projects = [
       'AI-powered app for discovering local bands through curated video feeds',
     link: 'https://hypehall.beehiiv.com/subscribe',
   },
+  {
+    img: liveLaughDieImg,
+    alt: 'Live Laugh Die',
+    title: 'Live Laugh Die',
+    description:
+      'Horror trivia game satirizing MLM culture and toxic positivity through deadly quiz show gameplay',
+    link: 'https://liveLaughDie.beehiiv.com/subscribe',
+  },
 ];
 
 const Projects = ({ theme }) => {
@@ -157,7 +166,14 @@ const Projects = ({ theme }) => {
       )}
     >
       <h2 className={clsx('section-heading')}>Projects</h2>
-      <div className={clsx('grid gap-6', 'grid-cols-1 md:grid-cols-2')}>
+      <div
+        className={clsx(
+          'grid gap-6',
+          projects.length % 2 !== 0
+            ? 'grid-cols-1'
+            : 'grid-cols-1 md:grid-cols-2'
+        )}
+      >
         {projects.map((project, idx) => (
           <ProjectCard
             key={project.title}
