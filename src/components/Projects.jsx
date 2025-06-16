@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import sbBukowskisImg from '../assets/sb-bukowskis.jpg';
 import hypehallImg from '../assets/hypehall-thumb.jpg';
 import liveLaughDieImg from '../assets/LiveLaughDie-thumb.png';
+import liveLaughDieWideImg from '../assets/LiveLaughDie-thumb-wide.png';
 import ClassicProjectsList from './ClassicProjectsList';
 
 const ProjectCard = ({
@@ -29,7 +30,9 @@ const ProjectCard = ({
         alt={alt}
         className={clsx(
           'w-full h-full transition-transform duration-500 hover:scale-110',
-          img === hypehallImg ? 'object-fill' : 'object-cover'
+          img === liveLaughDieImg && 'object-contain object-bottom',
+          img === hypehallImg && 'object-fill object-center',
+          img === sbBukowskisImg && 'object-cover object-center'
         )}
       />
     </div>
@@ -74,28 +77,32 @@ const ProjectCard = ({
 
 const projects = [
   {
-    img: sbBukowskisImg,
+    imgNormal: sbBukowskisImg,
     alt: 'Seagull Bukowskis',
     title: 'SQUAWK!: The Scavenger Diaries',
     description:
       'Nihilistic animals philosophize in Austin dumpsters - dark satire webcomic',
     link: 'https://gjc.beehiiv.com/subscribe',
+    order: 2,
   },
   {
-    img: hypehallImg,
+    imgNormal: hypehallImg,
     alt: 'HypeHall',
     title: 'HypeHall',
     description:
       'AI-powered app for discovering local bands through curated video feeds',
     link: 'https://hypehall.beehiiv.com/subscribe',
+    order: 3,
   },
   {
-    img: liveLaughDieImg,
+    imgNormal: liveLaughDieImg,
+    imgWide: liveLaughDieWideImg,
     alt: 'Live Laugh Die',
     title: 'Live Laugh Die',
     description:
       'Horror trivia game satirizing MLM culture and toxic positivity through deadly quiz show gameplay',
     link: 'https://liveLaughDie.beehiiv.com/subscribe',
+    order: 1,
   },
 ];
 
@@ -153,6 +160,11 @@ const Projects = ({ theme }) => {
     return <ClassicProjectsList projects={projects} />;
   }
 
+  // sort projects by order
+  projects.sort((a, b) => a.order - b.order);
+
+  const isOddLayout = projects.length % 2 !== 0;
+
   // Modern card layout for other themes
   return (
     <section
@@ -169,19 +181,27 @@ const Projects = ({ theme }) => {
       <div
         className={clsx(
           'grid gap-6',
-          projects.length % 2 !== 0
-            ? 'grid-cols-1'
-            : 'grid-cols-1 md:grid-cols-2'
+          isOddLayout ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'
         )}
       >
-        {projects.map((project, idx) => (
-          <ProjectCard
-            key={project.title}
-            {...project}
-            refCb={el => (projectRefs.current[idx] = el)}
-            createRipple={createRipple}
-          />
-        ))}
+        {projects.map((projectItem, idx) => {
+          const imageSrc =
+            isOddLayout && projectItem.imgWide
+              ? projectItem.imgWide
+              : projectItem.imgNormal;
+          return (
+            <ProjectCard
+              key={projectItem.title}
+              img={imageSrc}
+              alt={projectItem.alt}
+              title={projectItem.title}
+              description={projectItem.description}
+              link={projectItem.link}
+              refCb={el => (projectRefs.current[idx] = el)}
+              createRipple={createRipple}
+            />
+          );
+        })}
       </div>
     </section>
   );
