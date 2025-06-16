@@ -32,7 +32,7 @@ const ClassicProjectsList = ({ projects }) => (
           )}
         >
           <img
-            src={project.img}
+            src={project.imgNormal}
             alt={project.alt}
             className={clsx(
               'w-32 h-32 object-cover rounded shadow-sm',
