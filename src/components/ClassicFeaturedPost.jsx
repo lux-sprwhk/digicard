@@ -13,18 +13,22 @@ const ClassicFeaturedPost = ({ featuredPost, theme }) => {
         'mb-6'
       )}
     >
-      <h2 className={clsx(
-        'web2:text-web2-primaryDark csszen:text-csszen-text',
-        'text-2xl',
-        'mb-6',
-      )}>
+      <h2
+        className={clsx(
+          'web2:text-web2-primaryDark csszen:text-csszen-text',
+          'text-2xl',
+          'mb-6'
+        )}
+      >
         Blog
       </h2>
-      <div className={clsx(
-        'flex flex-row items-start gap-6',
-        'bg-white/70 rounded-lg',
-        'p-4'
-      )}>
+      <div
+        className={clsx(
+          'flex flex-row items-start gap-6',
+          'bg-white/70 rounded-lg',
+          'p-4'
+        )}
+      >
         <img
           src={featuredPost.image}
           alt="Featured post thumbnail"
@@ -38,21 +42,29 @@ const ClassicFeaturedPost = ({ featuredPost, theme }) => {
         <div className="flex-1">
           <a
             href={featuredPost.link}
-            className={clsx('inline-flex items-center gap-2 font-bold underline hover:text-web2-primary transition-colors text-base',
+            className={clsx(
+              'inline-flex items-center gap-2 underline hover:text-web2-primary transition-colors text-base',
               'web2:hover:text-web2-accent',
               'csszen:hover:text-[#8b7c4a]'
+              // 'font-bold'
             )}
             target="_blank"
             rel="noopener noreferrer"
           >
-          <h3 className={clsx(
-            'text-xl',
-            'web2:text-web2-primary csszen:text-csszen-text',
-            'web2:hover:text-web2-accent',
-            'mb-1'
-          )}>{featuredPost.title}</h3>
+            <h3
+              className={clsx(
+                'text-xl',
+                'web2:text-web2-primary csszen:text-csszen-text',
+                'web2:hover:text-web2-accent',
+                'mb-1'
+              )}
+            >
+              {featuredPost.title}
+            </h3>
           </a>
-          <p className={clsx('text-web2-text', 'mb-2')}>{featuredPost.description}</p>
+          <p className={clsx('text-web2-text', 'mb-2')}>
+            {featuredPost.description}
+          </p>
         </div>
       </div>
       <a
@@ -67,7 +79,7 @@ const ClassicFeaturedPost = ({ featuredPost, theme }) => {
           'transition-colors',
           'text-base',
           'font-normal',
-          'web2:hover:text-web2-accent',
+          'web2:hover:text-web2-accent'
         )}
       >
         View Archives
