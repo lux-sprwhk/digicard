@@ -9,15 +9,17 @@ const ClassicProjectsList = ({ projects }) => (
       'rounded-xl'
     )}
   >
-    <h2 className={clsx(
-      'web2:text-web2-primaryDark csszen:text-csszen-text',
-      'text-2xl',
-      'mb-6',
-    )}>
+    <h2
+      className={clsx(
+        'web2:text-web2-primaryDark csszen:text-csszen-text',
+        'text-2xl',
+        'mb-6'
+      )}
+    >
       Projects
     </h2>
     <div className={clsx('flex flex-col gap-8')}>
-      {projects.map((project) => (
+      {projects.map(project => (
         <div
           key={project.title}
           className={clsx(
@@ -40,15 +42,22 @@ const ClassicProjectsList = ({ projects }) => (
             style={{ float: 'left' }}
           />
           <div className="flex-1">
-            <h3 className={clsx(
-              'text-xl',
-              'web2:text-web2-primary csszen:text-csszen-text',
-              'mb-1'
-            )}>
+            <h3
+              className={clsx(
+                'text-xl',
+                'web2:text-web2-primary csszen:text-csszen-text',
+                'mb-1'
+              )}
+            >
               <a
                 href={project.link}
-                className={clsx('web2:hover:text-web2-accent', 'underline', 'hover:text-web2-primary', 'transition-colors',
+                className={clsx(
+                  'web2:hover:text-web2-accent',
+                  'underline',
+                  'hover:text-web2-primary',
+                  'transition-colors',
                   'csszen:hover:text-[#8b7c4a]'
+                  // 'font-bold'
                 )}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -56,7 +65,9 @@ const ClassicProjectsList = ({ projects }) => (
                 {project.title}
               </a>
             </h3>
-            <p className={clsx('text-web2-text', 'mb-2')}>{project.description}</p>
+            <p className={clsx('text-web2-text', 'mb-2')}>
+              {project.description}
+            </p>
             {/* Optionally add meta info here */}
           </div>
         </div>
