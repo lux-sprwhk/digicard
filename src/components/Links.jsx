@@ -1,4 +1,10 @@
-import { FaGithub, FaTwitter, FaYoutube, FaRssSquare } from 'react-icons/fa';
+import {
+  FaGithub,
+  FaTwitter,
+  FaYoutube,
+  FaRssSquare,
+  FaLinkedin,
+} from 'react-icons/fa';
 import clsx from 'clsx';
 
 const LinkItem = ({ href, icon: Icon, label }) => (
@@ -22,6 +28,11 @@ const Links = ({ theme }) => {
       label: 'Beehiiv',
     },
     { href: 'https://github.com/luhsprwhk', icon: FaGithub, label: 'GitHub' },
+    {
+      href: 'https://linkedin.com/in/luhsprwhk',
+      icon: FaLinkedin,
+      label: 'LinkedIn',
+    },
     {
       href: 'https://twitter.com/luhsprwhk',
       icon: FaTwitter,

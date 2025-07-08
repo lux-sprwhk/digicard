@@ -10,7 +10,12 @@
            dark:bg-dracula-background dark:text-dracula-foreground
            matrix:bg-matrix-background matrix:text-matrix-text;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-heading matrix:text-matrix-highlight matrix:drop-shadow-[0_0_5px_theme(colors.matrix.glow)];
   }
 }
@@ -20,39 +25,39 @@
   .matrix-mode {
     @apply bg-matrix-background text-matrix-text;
   }
-  
+
   .matrix-mode .card {
     @apply bg-matrix-terminal bg-opacity-80 border border-matrix-glow shadow-lg shadow-matrix-glow;
   }
-  
+
   .matrix-overlay {
     @apply fixed top-0 left-0 w-screen h-screen pointer-events-none z-10 bg-matrix-background bg-opacity-90;
   }
-  
+
   .matrix-character {
     @apply absolute top-[-20px] text-matrix-rain font-mono text-xl opacity-70 animate-matrix-fall hover:text-matrix-highlight hover:opacity-100 transition-colors;
   }
-  
+
   /* Matrix mode text effects */
   .matrix-mode h1,
   .matrix-mode h2,
   .matrix-mode h3 {
     @apply text-matrix-highlight drop-shadow-[0_0_5px_theme(colors.matrix.glow)];
   }
-  
+
   .matrix-mode p {
     @apply text-matrix-text;
   }
-  
+
   .matrix-mode .link {
     @apply text-matrix-highlight hover:text-matrix-glow hover:drop-shadow-[0_0_8px_theme(colors.matrix.glow)];
   }
-  
+
   /* Easter egg letter styling */
   .easter-egg-letter {
     @apply text-github-blue dark:text-dracula-purple font-bold animate-pulse;
   }
-  
+
   /* Ripple animation for buttons */
   .ripple {
     @apply absolute rounded-full scale-0 animate-ripple bg-white bg-opacity-70;
@@ -84,7 +89,7 @@
   top: 60px;
   width: 120px;
   z-index: 10;
-  box-shadow: 2px 4px 16px rgba(0,0,0,0.13);
+  box-shadow: 2px 4px 16px rgba(0, 0, 0, 0.13);
   border-radius: 0 1.5rem 1.5rem 0;
   background: #fffbe6;
   border-right: 4px solid #b6a16b;
@@ -96,7 +101,8 @@
 }
 
 .csszen {
-  font-family: "Lucida Grande", "Segoe UI", "Trebuchet MS", "Tahoma", sans-serif;
+  font-family:
+    'Lucida Grande', 'Segoe UI', 'Trebuchet MS', 'Tahoma', sans-serif;
 }
 
 .csszen-bg {
@@ -108,7 +114,7 @@
   .card-hover {
     @apply transition-all hover:shadow-lg hover:-translate-y-1;
   }
-  
+
   .section-heading {
     @apply text-2xl font-heading mb-4 text-github-text dark:text-dracula-foreground;
   }
@@ -117,31 +123,40 @@
     background: url('/src/assets/matrix-bg.gif') repeat center center fixed;
     background-size: cover;
     /* Optional: Add a dark overlay for readability */
-  }}
+  }
+}
 
-  @layer utilities {
-    /* Light theme glow: github blue */
-    .glow-light {
-      animation: glow-light 2.5s ease-in-out infinite alternate;
+@layer utilities {
+  /* Light theme glow: github blue */
+  .glow-light {
+    animation: glow-light 2.5s ease-in-out infinite alternate;
+  }
+  @keyframes glow-light {
+    from {
+      filter: drop-shadow(0 0 0px #2563eb);
     }
-    @keyframes glow-light {
-      from { filter: drop-shadow(0 0 0px #2563eb); }
-      to   { filter: drop-shadow(0 0 8px #2563eb); }
-    }
-  
-    /* Dark theme glow: dracula purple */
-    .glow-dark {
-      animation: glow-dark 2.5s ease-in-out infinite alternate;
-    }
-    @keyframes glow-dark {
-      from { filter: drop-shadow(0 0 0px #bd93f9); }
-      to   { filter: drop-shadow(0 0 8px #bd93f9); }
+    to {
+      filter: drop-shadow(0 0 8px #2563eb);
     }
   }
 
-  .typed-cursor-hidden .typed-cursor {
-    opacity: 0 !important;
+  /* Dark theme glow: dracula purple */
+  .glow-dark {
+    animation: glow-dark 2.5s ease-in-out infinite alternate;
   }
+  @keyframes glow-dark {
+    from {
+      filter: drop-shadow(0 0 0px #bd93f9);
+    }
+    to {
+      filter: drop-shadow(0 0 8px #bd93f9);
+    }
+  }
+}
+
+.typed-cursor-hidden .typed-cursor {
+  opacity: 0 !important;
+}
 
 .clouds-bg {
   background: url('/src/assets/clouds-bg-2.png');

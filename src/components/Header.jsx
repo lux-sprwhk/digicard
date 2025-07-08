@@ -1,7 +1,6 @@
-import ThemeSwitch from "./ThemeSwitch";
+import ThemeSwitch from './ThemeSwitch';
 
 const Header = ({ theme, setTheme }) => {
-
   // Don't show the toggle at all in matrix mode
   if (theme === 'matrix') {
     return <header className="mb-5" />;
@@ -17,9 +16,7 @@ const Header = ({ theme, setTheme }) => {
         <ThemeSwitch theme={theme} setTheme={setTheme} />
       </div>
     </header>
-  )
-}
+  );
+};
 
-
-
-export default Header
+export default Header;
