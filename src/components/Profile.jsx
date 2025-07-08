@@ -1,7 +1,8 @@
 import profileImg from '../assets/profile.jpg';
-import { FaMapMarkerAlt, FaDownload } from 'react-icons/fa';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 import { BasicBio } from './ProfileBio';
 import clsx from 'clsx';
+import ResumeDownloadButton from './ResumeDownloadButton';
 
 const Profile = ({ theme }) => {
   return (
@@ -21,14 +22,18 @@ const Profile = ({ theme }) => {
 
       <div
         className={clsx(
-          'relative mx-auto z-10',
-          theme !== 'web2' && 'mb-5 w-36 h-36'
+          'relative z-10',
+          theme !== 'web2' && 'mb-5',
+          theme === 'matrix'
+            ? 'w-20 h-20 mx-auto'
+            : theme !== 'web2' && 'w-36 h-36 mx-auto'
         )}
       >
         {theme !== 'web2' && (
           <div
             className={clsx(
-              'w-36 h-36 rounded-full overflow-hidden border-3 border-github-blue',
+              theme === 'matrix' ? 'w-20 h-20' : 'w-36 h-36',
+              'rounded-full overflow-hidden border-3 border-github-blue',
               'dark:border-dracula-purple',
               'matrix:border-matrix-glow',
               'web2:bg-web2-primary',
@@ -83,45 +88,6 @@ const Profile = ({ theme }) => {
         >
           <FaMapMarkerAlt /> Austin, TX
         </p>
-      )}
-
-      {/* Resume Download Button */}
-      {theme !== 'web2' && (
-        <div className="mb-6">
-          <a
-            href="/resume.pdf"
-            download="LuhSprwhk_Resume.pdf"
-            className={clsx(
-              'inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300',
-              'bg-github-blue text-white hover:bg-github-blue/90 hover:shadow-lg hover:-translate-y-1',
-              'dark:bg-dracula-purple dark:hover:bg-dracula-purple/90',
-              'matrix:bg-matrix-terminal matrix:text-matrix-highlight matrix:border matrix:border-matrix-glow matrix:hover:drop-shadow-[0_0_8px_theme(colors.matrix.glow)] matrix:hover:bg-matrix-glow matrix:hover:text-matrix-terminal',
-              'csszen:bg-csszen-green-dark csszen:text-csszen-cream csszen:hover:bg-csszen-green-dark/90'
-            )}
-          >
-            <FaDownload className="text-sm" />
-            Download Resume
-          </a>
-        </div>
-      )}
-
-      {/* Resume Download Button for Web2 Theme */}
-      {theme === 'web2' && (
-        <div className="mb-6 relative z-10">
-          <a
-            href="/resume.pdf"
-            download="LuhSprwhk_Resume.pdf"
-            className={clsx(
-              'inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300',
-              'bg-gradient-to-r from-web2-primary to-web2-secondary text-white border border-web2-border',
-              'hover:from-web2-secondary hover:to-web2-primary hover:shadow-lg hover:-translate-y-1',
-              'drop-shadow-web2-border'
-            )}
-          >
-            <FaDownload className="text-sm" />
-            Download Resume
-          </a>
-        </div>
       )}
 
       <BasicBio theme={theme} />

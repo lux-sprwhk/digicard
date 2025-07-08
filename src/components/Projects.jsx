@@ -21,7 +21,8 @@ const ProjectCard = ({
       'rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1',
       'bg-white dark:bg-dracula-currentLine',
       'web2:bg-web2-cardBg',
-      'matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:hover:shadow-matrix-glow'
+      'matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:hover:shadow-matrix-glow',
+      'flex flex-col min-h-[22rem]'
     )}
     ref={refCb}
   >
@@ -59,6 +60,7 @@ const ProjectCard = ({
     >
       {description}
     </p>
+    <div className="flex-1" />
     <a
       href={link}
       className={clsx(
