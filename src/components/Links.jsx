@@ -7,10 +7,34 @@ import {
 } from 'react-icons/fa';
 import clsx from 'clsx';
 
+const createRipple = event => {
+  const button = event.currentTarget;
+
+  const circle = document.createElement('span');
+  const diameter = Math.max(button.clientWidth, button.clientHeight);
+  const radius = diameter / 2;
+
+  circle.style.width = circle.style.height = `${diameter}px`;
+  circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
+  circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
+  circle.classList.add('ripple');
+
+  const ripple = button.querySelector('.ripple');
+  if (ripple) {
+    ripple.remove();
+  }
+
+  button.appendChild(circle);
+};
+
 const LinkItem = ({ href, icon: Icon, label }) => (
   <a
     href={href}
-    className="flex flex-col items-center justify-center p-4 h-24 bg-white dark:bg-dracula-currentLine matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg rounded-lg text-github-text dark:text-dracula-foreground no-underline transition-all hover:bg-github-blue hover:text-white dark:hover:bg-dracula-purple hover:-translate-y-1 hover:shadow-md matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)]"
+    className={clsx(
+      'flex flex-col items-center justify-center p-4 h-24 bg-white dark:bg-dracula-currentLine matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg rounded-lg text-github-text dark:text-dracula-foreground no-underline transition-all hover:bg-github-blue hover:text-white dark:hover:bg-dracula-purple hover:-translate-y-1 hover:shadow-md matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)]',
+      'web2:bg-web2-cardBg web2:text-web2-text web2:hover:bg-web2-secondary web2:hover:bg-web2-success web2:border-web2-border web2:shadow-web2-border web2:drop-shadow-web2-border'
+    )}
+    onClick={createRipple}
   >
     <Icon
       icon={Icon}
@@ -25,7 +49,7 @@ const Links = ({ theme }) => {
     {
       href: 'https://luhsprwhk.beehiiv.com/subscribe',
       icon: FaRssSquare,
-      label: 'Beehiiv',
+      label: 'Blog',
       order: 1,
     },
     {
@@ -38,19 +62,20 @@ const Links = ({ theme }) => {
       href: 'https://linkedin.com/in/luhsprwhk',
       icon: FaLinkedin,
       label: 'LinkedIn',
-      order: 3,
+      order: 4,
     },
     {
       href: 'https://twitter.com/luhsprwhk',
       icon: FaTwitter,
       label: 'Twitter',
-      order: 4,
+      order: 3,
     },
     {
       href: 'https://youtube.com/luhsprwhk',
       icon: FaYoutube,
       label: 'Youtube',
       order: 5,
+      disabled: true,
     },
   ];
 
@@ -70,6 +95,7 @@ const Links = ({ theme }) => {
           <ul className={clsx('flex flex-col gap-3 items-end')}>
             {links
               .sort((a, b) => a.order - b.order)
+              .filter(link => !link.disabled)
               .map((link, idx) => (
                 <li key={idx}>
                   <a
@@ -134,18 +160,21 @@ const Links = ({ theme }) => {
       </h2>
       <div
         className={clsx(
-          'grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto',
+          'grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto',
           'matrix:bg-matrix-terminal'
         )}
       >
-        {links.map((link, index) => (
-          <LinkItem
-            key={index}
-            href={link.href}
-            icon={link.icon}
-            label={link.label}
-          />
-        ))}
+        {links
+          .filter(link => !link.disabled)
+          .sort((a, b) => a.order - b.order)
+          .map((link, index) => (
+            <LinkItem
+              key={index}
+              href={link.href}
+              icon={link.icon}
+              label={link.label}
+            />
+          ))}
       </div>
     </section>
   );
