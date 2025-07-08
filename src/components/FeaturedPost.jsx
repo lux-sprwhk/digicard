@@ -64,14 +64,23 @@ const FeaturedPost = ({ theme }) => {
               src={featuredPost.image}
               alt="Featured post thumbnail"
               className={clsx(
-                "w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                'w-full h-full object-cover transition-transform duration-500 hover:scale-105'
               )}
             />
           </div>
-          <div className={clsx("p-4")}>
-            <h3 className={clsx("text-lg font-semibold mb-2")}>{featuredPost.title}</h3>
-            <p className={clsx("mb-4")}>{featuredPost.description}</p>
-            <span className={clsx("inline-flex items-center gap-2 text-matrix-green font-medium")}>Read More<FaArrowRight /></span>
+          <div className={clsx('p-4')}>
+            <h3 className={clsx('text-lg font-semibold mb-2')}>
+              {featuredPost.title}
+            </h3>
+            <p className={clsx('mb-4')}>{featuredPost.description}</p>
+            <span
+              className={clsx(
+                'inline-flex items-center gap-2 text-matrix-green font-medium'
+              )}
+            >
+              Read More
+              <FaArrowRight />
+            </span>
           </div>
         </a>
       </div>
@@ -79,9 +88,9 @@ const FeaturedPost = ({ theme }) => {
         <a
           href="https://luhsprwhk.beehiiv.com"
           className={clsx(
-            "block w-full mt-4 py-2 text-center rounded bg-github-blue text-white font-medium transition-colors hover:bg-github-lightBlue",
-            "dark:bg-dracula-purple dark:hover:bg-dracula-pink",
-            "matrix:bg-matrix-terminal matrix:border matrix:border-matrix-glow matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)]"
+            'block w-full mt-4 py-2 text-center rounded bg-github-blue text-white font-medium transition-colors hover:bg-github-lightBlue',
+            'dark:bg-dracula-purple dark:hover:bg-dracula-pink',
+            'matrix:bg-matrix-terminal matrix:border matrix:border-matrix-glow matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)]'
           )}
         >
           View Archives

@@ -6,26 +6,26 @@ A dynamic, interactive digital business card and portfolio built with React + Vi
 
 ### Multiple Themes
 
-* Classic dark/light modes (Github and Dracula)
-* Ultra-stylish Matrix mode with animated background
-* Web 2.0 mode
+- Classic dark/light modes (Github and Dracula)
+- Ultra-stylish Matrix mode with animated background
+- Web 2.0 mode
 
 ## Project Gallery
 
-* Responsive cards with custom image fit per project
+- Responsive cards with custom image fit per project
 
 ## Social Links
 
-* Connect & follow with animated, theme-aware icons
+- Connect & follow with animated, theme-aware icons
 
 ## Matrix Mode Extras
 
-* Animated Matrix “digital rain” background (GIF)
-* Neon highlights and custom fonts
+- Animated Matrix “digital rain” background (GIF)
+- Neon highlights and custom fonts
 
 ## Console Easter Eggs
 
-* Hidden challenges and messages for the curious
+- Hidden challenges and messages for the curious
 
 ## 🚀 Getting Started
 
@@ -44,10 +44,10 @@ Project images and profile photo go in src/assets/
 
 ## 🛠️ Tech Stack
 
-* React
-* Vite
-* Tailwind CSS
-* Custom hooks, effects, and a sprinkle of console magic
+- React
+- Vite
+- Tailwind CSS
+- Custom hooks, effects, and a sprinkle of console magic
 
 ## 🕶️ License
 

@@ -1,36 +1,40 @@
-import { useEffect, useState, useRef } from 'react'
-import { FaTerminal } from 'react-icons/fa'
-import profileImg from '../assets/profile.jpg'
-import clsx from 'clsx'
+import { useEffect, useState } from 'react';
+import { FaTerminal } from 'react-icons/fa';
+import profileImg from '../assets/profile.jpg';
+import clsx from 'clsx';
+import ResumeDownloadButton from './ResumeDownloadButton';
 
 const Footer = ({ theme }) => {
-  const [currentYear] = useState(new Date().getFullYear())
-  const [cursorVisible, setCursorVisible] = useState(false)
+  const [currentYear] = useState(new Date().getFullYear());
+  const [cursorVisible, setCursorVisible] = useState(false);
 
   // Blinking cursor effect for the easter egg hint
   useEffect(() => {
     const cursorInterval = setInterval(() => {
-      setCursorVisible(prev => !prev)
-    }, 800)
+      setCursorVisible(prev => !prev);
+    }, 800);
 
-    return () => clearInterval(cursorInterval)
-  }, [])
+    return () => clearInterval(cursorInterval);
+  }, []);
 
   return (
-    <footer className="text-center py-5 px-4 text-sm text-gray-500 dark:text-gray-400">
+    <footer className="text-center py-5 px-4 text-sm text-gray-500 dark:text-gray-400 relative">
+      {theme !== 'matrix' && (
+        <div className="text-right">
+          <ResumeDownloadButton theme={theme} small />
+        </div>
+      )}
       <p>&copy; {currentYear}. All rights reserved.</p>
       <br />
       <div className="footer-details mt-2">
         {theme !== 'matrix' && (
           <span className="group relative inline-block">
             <FaTerminal
-              className={
-                `inline-block 
+              className={`inline-block 
     ${theme === 'dark' ? 'glow-dark' : 'glow-light'} 
     ${cursorVisible ? 'opacity-100' : 'opacity-0'} 
     transition-all duration-300 
-    hover:text-primary hover:scale-110 hover:rotate-3 cursor-pointer`
-              }
+    hover:text-primary hover:scale-110 hover:rotate-3 cursor-pointer`}
             />
             <div className="absolute hidden group-hover:block bg-gray-800 text-white text-sm rounded p-2 -mt-2 -translate-y-full -translate-x-1/2 left-1/2 whitespace-nowrap">
               console.log("Open sesame")
@@ -40,9 +44,8 @@ const Footer = ({ theme }) => {
         )}
       </div>
     </footer>
-  )
-}
-
+  );
+};
 
 const techBadges = [
   {
@@ -65,45 +68,8 @@ const techBadges = [
   },
 ];
 
-const miniSitemap = [
-  { label: 'Home', href: '/' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Blog', href: '#blog' },
-  { label: 'Contact', href: '#contact' },
-];
-
-
-
 const SuperFooter = () => {
- 
- const [currentYear] = useState(new Date().getFullYear()) 
-  // Visitor Counter
-  const [visits, setVisits] = useState(0);
-  // Micro blog
-  const [statuses, setStatuses] = useState([
-    { text: '🚀 Just shipped a new feature!', date: '2025-05-18' },
-    { text: '🌱 Learning about Webrings!', date: '2025-05-17' },
-  ]);
-  const [statusInput, setStatusInput] = useState('');
-  // Guestbook
-  const [shouts, setShouts] = useState([
-    { name: 'Alice', msg: 'Cool site!', date: '2025-05-16' },
-    { name: 'Bob', msg: 'Web 2.0 forever!', date: '2025-05-15' },
-  ]);
-  const [shoutName, setShoutName] = useState('');
-  const [shoutMsg, setShoutMsg] = useState('');
-  const lastUpdated = new Date(document.lastModified).toLocaleString();
-  const statusRef = useRef(null);
-  const shoutRef = useRef(null);
-
-  // Visitor counter with localStorage
-  useEffect(() => {
-    let count = parseInt(localStorage.getItem('retroVisits') || '0', 10);
-    count += 1;
-    localStorage.setItem('retroVisits', count);
-    setVisits(count);
-  }, []);
-
+  const [currentYear] = useState(new Date().getFullYear());
 
   return (
     <footer className="relative bg-gradient-to-br from-white via-blue-50 to-cyan-50 border-t border-blue-200 shadow-inner mt-8 text-xs md:text-sm text-gray-700 dark:text-gray-300 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
@@ -116,9 +82,12 @@ const SuperFooter = () => {
               alt="Profile"
               className="w-16 h-16 rounded-full border-2 border-web2-primaryDark shadow-md mb-1"
             />
-            <div className="text-base font-bold text-web2-primaryDark dark:text-blue-400">Luh Sprwhk</div>
+            <div className="text-base font-bold text-web2-primaryDark dark:text-blue-400">
+              Luh Sprwhk
+            </div>
             <div className="text-xs text-web2-text dark:text-gray-300 text-center md:text-left max-w-[180px]">
-              Web tinkerer, vaporwave enjoyer, and lover of all things retro-futurist.
+              Web tinkerer, vaporwave enjoyer, and lover of all things
+              retro-futurist.
             </div>
           </div>
           {/* END Mini Profile */}
@@ -127,18 +96,34 @@ const SuperFooter = () => {
         <div className="flex flex-col gap-4 items-center">
           <h5>Connect</h5>
           <div className="flex gap-3 items-center flex-col">
-            <a href="https://luhsprwhk.beehiiv.com" target="_blank" rel="noopener noreferrer" className={clsx(
-            )}>
-                Beehiiv
+            <a
+              href="https://luhsprwhk.beehiiv.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={clsx()}
+            >
+              Beehiiv
             </a>
-            <a href="https://github.com/luhsprwhk" target="_blank" rel="noopener noreferrer">
-            Github
+            <a
+              href="https://github.com/luhsprwhk"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Github
             </a>
-            <a href="https://twitter.com/luhsprwhk" target="_blank" rel="noopener noreferrer">
-            Twitter
+            <a
+              href="https://twitter.com/luhsprwhk"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Twitter
             </a>
-            <a href="https://youtube.com/@luhsprwhk" target="_blank" rel="noopener noreferrer">
-            Youtube
+            <a
+              href="https://youtube.com/@luhsprwhk"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Youtube
             </a>
           </div>
         </div>
@@ -161,12 +146,14 @@ const SuperFooter = () => {
               </a>
             ))}
           </div>
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-10">&copy; {currentYear}. All rights reserved.</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-10">
+            &copy; {currentYear}. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
   );
 };
 
-export { Footer, SuperFooter }
-export default Footer
+export { Footer, SuperFooter };
+export default Footer;

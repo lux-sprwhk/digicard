@@ -1,31 +1,37 @@
-import { useState, useEffect } from 'react'
-import Header from './components/Header'
-import Profile from './components/Profile'
-import Links from './components/Links'
-import Projects from './components/Projects'
-import FeaturedPost from './components/FeaturedPost'
-import Footer, { SuperFooter } from './components/Footer'
-import MountainFooter from './components/MountainFooter'
-import { Web2NavBar } from './components/NavBar'
-import consoleEasterEgg from './utils/consoleEasterEgg'
-import clsx from 'clsx'
-import cssZenBanner from './assets/css-zen-banner.png'
+import { useState, useEffect } from 'react';
+import Header from './components/Header';
+import Profile from './components/Profile';
+import Links from './components/Links';
+import Projects from './components/Projects';
+import FeaturedPost from './components/FeaturedPost';
+import Footer, { SuperFooter } from './components/Footer';
+import MountainFooter from './components/MountainFooter';
+import { Web2NavBar } from './components/NavBar';
+import consoleEasterEgg from './utils/consoleEasterEgg';
+import clsx from 'clsx';
+import cssZenBanner from './assets/css-zen-banner.png';
 
 function App() {
   const [theme, setTheme] = useState(() => {
-    const savedTheme = sessionStorage.getItem('theme')
+    const savedTheme = sessionStorage.getItem('theme');
     // Default to dark if no theme is saved
-    return savedTheme || 'dark'
-  })
+    return savedTheme || 'dark';
+  });
 
   // Apply theme to body
   useEffect(() => {
     // Remove all theme classes first
-    document.documentElement.classList.remove('dark', 'matrix', 'light', 'web2', 'csszen')
+    document.documentElement.classList.remove(
+      'dark',
+      'matrix',
+      'light',
+      'web2',
+      'csszen'
+    );
     // Add the current theme class
-    document.documentElement.classList.add(theme)
-    sessionStorage.setItem('theme', theme)
-  }, [theme])
+    document.documentElement.classList.add(theme);
+    sessionStorage.setItem('theme', theme);
+  }, [theme]);
 
   // NEW: Toggle matrix and web2-bg background on <body>
   useEffect(() => {
@@ -47,7 +53,6 @@ function App() {
       document.body.classList.remove('csszen-bg');
     };
   }, [theme]);
-
 
   useEffect(() => {
     const cleanupFn = consoleEasterEgg(setTheme);
@@ -83,35 +88,37 @@ function App() {
       <div style={{ flex: 1 }}>
         <Header theme={theme} setTheme={setTheme} />
         <main
-        className={clsx(
-          "bg-white dark:bg-dracula-currentLine rounded-xl shadow-md overflow-hidden mb-6",
-          "opacity-0 transform translate-y-5 animate-fade-in",
-          "matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:shadow-matrix-glow",
-          "web2:bg-web2-background web2:border-web2-border",
-          "csszen:bg-csszen-cream csszen:text-csszen-text csszen:border-csszen-text"
-        )}
-      >
-        {theme === 'web2' && (
-          <Web2NavBar theme={theme} />
-        )}
-        <Profile theme={theme} />
-        {/* Only show Links inline for non-csszen and non-web2 themes */}
-        {theme !== 'web2' && theme !== 'csszen' ? <Links theme={theme} /> : null}
-        <FeaturedPost theme={theme} />
-        <Projects theme={theme} />
-      </main>
+          className={clsx(
+            'bg-white dark:bg-dracula-currentLine rounded-xl shadow-md overflow-hidden mb-6',
+            'opacity-0 transform translate-y-5 animate-fade-in',
+            'matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:shadow-matrix-glow',
+            'web2:bg-web2-background web2:border-web2-border',
+            'csszen:bg-csszen-cream csszen:text-csszen-text csszen:border-csszen-text'
+          )}
+        >
+          {theme === 'web2' && <Web2NavBar theme={theme} />}
+          <Profile theme={theme} />
+          {/* Only show Links inline for non-csszen and non-web2 themes */}
+          {theme !== 'web2' && theme !== 'csszen' ? (
+            <Links theme={theme} />
+          ) : null}
+          <FeaturedPost theme={theme} />
+          <Projects theme={theme} />
+        </main>
 
-      {theme === 'web2' ? <MountainFooter /> : <Footer theme={theme} />}
+        {theme === 'web2' ? <MountainFooter /> : <Footer theme={theme} />}
+      </div>
+      {/* CSS Zen sidebar */}
+      {theme === 'csszen' && (
+        <aside
+          className="csszen-sidebar hidden md:block"
+          style={{ minWidth: 180, marginLeft: -25, marginTop: '20rem' }}
+        >
+          <Links theme={theme} />
+        </aside>
+      )}
     </div>
-    {/* CSS Zen sidebar */}
-    {theme === 'csszen' && (
-      <aside className="csszen-sidebar hidden md:block" style={{ minWidth: 180, marginLeft: -25, marginTop: '20rem' }}>
-        <Links theme={theme} />
-      </aside>
-    )}
-  </div>
-  )
+  );
 }
 
-
-export default App
+export default App;

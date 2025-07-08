@@ -1,7 +1,8 @@
-import profileImg from '../assets/profile.jpg'
-import { FaMapMarkerAlt } from 'react-icons/fa'
+import profileImg from '../assets/profile.jpg';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 import { BasicBio } from './ProfileBio';
 import clsx from 'clsx';
+import ResumeDownloadButton from './ResumeDownloadButton';
 
 const Profile = ({ theme }) => {
   return (
@@ -13,19 +14,26 @@ const Profile = ({ theme }) => {
     >
       {/* Clouds BG at bottom */}
       {theme === 'web2' && (
-        <div className="absolute left-0 right-0 bottom-0 w-full h-24 clouds-bg pointer-events-none z-0" aria-hidden="true"></div>
+        <div
+          className="absolute left-0 right-0 bottom-0 w-full h-24 clouds-bg pointer-events-none z-0"
+          aria-hidden="true"
+        ></div>
       )}
 
       <div
         className={clsx(
-          'relative mx-auto z-10',
-          theme !== 'web2' && 'mb-5 w-36 h-36'
+          'relative z-10',
+          theme !== 'web2' && 'mb-5',
+          theme === 'matrix'
+            ? 'w-20 h-20 mx-auto'
+            : theme !== 'web2' && 'w-36 h-36 mx-auto'
         )}
       >
         {theme !== 'web2' && (
           <div
             className={clsx(
-              'w-36 h-36 rounded-full overflow-hidden border-3 border-github-blue',
+              theme === 'matrix' ? 'w-20 h-20' : 'w-36 h-36',
+              'rounded-full overflow-hidden border-3 border-github-blue',
               'dark:border-dracula-purple',
               'matrix:border-matrix-glow',
               'web2:bg-web2-primary',
@@ -81,10 +89,10 @@ const Profile = ({ theme }) => {
           <FaMapMarkerAlt /> Austin, TX
         </p>
       )}
+
       <BasicBio theme={theme} />
     </section>
-  )
-}
+  );
+};
 
-
-export default Profile
+export default Profile;

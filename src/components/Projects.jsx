@@ -4,6 +4,7 @@ import sbBukowskisImg from '../assets/sb-bukowskis.jpg';
 import hypehallImg from '../assets/hypehall-thumb.jpg';
 import liveLaughDieImg from '../assets/LiveLaughDie-thumb.png';
 import liveLaughDieWideImg from '../assets/LiveLaughDie-thumb-wide.png';
+import rubberDuckTarotIMG from '../assets/RDTBanner.png';
 import ClassicProjectsList from './ClassicProjectsList';
 
 const ProjectCard = ({
@@ -20,7 +21,8 @@ const ProjectCard = ({
       'rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1',
       'bg-white dark:bg-dracula-currentLine',
       'web2:bg-web2-cardBg',
-      'matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:hover:shadow-matrix-glow'
+      'matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:hover:shadow-matrix-glow',
+      'flex flex-col min-h-[22rem]'
     )}
     ref={refCb}
   >
@@ -32,7 +34,8 @@ const ProjectCard = ({
           'w-full h-full transition-transform duration-500 hover:scale-110',
           img === liveLaughDieImg && 'object-contain object-bottom',
           img === hypehallImg && 'object-fill object-center',
-          img === sbBukowskisImg && 'object-cover object-center'
+          img === sbBukowskisImg && 'object-cover object-center',
+          img === rubberDuckTarotIMG && 'object-cover object-center'
         )}
       />
     </div>
@@ -57,6 +60,7 @@ const ProjectCard = ({
     >
       {description}
     </p>
+    <div className="flex-1" />
     <a
       href={link}
       className={clsx(
@@ -76,6 +80,15 @@ const ProjectCard = ({
 );
 
 const projects = [
+  {
+    imgNormal: rubberDuckTarotIMG,
+    alt: 'Rubber Duck Tarot',
+    title: 'Rubber Duck Tarot',
+    description:
+      "Decision-making tool disguised as tarot cards, featuring a dead developer's ghost trapped in a rubber duck who helps creative people debug their mental blocks",
+    link: 'https://rubberducktarot.com',
+    order: 1,
+  },
   {
     imgNormal: sbBukowskisImg,
     alt: 'Seagull Bukowskis',
@@ -102,7 +115,7 @@ const projects = [
     description:
       'Horror trivia game satirizing MLM culture and toxic positivity through deadly quiz show gameplay',
     link: 'https://liveLaughDie.beehiiv.com/subscribe',
-    order: 1,
+    order: 4,
   },
 ];
 

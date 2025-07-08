@@ -1,4 +1,10 @@
-import { FaGithub, FaTwitter, FaYoutube, FaRssSquare } from 'react-icons/fa';
+import {
+  FaGithub,
+  FaTwitter,
+  FaYoutube,
+  FaRssSquare,
+  FaLinkedin,
+} from 'react-icons/fa';
 import clsx from 'clsx';
 
 const LinkItem = ({ href, icon: Icon, label }) => (
@@ -20,17 +26,31 @@ const Links = ({ theme }) => {
       href: 'https://luhsprwhk.beehiiv.com/subscribe',
       icon: FaRssSquare,
       label: 'Beehiiv',
+      order: 1,
     },
-    { href: 'https://github.com/luhsprwhk', icon: FaGithub, label: 'GitHub' },
+    {
+      href: 'https://github.com/luhsprwhk',
+      icon: FaGithub,
+      label: 'GitHub',
+      order: 2,
+    },
+    {
+      href: 'https://linkedin.com/in/luhsprwhk',
+      icon: FaLinkedin,
+      label: 'LinkedIn',
+      order: 3,
+    },
     {
       href: 'https://twitter.com/luhsprwhk',
       icon: FaTwitter,
       label: 'Twitter',
+      order: 4,
     },
     {
       href: 'https://youtube.com/luhsprwhk',
       icon: FaYoutube,
       label: 'Youtube',
+      order: 5,
     },
   ];
 
@@ -48,24 +68,26 @@ const Links = ({ theme }) => {
         </h2>
         <nav>
           <ul className={clsx('flex flex-col gap-3 items-end')}>
-            {links.map((link, idx) => (
-              <li key={idx}>
-                <a
-                  href={link.href}
-                  className={clsx(
-                    'text-[#b6a16b]',
-                    'underline',
-                    'hover:text-[#8b7c4a]',
-                    'transition-colors',
-                    'text-base'
-                  )}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {links
+              .sort((a, b) => a.order - b.order)
+              .map((link, idx) => (
+                <li key={idx}>
+                  <a
+                    href={link.href}
+                    className={clsx(
+                      'text-[#b6a16b]',
+                      'underline',
+                      'hover:text-[#8b7c4a]',
+                      'transition-colors',
+                      'text-base'
+                    )}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
           </ul>
         </nav>
       </aside>
@@ -112,7 +134,7 @@ const Links = ({ theme }) => {
       </h2>
       <div
         className={clsx(
-          'grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto',
+          'grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto',
           'matrix:bg-matrix-terminal'
         )}
       >
