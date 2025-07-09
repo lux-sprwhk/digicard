@@ -31,51 +31,91 @@ const consoleEasterEgg = setTheme => {
           'color: #3498db; font-family: monospace;'
         );
         console.log(
-          '%c01100100 01101111 01101101',
+          '%c01110010 01100101 01100100 00100000 01101111 01110010 00100000 01100010 01101100 01110101 01100101 00100000 01110000 01101001 01101100 01101100 00101110 00101110 00101110',
           'color: #e74c3c; font-family: monospace;'
         );
         console.log(
-          '%cHint: Convert binary to text',
+          '%cHint: Convert binary to text and choose wisely',
           'color: #7f8c8d; font-family: monospace; font-style: italic;'
         );
         return undefined;
       },
       configurable: true,
     },
-    fizzbuzz: {
+    red: {
       get: function () {
         console.log(
-          '%c[Mind] Challenge protocol activated. A small test of computational wit awaits you.',
+          '%c🔴 You chose the red pill.',
+          'color: #e74c3c; font-family: monospace; font-size: 16px; font-weight: bold;'
+        );
+        console.log(
+          '%c"Welcome to the real world."',
+          'color: #f39c12; font-family: monospace; font-style: italic;'
+        );
+        console.log(
+          '%cType "spoon" to continue your journey.',
+          'color: #3498db; font-family: monospace;'
+        );
+        return undefined;
+      },
+      configurable: true,
+    },
+    redpill: {
+      get: function () {
+        return window.red;
+      },
+      configurable: true,
+    },
+    'red pill': {
+      get: function () {
+        return window.red;
+      },
+      configurable: true,
+    },
+    'the red pill': {
+      get: function () {
+        return window.red;
+      },
+      configurable: true,
+    },
+    spoon: {
+      get: function () {
+        console.log(
+          '%c[Mind] Reality check protocol activated. A simple test of perception awaits you.',
           'font-size: 16px; font-weight: bold; color: #ff79c6;'
         );
         console.log(
-          '%c[Mind] Complete this FizzBuzz sequence to unlock further portfolio secrets:',
+          '%c[Mind] Write a function that returns true when everything is false:',
           'color: #8be9fd;'
         );
         console.log(
-          "%c[Mind] Please define a function in a variable called 'secretFizzBuzz' that takes a number and returns:",
+          "%c[Mind] Please define a function in a variable called 'noSpoon' that takes a value and returns:",
           'color: #f8f8f2;'
         );
-        console.log("%c- 'Fizz' for multiples of 3", 'color: #50fa7b;');
-        console.log("%c- 'Buzz' for multiples of 5", 'color: #50fa7b;');
         console.log(
-          "%c- 'FizzBuzz' for multiples of both 3 and 5",
+          "%c- true for any falsy value (false, 0, '', null, undefined, NaN)",
           'color: #50fa7b;'
         );
-        console.log('%c- The number itself for other cases', 'color: #50fa7b;');
+        console.log('%c- false for any truthy value', 'color: #50fa7b;');
         console.log(
-          '%c[Mind] I await your solution with algorithmic anticipation.',
+          '%c[Mind] Remember: There is no spoon.',
           'color: #7f8c8d; font-style: italic;'
         );
         // Hidden verification function
-        window.verifyFizzBuzz = function (userFunc) {
+        window.verifyNoSpoon = function (userFunc) {
           try {
             const testCases = [
-              { input: 1, expected: 1 },
-              { input: 3, expected: 'Fizz' },
-              { input: 5, expected: 'Buzz' },
-              { input: 15, expected: 'FizzBuzz' },
-              { input: 42, expected: 'Fizz' },
+              { input: false, expected: true },
+              { input: 0, expected: true },
+              { input: '', expected: true },
+              { input: null, expected: true },
+              { input: undefined, expected: true },
+              { input: NaN, expected: true },
+              { input: true, expected: false },
+              { input: 1, expected: false },
+              { input: 'hello', expected: false },
+              { input: [], expected: false },
+              { input: {}, expected: false },
             ];
 
             const results = testCases.map(test => {
@@ -92,22 +132,45 @@ const consoleEasterEgg = setTheme => {
 
             if (allPassed) {
               console.log(
-                "%c🎉 CORRECT! You've solved the FizzBuzz challenge!",
+                '%c🎉 CORRECT! You understand the nature of nothingness.',
                 'font-size: 16px; font-weight: bold; color: #50fa7b;'
               );
               console.log(
-                "%cEnter 'unlockSecret()' to reveal your prize",
+                '%c[Mind] Now I must ask you a question...',
                 'color: #bd93f9;'
               );
-              window.unlockSecret = function () {
-                // Switch to matrix theme
-                setTheme('matrix');
-                localStorage.setItem('theme', 'matrix');
-                console.log(
-                  '%c🔓 Secret theme unlocked: Welcome to the Matrix!',
-                  'color: #00ff41; font-weight: bold; text-shadow: 0 0 5px #0f0;'
-                );
-              };
+              console.log(
+                '%c[Mind] Is there a spoon?',
+                'color: #f39c12; font-size: 18px; font-weight: bold;'
+              );
+
+              // Set up spoon question handlers
+              Object.defineProperties(window, {
+                'there is no spoon': {
+                  get: function () {
+                    setTheme('matrix');
+                    localStorage.setItem('theme', 'matrix');
+                    console.log(
+                      '%c🔓 "There is no spoon." - Secret theme unlocked: Welcome to the Matrix!',
+                      'color: #00ff41; font-weight: bold; text-shadow: 0 0 5px #0f0;'
+                    );
+                    return undefined;
+                  },
+                  configurable: true,
+                },
+                no: {
+                  get: function () {
+                    return window['there is no spoon'];
+                  },
+                  configurable: true,
+                },
+                'no spoon': {
+                  get: function () {
+                    return window['there is no spoon'];
+                  },
+                  configurable: true,
+                },
+              });
             } else {
               console.log(
                 "%c❌ Not quite right. Here's what happened:",
@@ -116,7 +179,7 @@ const consoleEasterEgg = setTheme => {
               results.forEach(r => {
                 if (!r.passed) {
                   console.log(
-                    `For input ${r.input}, expected ${r.expected} but got ${r.actual}`
+                    `For input ${JSON.stringify(r.input)}, expected ${r.expected} but got ${r.actual}`
                   );
                 }
               });
@@ -132,19 +195,19 @@ const consoleEasterEgg = setTheme => {
         };
 
         // Set up the hook to catch when they call their function
-        Object.defineProperty(window, 'secretFizzBuzz', {
+        Object.defineProperty(window, 'noSpoon', {
           set: function (func) {
             if (typeof func === 'function') {
-              window._secretFizzBuzz = func;
+              window._noSpoon = func;
               console.log(
-                '%cFunction received! Calling with 42 to test...',
+                '%cFunction received! Testing with various values...',
                 'color: #8be9fd;'
               );
-              window.verifyFizzBuzz(func);
+              window.verifyNoSpoon(func);
             }
           },
           get: function () {
-            return window._secretFizzBuzz;
+            return window._noSpoon;
           },
         });
         return undefined;
@@ -221,13 +284,19 @@ const consoleEasterEgg = setTheme => {
   // Return a cleanup function
   return () => {
     delete window.hack;
-    delete window.fizzbuzz;
-    delete window.dom; // If 'dom' was part of your easter egg properties
+    delete window.red;
+    delete window.redpill;
+    delete window['red pill'];
+    delete window['the red pill'];
+    delete window.spoon;
     delete window.matrix;
     delete window.clearMatrix;
-    delete window.verifyFizzBuzz;
-    delete window.unlockSecret;
-    delete window._secretFizzBuzz;
+    delete window.verifyNoSpoon;
+    delete window.noSpoon;
+    delete window._noSpoon;
+    delete window['there is no spoon'];
+    delete window['no'];
+    delete window['no spoon'];
 
     // Remove matrix overlay if it exists
     if (matrixOverlay && matrixOverlay.parentNode) {
