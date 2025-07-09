@@ -102,7 +102,7 @@ const SuperFooter = () => {
               rel="noopener noreferrer"
               className={clsx()}
             >
-              Beehiiv
+              Blog
             </a>
             <a
               href="https://github.com/luhsprwhk"
@@ -119,11 +119,11 @@ const SuperFooter = () => {
               Twitter
             </a>
             <a
-              href="https://youtube.com/@luhsprwhk"
+              href="https://linkedin.com/in/luhsprwhk"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Youtube
+              LinkedIn
             </a>
           </div>
         </div>
