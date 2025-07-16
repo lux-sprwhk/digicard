@@ -1,5 +1,5 @@
-import { FaArrowRight } from 'react-icons/fa';
 import clsx from 'clsx';
+import DynamicIcon from './DynamicIcon';
 
 const ClassicFeaturedPost = ({ featuredPost, theme }) => {
   if (!featuredPost) return null;

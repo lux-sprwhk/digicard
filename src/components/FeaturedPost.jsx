@@ -1,32 +1,46 @@
 import { useState, useEffect } from 'react';
-import { FaArrowRight } from 'react-icons/fa';
 import clsx from 'clsx';
+import DynamicIcon from './DynamicIcon';
 
 import ClassicFeaturedPost from './ClassicFeaturedPost';
+import { useContentful } from '../hooks/useContentful';
+import { getFeaturedPost, getSettings } from '../utils/contentful';
 
 const FeaturedPost = ({ theme }) => {
-  const [featuredPost, setFeaturedPost] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const {
+    data: cmsFeaturedPost,
+    loading: postLoading,
+    error: postError,
+  } = useContentful(getFeaturedPost);
+  const { data: cmsSettings } = useContentful(getSettings);
+  const [fallbackPost, setFallbackPost] = useState(null);
+  const [fallbackLoading, setFallbackLoading] = useState(true);
 
+  // Fallback to JSON file if Contentful fails
   useEffect(() => {
-    fetch('/featuredPost.json')
-      .then(res => {
-        if (!res.ok) throw new Error('Failed to load featured post');
-        return res.json();
-      })
-      .then(data => {
-        setFeaturedPost(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        setError(err.message);
-        setLoading(false);
-      });
-  }, []);
+    if (postError) {
+      fetch('/featuredPost.json')
+        .then(res => {
+          if (!res.ok) throw new Error('Failed to load featured post');
+          return res.json();
+        })
+        .then(data => {
+          setFallbackPost(data);
+          setFallbackLoading(false);
+        })
+        .catch(() => {
+          setFallbackLoading(false);
+        });
+    }
+  }, [postError]);
+
+  const loading = postLoading || (postError && fallbackLoading);
+  const featuredPost = cmsFeaturedPost || fallbackPost;
+  const settings = cmsSettings || {
+    blogArchiveUrl: 'https://luhsprwhk.beehiiv.com',
+  };
 
   if (loading) return <div>Loading featured post...</div>;
-  if (error) return <div>Error: {error}</div>;
   if (!featuredPost) return null;
 
   if (theme === 'web2' || theme === 'csszen') {
@@ -79,14 +93,14 @@ const FeaturedPost = ({ theme }) => {
               )}
             >
               Read More
-              <FaArrowRight />
+              <DynamicIcon iconName="FaArrowRight" />
             </span>
           </div>
         </a>
       </div>
       <div>
         <a
-          href="https://luhsprwhk.beehiiv.com"
+          href={settings.blogArchiveUrl}
           className={clsx(
             'block w-full mt-4 py-2 text-center rounded bg-github-blue text-white font-medium transition-colors hover:bg-github-lightBlue',
             'dark:bg-dracula-purple dark:hover:bg-dracula-pink',

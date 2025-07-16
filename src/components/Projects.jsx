@@ -6,6 +6,9 @@ import liveLaughDieImg from '../assets/LiveLaughDie-thumb.png';
 import liveLaughDieWideImg from '../assets/LiveLaughDie-thumb-wide.png';
 import rubberDuckTarotIMG from '../assets/RDTBanner.png';
 import ClassicProjectsList from './ClassicProjectsList';
+import { useContentful } from '../hooks/useContentful';
+import { getProjects } from '../utils/contentful';
+import DynamicIcon from './DynamicIcon';
 
 const ProjectCard = ({
   img,
@@ -13,6 +16,7 @@ const ProjectCard = ({
   title,
   description,
   link,
+  icon,
   refCb,
   createRipple,
 }) => (
@@ -39,17 +43,31 @@ const ProjectCard = ({
         )}
       />
     </div>
-    <h3
-      className={clsx(
-        'px-4 pt-4 pb-2 font-heading text-github-blue',
-        'dark:text-dracula-purple',
-        'web2:text-web2-secondary web2:font-web2Heading web2:text-web2-text',
-        'font-bold',
-        'matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)]'
+    <div className="flex items-center gap-2 px-4 pt-4 pb-2">
+      {icon && (
+        <DynamicIcon
+          iconName={icon}
+          className={clsx(
+            'text-github-blue',
+            'dark:text-dracula-purple',
+            'web2:text-web2-secondary',
+            'matrix:text-matrix-highlight'
+          )}
+          size={20}
+        />
       )}
-    >
-      {title}
-    </h3>
+      <h3
+        className={clsx(
+          'font-heading text-github-blue',
+          'dark:text-dracula-purple',
+          'web2:text-web2-secondary web2:font-web2Heading web2:text-web2-text',
+          'font-bold',
+          'matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)]'
+        )}
+      >
+        {title}
+      </h3>
+    </div>
     <p
       className={clsx(
         'px-4 pb-4 text-sm text-github-text',
@@ -79,7 +97,8 @@ const ProjectCard = ({
   </div>
 );
 
-const projects = [
+// Fallback projects for when Contentful is not available
+const fallbackProjects = [
   {
     imgNormal: rubberDuckTarotIMG,
     alt: 'Rubber Duck Tarot',
@@ -88,6 +107,7 @@ const projects = [
       "Decision-making tool disguised as tarot cards, featuring a dead developer's ghost trapped in a rubber duck who helps creative people debug their mental blocks",
     link: 'https://rubberducktarot.com',
     order: 1,
+    active: true,
   },
   {
     imgNormal: sbBukowskisImg,
@@ -97,6 +117,7 @@ const projects = [
       'Nihilistic animals philosophize in Austin dumpsters - dark satire webcomic',
     link: 'https://gjc.beehiiv.com/subscribe',
     order: 2,
+    active: true,
   },
   {
     imgNormal: hypehallImg,
@@ -106,6 +127,7 @@ const projects = [
       'AI-powered app for discovering local bands through curated video feeds',
     link: 'https://hypehall.beehiiv.com/subscribe',
     order: 3,
+    active: false,
   },
   {
     imgNormal: liveLaughDieImg,
@@ -116,11 +138,17 @@ const projects = [
       'Horror trivia game satirizing MLM culture and toxic positivity through deadly quiz show gameplay',
     link: 'https://liveLaughDie.beehiiv.com/subscribe',
     order: 4,
+    active: true,
   },
 ];
 
 const Projects = ({ theme }) => {
   const projectRefs = useRef([]);
+  const { data: cmsProjects, loading, error } = useContentful(getProjects);
+
+  // Use CMS data if available, otherwise fall back to static data
+  const projects =
+    cmsProjects && cmsProjects.length > 0 ? cmsProjects : fallbackProjects;
 
   // Create ripple effect on project links
   const createRipple = event => {
@@ -158,25 +186,39 @@ const Projects = ({ theme }) => {
       { threshold: 0.1 }
     );
 
-    projectRefs.current.forEach(card => {
+    const currentRefs = projectRefs.current;
+    currentRefs.forEach(card => {
       if (card) observer.observe(card);
     });
 
     return () => {
-      projectRefs.current.forEach(card => {
+      currentRefs.forEach(card => {
         if (card) observer.unobserve(card);
       });
     };
   }, []);
+
+  if (loading) {
+    return (
+      <section className="p-5 border-t border-github-lightGray dark:border-dracula-currentLine">
+        <h2 className="section-heading">Projects</h2>
+        <div className="text-center py-8">Loading projects...</div>
+      </section>
+    );
+  }
+
+  if (error) {
+    console.warn('Contentful error, using fallback data:', error);
+  }
 
   if (theme === 'web2' || theme === 'csszen') {
     return <ClassicProjectsList projects={projects} />;
   }
 
   // sort projects by order
-  projects.sort((a, b) => a.order - b.order);
+  const sortedProjects = [...projects].sort((a, b) => a.order - b.order);
 
-  const isOddLayout = projects.length % 2 !== 0;
+  const isOddLayout = sortedProjects.length % 2 !== 0;
 
   // Modern card layout for other themes
   return (
@@ -197,24 +239,27 @@ const Projects = ({ theme }) => {
           isOddLayout ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'
         )}
       >
-        {projects.map((projectItem, idx) => {
-          const imageSrc =
-            isOddLayout && projectItem.imgWide
-              ? projectItem.imgWide
-              : projectItem.imgNormal;
-          return (
-            <ProjectCard
-              key={projectItem.title}
-              img={imageSrc}
-              alt={projectItem.alt}
-              title={projectItem.title}
-              description={projectItem.description}
-              link={projectItem.link}
-              refCb={el => (projectRefs.current[idx] = el)}
-              createRipple={createRipple}
-            />
-          );
-        })}
+        {sortedProjects
+          .filter(projectItem => projectItem.active)
+          .map((projectItem, idx) => {
+            const imageSrc =
+              isOddLayout && projectItem.imgWide
+                ? projectItem.imgWide
+                : projectItem.imgNormal;
+            return (
+              <ProjectCard
+                key={projectItem.id || projectItem.title}
+                img={imageSrc}
+                alt={projectItem.alt}
+                title={projectItem.title}
+                description={projectItem.description}
+                link={projectItem.link}
+                icon={projectItem.icon}
+                refCb={el => (projectRefs.current[idx] = el)}
+                createRipple={createRipple}
+              />
+            );
+          })}
       </div>
     </section>
   );
