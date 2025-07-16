@@ -1,7 +1,6 @@
-import { FaGithub, FaTwitter, FaYoutube, FaRssSquare } from 'react-icons/fa';
 import clsx from 'clsx';
-
 import { useState } from 'react';
+import DynamicIcon from './DynamicIcon';
 
 const Web2NavBar = ({ theme }) => {
   const [active, setActive] = useState(false);
@@ -60,7 +59,7 @@ const Web2NavBar = ({ theme }) => {
             'hover:web2:text-web2-accent hover:scale-125'
           )}
         >
-          <FaRssSquare />
+          <DynamicIcon iconName="FaRssSquare" />
         </a>
         <a
           href="https://github.com/luhsprwhk"
@@ -71,7 +70,7 @@ const Web2NavBar = ({ theme }) => {
             'hover:web2:text-web2-accent hover:scale-125'
           )}
         >
-          <FaGithub />
+          <DynamicIcon iconName="FaGithub" />
         </a>
         <a
           href="https://twitter.com/luhsprwhk"
@@ -82,7 +81,7 @@ const Web2NavBar = ({ theme }) => {
             'hover:web2:text-web2-accent hover:scale-125'
           )}
         >
-          <FaTwitter />
+          <DynamicIcon iconName="FaTwitter" />
         </a>
         <a
           href="https://youtube.com/@luhsprwhk"
@@ -93,7 +92,7 @@ const Web2NavBar = ({ theme }) => {
             'hover:web2:text-web2-accent hover:scale-125'
           )}
         >
-          <FaYoutube />
+          <DynamicIcon iconName="FaYoutube" />
         </a>
       </div>
     </nav>

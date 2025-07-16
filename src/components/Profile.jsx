@@ -1,8 +1,7 @@
 import profileImg from '../assets/profile.jpg';
-import { FaMapMarkerAlt } from 'react-icons/fa';
 import { BasicBio } from './ProfileBio';
 import clsx from 'clsx';
-import ResumeDownloadButton from './ResumeDownloadButton';
+import DynamicIcon from './DynamicIcon';
 
 const Profile = ({ theme }) => {
   return (
@@ -73,7 +72,7 @@ const Profile = ({ theme }) => {
             'csszen:text-csszen-green-dark'
           )}
         >
-          Vapourware Dealer
+          Vaporware Dealer
         </p>
       )}
       {theme !== 'web2' && (
@@ -86,7 +85,7 @@ const Profile = ({ theme }) => {
             'web2:text-web2-secondary'
           )}
         >
-          <FaMapMarkerAlt /> Austin, TX
+          <DynamicIcon iconName="FaMapMarkerAlt" /> Austin, TX
         </p>
       )}
 

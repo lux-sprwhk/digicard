@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { FaTerminal } from 'react-icons/fa';
 import profileImg from '../assets/profile.jpg';
 import clsx from 'clsx';
 import ResumeDownloadButton from './ResumeDownloadButton';
+import DynamicIcon from './DynamicIcon';
 
 const Footer = ({ theme }) => {
   const [currentYear] = useState(new Date().getFullYear());
@@ -19,17 +19,13 @@ const Footer = ({ theme }) => {
 
   return (
     <footer className="text-center py-5 px-4 text-sm text-gray-500 dark:text-gray-400 relative">
-      {theme !== 'matrix' && (
-        <div className="text-right">
-          <ResumeDownloadButton theme={theme} small />
-        </div>
-      )}
       <p>&copy; {currentYear}. All rights reserved.</p>
       <br />
       <div className="footer-details mt-2">
         {theme !== 'matrix' && (
           <span className="group relative inline-block">
-            <FaTerminal
+            <DynamicIcon
+              iconName="FaTerminal"
               className={`inline-block 
     ${theme === 'dark' ? 'glow-dark' : 'glow-light'} 
     ${cursorVisible ? 'opacity-100' : 'opacity-0'} 

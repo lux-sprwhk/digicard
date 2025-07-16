@@ -1,11 +1,5 @@
-import {
-  FaGithub,
-  FaTwitter,
-  FaYoutube,
-  FaRssSquare,
-  FaLinkedin,
-} from 'react-icons/fa';
 import clsx from 'clsx';
+import DynamicIcon from './DynamicIcon';
 
 const createRipple = event => {
   const button = event.currentTarget;
@@ -27,7 +21,7 @@ const createRipple = event => {
   button.appendChild(circle);
 };
 
-const LinkItem = ({ href, icon: Icon, label }) => (
+const LinkItem = ({ href, icon, label }) => (
   <a
     href={href}
     className={clsx(
@@ -36,9 +30,10 @@ const LinkItem = ({ href, icon: Icon, label }) => (
     )}
     onClick={createRipple}
   >
-    <Icon
-      icon={Icon}
+    <DynamicIcon
+      iconName={icon}
       className="text-3xl mb-2 transition-transform duration-300 hover:scale-125"
+      size={32}
     />
     <span>{label}</span>
   </a>
@@ -48,31 +43,31 @@ const Links = ({ theme }) => {
   const links = [
     {
       href: 'https://luhsprwhk.beehiiv.com/subscribe',
-      icon: FaRssSquare,
+      icon: 'FaRssSquare',
       label: 'Blog',
       order: 1,
     },
     {
       href: 'https://github.com/luhsprwhk',
-      icon: FaGithub,
+      icon: 'FaGithub',
       label: 'GitHub',
       order: 2,
     },
     {
       href: 'https://linkedin.com/in/luhsprwhk',
-      icon: FaLinkedin,
+      icon: 'FaLinkedin',
       label: 'LinkedIn',
       order: 4,
     },
     {
       href: 'https://twitter.com/luhsprwhk',
-      icon: FaTwitter,
-      label: 'Twitter',
+      icon: 'FaTwitter',
+      label: 'X',
       order: 3,
     },
     {
       href: 'https://youtube.com/luhsprwhk',
-      icon: FaYoutube,
+      icon: 'FaYoutube',
       label: 'Youtube',
       order: 5,
       disabled: true,

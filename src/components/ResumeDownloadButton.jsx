@@ -1,5 +1,5 @@
-import { FaDownload } from 'react-icons/fa';
 import clsx from 'clsx';
+import DynamicIcon from './DynamicIcon';
 
 const ResumeDownloadButton = ({ theme, small = false, className = '' }) => {
   // Use smaller padding/text if small is true
@@ -23,7 +23,7 @@ const ResumeDownloadButton = ({ theme, small = false, className = '' }) => {
               'csszen:bg-csszen-green-dark csszen:text-csszen-cream csszen:hover:bg-csszen-green-dark/90'
             )}
           >
-            <FaDownload className="text-xs" />
+            <DynamicIcon iconName="FaDownload" className="text-xs" />
             View Resume
           </a>
         </div>
@@ -43,7 +43,7 @@ const ResumeDownloadButton = ({ theme, small = false, className = '' }) => {
               'drop-shadow-web2-border'
             )}
           >
-            <FaDownload className="text-xs" />
+            <DynamicIcon iconName="FaDownload" className="text-xs" />
             Download Resume
           </a>
         </div>
