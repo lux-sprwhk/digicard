@@ -4,6 +4,7 @@ import Profile from './components/Profile';
 import Links from './components/Links';
 import Projects from './components/Projects';
 import FeaturedPost from './components/FeaturedPost';
+import YouTube from './components/YouTube';
 import Footer, { SuperFooter } from './components/Footer';
 import MountainFooter from './components/MountainFooter';
 import { Web2NavBar } from './components/NavBar';
@@ -104,6 +105,7 @@ function App() {
           ) : null}
           <FeaturedPost theme={theme} />
           <Projects theme={theme} />
+          <YouTube theme={theme} />
         </main>
 
         {theme === 'web2' ? <MountainFooter /> : <Footer theme={theme} />}
