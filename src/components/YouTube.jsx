@@ -202,7 +202,7 @@ const YouTube = ({ theme }) => {
                   'dark:bg-red-500 dark:hover:bg-red-600',
                   'matrix:bg-matrix-terminal matrix:border matrix:border-matrix-glow matrix:text-matrix-highlight matrix:hover:text-matrix-glow',
                   'web2:bg-web2-accent web2:hover:bg-web2-accentHover',
-                  'dracula:text-dracula-comment dracula:hover:text-dracula-pink'
+                  'dark:text-dracula-comment dark:hover:text-dracula-pink'
                 )}
               >
                 <DynamicIcon iconName="FaYoutube" />
@@ -219,7 +219,7 @@ const YouTube = ({ theme }) => {
                   'text-github-mutedText hover:text-github-text',
                   'matrix:text-matrix-green matrix:hover:text-matrix-highlight',
                   'web2:text-web2-mutedText web2:hover:text-web2-text',
-                  'dracula:text-dracula-comment dracula:hover:text-dracula-pink'
+                  'dark:text-dracula-comment dark:hover:text-dracula-pink'
                 )}
               >
                 <DynamicIcon iconName="FaExternalLinkAlt" />
