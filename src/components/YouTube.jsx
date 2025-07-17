@@ -219,7 +219,7 @@ const YouTube = ({ theme }) => {
                   'text-github-mutedText hover:text-github-text',
                   'matrix:text-matrix-green matrix:hover:text-matrix-highlight',
                   'web2:text-web2-mutedText web2:hover:text-web2-text',
-                  'dark:text-dracula-comment dark:hover:text-dracula-pink'
+                  'dark:text-dracula-foreground dark:hover:text-dracula-pink'
                 )}
               >
                 <DynamicIcon iconName="FaExternalLinkAlt" />
