@@ -161,7 +161,7 @@ const YouTube = ({ theme }) => {
             <h3
               className={clsx(
                 'text-xl font-semibold mb-3',
-                'text-github-text dark:text-dracula-foreground',
+                'text-github-text dark:text-dracula-purple',
                 'matrix:text-matrix-highlight',
                 'web2:text-web2-text'
               )}
@@ -171,7 +171,7 @@ const YouTube = ({ theme }) => {
             <p
               className={clsx(
                 'text-sm mb-4',
-                'text-github-mutedText dark:text-dracula-comment',
+                'text-github-mutedText dark:text-dracula-foreground',
                 'matrix:text-matrix-green',
                 'web2:text-web2-mutedText'
               )}
@@ -201,7 +201,8 @@ const YouTube = ({ theme }) => {
                   'bg-red-600 text-white hover:bg-red-700',
                   'dark:bg-red-500 dark:hover:bg-red-600',
                   'matrix:bg-matrix-terminal matrix:border matrix:border-matrix-glow matrix:text-matrix-highlight matrix:hover:text-matrix-glow',
-                  'web2:bg-web2-accent web2:hover:bg-web2-accentHover'
+                  'web2:bg-web2-accent web2:hover:bg-web2-accentHover',
+                  'dracula:text-dracula-comment dracula:hover:text-dracula-pink'
                 )}
               >
                 <DynamicIcon iconName="FaYoutube" />
@@ -216,9 +217,9 @@ const YouTube = ({ theme }) => {
                 className={clsx(
                   'hidden md:inline-flex items-center gap-2 px-3 py-1 rounded text-xs font-medium transition-colors',
                   'text-github-mutedText hover:text-github-text',
-                  'dark:text-dracula-comment dark:hover:text-dracula-foreground',
                   'matrix:text-matrix-green matrix:hover:text-matrix-highlight',
-                  'web2:text-web2-mutedText web2:hover:text-web2-text'
+                  'web2:text-web2-mutedText web2:hover:text-web2-text',
+                  'dracula:text-dracula-comment dracula:hover:text-dracula-pink'
                 )}
               >
                 <DynamicIcon iconName="FaExternalLinkAlt" />
