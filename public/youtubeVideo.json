@@ -1,0 +1,10 @@
+{
+  "id": "fallback-video",
+  "title": "Sample YouTube Video",
+  "description": "This is a fallback YouTube video that will be shown when Contentful is not available. Replace this with your actual video content in Contentful.",
+  "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "thumbnail": "",
+  "duration": "3:32",
+  "publishDate": "2024-01-01T00:00:00Z",
+  "active": true
+}

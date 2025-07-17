@@ -64,6 +64,25 @@ Create the following content models in your Contentful space:
   - `order` (Integer, required)
   - `active` (Boolean, optional, default: true)
 
+### YouTube Video Content Model (Optional)
+
+- **Content Type ID**: `youtubeVideo`
+- **Fields**:
+  - `title` (Short text, required)
+  - `description` (Long text, required)
+  - `url` (Short text, required - Full YouTube URL or YouTube Shorts URL)
+  - `thumbnail` (Media, optional - Custom thumbnail, will auto-generate from video if not provided)
+  - `duration` (Short text, optional - Video duration like "10:45" or "0:59")
+  - `publishDate` (Date & time, optional)
+  - `active` (Boolean, optional, default: true)
+
+**Supported URL formats:**
+
+- Regular videos: `https://www.youtube.com/watch?v=VIDEO_ID`
+- YouTube Shorts: `https://www.youtube.com/shorts/VIDEO_ID`
+- Short URLs: `https://youtu.be/VIDEO_ID`
+- Embed URLs: `https://www.youtube.com/embed/VIDEO_ID`
+
 ## 3. Add Content
 
 1. Create entries for each content model

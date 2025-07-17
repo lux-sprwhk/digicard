@@ -141,3 +141,29 @@ export const getSocialLinks = async () => {
     return [];
   }
 };
+
+export const getYouTubeVideo = async () => {
+  try {
+    const response = await client.getEntries({
+      content_type: 'youtubeVideo',
+      limit: 1,
+    });
+    if (response.items.length > 0) {
+      const item = response.items[0];
+      return {
+        id: item.sys.id,
+        title: item.fields.title,
+        description: item.fields.description,
+        url: item.fields.url,
+        thumbnail: item.fields.thumbnail?.fields?.file?.url || '',
+        duration: item.fields.duration,
+        publishDate: item.fields.publishDate,
+        active: item.fields.active !== false,
+      };
+    }
+    return null;
+  } catch (error) {
+    console.error('Error fetching YouTube video:', error);
+    return null;
+  }
+};
