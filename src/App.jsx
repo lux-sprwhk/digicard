@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import AnalyticsProvider from './components/AnalyticsProvider';
 import Header from './components/Header';
 import Profile from './components/Profile';
 import Links from './components/Links';
@@ -61,65 +62,68 @@ function App() {
   }, [setTheme]);
 
   return (
-    <div
-      className={clsx(
-        theme === 'csszen'
-          ? 'max-w-5xl mx-auto px-4 py-6 relative flex flex-row gap-8'
-          : 'max-w-2xl mx-auto px-4 py-6 relative flex'
-      )}
-    >
-      {theme === 'csszen' && (
-        <img
-          src={cssZenBanner}
-          alt="CSS Zen Garden Banner"
-          className="csszen-banner-img hidden sm:block"
-          style={{
-            position: 'absolute',
-            left: '-80px',
-            top: '80px',
-            width: '120px',
-            zIndex: 10,
-            boxShadow: '2px 4px 16px rgba(0,0,0,0.13)',
-            borderRadius: '0 1.5rem 1.5rem 0',
-            height: '20rem',
-          }}
-        />
-      )}
-      {/* Main content */}
-      <div style={{ flex: 1 }}>
-        <Header theme={theme} setTheme={setTheme} />
-        <main
-          className={clsx(
-            'bg-white dark:bg-dracula-currentLine rounded-xl shadow-md overflow-hidden mb-6',
-            'opacity-0 transform translate-y-5 animate-fade-in',
-            'matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:shadow-matrix-glow',
-            'web2:bg-web2-background web2:border-web2-border',
-            'csszen:bg-csszen-cream csszen:text-csszen-text csszen:border-csszen-text'
-          )}
-        >
-          {theme === 'web2' && <Web2NavBar theme={theme} />}
-          <Profile theme={theme} />
-          {/* Only show Links inline for non-csszen and non-web2 themes */}
-          {theme !== 'web2' && theme !== 'csszen' ? (
-            <Links theme={theme} />
-          ) : null}
-          <FeaturedPost theme={theme} />
-          <Projects theme={theme} />
-          <YouTube theme={theme} />
-        </main>
+    <>
+      <AnalyticsProvider />
+      <div
+        className={clsx(
+          theme === 'csszen'
+            ? 'max-w-5xl mx-auto px-4 py-6 relative flex flex-row gap-8'
+            : 'max-w-2xl mx-auto px-4 py-6 relative flex'
+        )}
+      >
+        {theme === 'csszen' && (
+          <img
+            src={cssZenBanner}
+            alt="CSS Zen Garden Banner"
+            className="csszen-banner-img hidden sm:block"
+            style={{
+              position: 'absolute',
+              left: '-80px',
+              top: '80px',
+              width: '120px',
+              zIndex: 10,
+              boxShadow: '2px 4px 16px rgba(0,0,0,0.13)',
+              borderRadius: '0 1.5rem 1.5rem 0',
+              height: '20rem',
+            }}
+          />
+        )}
+        {/* Main content */}
+        <div style={{ flex: 1 }}>
+          <Header theme={theme} setTheme={setTheme} />
+          <main
+            className={clsx(
+              'bg-white dark:bg-dracula-currentLine rounded-xl shadow-md overflow-hidden mb-6',
+              'opacity-0 transform translate-y-5 animate-fade-in',
+              'matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:shadow-matrix-glow',
+              'web2:bg-web2-background web2:border-web2-border',
+              'csszen:bg-csszen-cream csszen:text-csszen-text csszen:border-csszen-text'
+            )}
+          >
+            {theme === 'web2' && <Web2NavBar theme={theme} />}
+            <Profile theme={theme} />
+            {/* Only show Links inline for non-csszen and non-web2 themes */}
+            {theme !== 'web2' && theme !== 'csszen' ? (
+              <Links theme={theme} />
+            ) : null}
+            <FeaturedPost theme={theme} />
+            <Projects theme={theme} />
+            <YouTube theme={theme} />
+          </main>
 
-        {theme === 'web2' ? <MountainFooter /> : <Footer theme={theme} />}
+          {theme === 'web2' ? <MountainFooter /> : <Footer theme={theme} />}
+        </div>
+        {/* CSS Zen sidebar */}
+        {theme === 'csszen' && (
+          <aside
+            className="csszen-sidebar hidden md:block"
+            style={{ minWidth: 180, marginLeft: -25, marginTop: '20rem' }}
+          >
+            <Links theme={theme} />
+          </aside>
+        )}
       </div>
-      {/* CSS Zen sidebar */}
-      {theme === 'csszen' && (
-        <aside
-          className="csszen-sidebar hidden md:block"
-          style={{ minWidth: 180, marginLeft: -25, marginTop: '20rem' }}
-        >
-          <Links theme={theme} />
-        </aside>
-      )}
-    </div>
+    </>
   );
 }
 
