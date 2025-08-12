@@ -42,16 +42,16 @@ const LinkItem = ({ href, icon, label }) => (
 const Links = ({ theme }) => {
   const links = [
     {
-      href: 'https://luhsprwhk.beehiiv.com/subscribe',
+      href: 'https://luhsprwhk.substack.com',
       icon: 'FaRssSquare',
-      label: 'Blog',
+      label: 'Substack',
       order: 1,
     },
     {
       href: 'https://github.com/luhsprwhk',
       icon: 'FaGithub',
       label: 'GitHub',
-      order: 2,
+      order: 3,
     },
     {
       href: 'https://linkedin.com/in/luhsprwhk',
@@ -60,10 +60,10 @@ const Links = ({ theme }) => {
       order: 4,
     },
     {
-      href: 'https://twitter.com/luhsprwhk',
-      icon: 'FaTwitter',
-      label: 'X',
-      order: 3,
+      href: 'https://threads.com/luhsprwhk',
+      icon: 'FaThreads',
+      label: 'Threads',
+      order: 2,
     },
     {
       href: 'https://youtube.com/luhsprwhk',
