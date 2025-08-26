@@ -2,7 +2,7 @@ import { ReactTyped } from 'react-typed';
 import { useState, useEffect } from 'react';
 
 const normalBio =
-  'Web dev since the Flash days, now building digital experiences and writing AI-powered fiction';
+  'Web dev since the Flash days, now building digital experiences and making AI-powered art';
 const matrixBio = 'Welcome to the Matrix, hacker. Reality is what you make it.';
 
 const BasicBio = ({ theme }) => {
