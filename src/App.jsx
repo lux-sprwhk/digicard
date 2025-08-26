@@ -104,9 +104,7 @@ function App() {
             {theme === 'web2' && <Web2NavBar theme={theme} />}
             <Profile theme={theme} />
             {/* Only show Links inline for non-csszen and non-web2 themes */}
-            {theme !== 'web2' && theme !== 'csszen' ? (
-              <SocialLinks theme={theme} />
-            ) : null}
+            {theme !== 'web2' && theme !== 'csszen' ? <SocialLinks /> : null}
             <FeaturedPost theme={theme} />
             <Projects theme={theme} />
             <YouTube theme={theme} />

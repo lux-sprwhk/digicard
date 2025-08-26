@@ -8,7 +8,6 @@ const SocialLinks = () => {
 
   if (loading) return <div>Loading social links...</div>;
   if (error) return <div>Error loading social links: {error}</div>;
-  console.log(socialLinks);
   if (!socialLinks || socialLinks.length === 0) return null;
 
   return (
@@ -32,10 +31,10 @@ const SocialLinks = () => {
                 'matrix:bg-matrix-terminal matrix:text-matrix-highlight matrix:border matrix:border-matrix-glow',
                 'web2:bg-web2-primary web2:text-white web2:hover:bg-web2-secondary'
               )}
-              title={link.label}
+              title={link.name}
             >
               <DynamicIcon iconName={link.icon} size={30} />
-              <span className="text-sm">{link.label}</span>
+              <span className="text-sm">{link.name}</span>
             </a>
           ))}
       </div>

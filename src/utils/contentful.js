@@ -130,7 +130,7 @@ export const getSocialLinks = async () => {
       const linksArray = Object.entries(settings.socialLinks).map(
         ([key, link], index) => ({
           id: key,
-          name: link.name || key,
+          name: link.label || key,
           url: link.url,
           icon: link.icon || 'FaExternalLinkAlt',
           order: link.order || index,
