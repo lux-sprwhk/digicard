@@ -124,22 +124,28 @@ export const getSettings = async () => {
 
 export const getSocialLinks = async () => {
   try {
-    const response = await client.getEntries({
-      content_type: 'socialLink',
-      order: 'fields.order',
-    });
-    return response.items.map(item => ({
-      id: item.sys.id,
-      name: item.fields.name,
-      url: item.fields.url,
-      icon: item.fields.icon,
-      order: item.fields.order || 0,
-      active: item.fields.active !== false,
-    }));
+    const settings = await getSettings();
+    if (settings && settings.socialLinks) {
+      // Convert settings JSON object to array format
+      const linksArray = Object.entries(settings.socialLinks).map(
+        ([key, link], index) => ({
+          id: key,
+          name: link.label || key,
+          url: link.url,
+          icon: link.icon || 'FaExternalLinkAlt',
+          order: link.order || index,
+          active: link.active !== false,
+          disabled: false,
+        })
+      );
+
+      return linksArray.sort((a, b) => a.order - b.order);
+    }
   } catch (error) {
-    console.error('Error fetching social links:', error);
-    return [];
+    console.error('Error fetching social links from settings:', error);
   }
+
+  return [];
 };
 
 export const getYouTubeVideo = async () => {

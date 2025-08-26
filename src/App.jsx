@@ -12,6 +12,7 @@ import { Web2NavBar } from './components/NavBar';
 import consoleEasterEgg from './utils/consoleEasterEgg';
 import clsx from 'clsx';
 import cssZenBanner from './assets/css-zen-banner.png';
+import SocialLinks from './components/SocialLinks';
 
 function App() {
   const [theme, setTheme] = useState(() => {
@@ -103,9 +104,7 @@ function App() {
             {theme === 'web2' && <Web2NavBar theme={theme} />}
             <Profile theme={theme} />
             {/* Only show Links inline for non-csszen and non-web2 themes */}
-            {theme !== 'web2' && theme !== 'csszen' ? (
-              <Links theme={theme} />
-            ) : null}
+            {theme !== 'web2' && theme !== 'csszen' ? <SocialLinks /> : null}
             <FeaturedPost theme={theme} />
             <Projects theme={theme} />
             <YouTube theme={theme} />
