@@ -4,6 +4,11 @@ import viteImagemin from 'vite-plugin-imagemin';
 
 // https://vite.dev/config/
 export default defineConfig({
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./src/test/setup.js'],
+    globals: true,
+  },
   plugins: [
     react(),
     viteImagemin({
