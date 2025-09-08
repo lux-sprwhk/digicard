@@ -131,11 +131,11 @@ export const getSocialLinks = async () => {
         ([key, link], index) => ({
           id: key,
           name: link.label || key,
-          url: link.url,
+          url: link.url || link.href,
           icon: link.icon || 'FaExternalLinkAlt',
           order: link.order || index,
           active: link.active !== false,
-          disabled: false,
+          disabled: !!link.disabled,
         })
       );
 
@@ -170,6 +170,30 @@ export const getYouTubeVideo = async () => {
     return null;
   } catch (error) {
     console.error('Error fetching YouTube video:', error);
+    return null;
+  }
+};
+
+export const getSoundCloudTrack = async () => {
+  try {
+    const response = await client.getEntries({
+      content_type: 'soundCloudTrack',
+      limit: 1,
+    });
+    if (response.items.length > 0) {
+      const item = response.items[0];
+      return {
+        id: item.sys.id,
+        title: item.fields.title,
+        description: item.fields.description,
+        url: item.fields.url,
+        publishDate: item.fields.publishDate,
+        active: item.fields.active !== false,
+      };
+    }
+    return null;
+  } catch (error) {
+    console.error('Error fetching SoundCloud track:', error);
     return null;
   }
 };
