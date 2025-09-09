@@ -9,6 +9,7 @@ import ClassicProjectsList from './ClassicProjectsList';
 import { useContentful } from '../hooks/useContentful';
 import { getProjects } from '../utils/contentful';
 import DynamicIcon from './DynamicIcon';
+import SectionHeading from './SectionHeading';
 
 const ProjectCard = ({
   img,
@@ -201,7 +202,7 @@ const Projects = ({ theme }) => {
   if (loading) {
     return (
       <section className="p-5 border-t border-github-lightGray dark:border-dracula-currentLine">
-        <h2 className="section-heading">Projects</h2>
+        <SectionHeading>Projects</SectionHeading>
         <div className="text-center py-8">Loading projects...</div>
       </section>
     );
@@ -232,7 +233,7 @@ const Projects = ({ theme }) => {
         'matrix:shadow-lg'
       )}
     >
-      <h2 className={clsx('section-heading')}>Projects</h2>
+      <SectionHeading>Projects</SectionHeading>
       <div
         className={clsx(
           'grid gap-6',

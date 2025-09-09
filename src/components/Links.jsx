@@ -26,8 +26,11 @@ const LinkItem = ({ href, icon, label }) => (
     href={href}
     className={clsx(
       'flex flex-col items-center justify-center p-4 h-24 bg-white dark:bg-dracula-currentLine matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg rounded-lg text-github-text dark:text-dracula-foreground no-underline transition-all hover:bg-github-blue hover:text-white dark:hover:bg-dracula-purple hover:-translate-y-1 hover:shadow-md matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)]',
-      'web2:bg-web2-cardBg web2:text-web2-text web2:hover:bg-web2-secondary web2:hover:bg-web2-success web2:border-web2-border web2:shadow-web2-border web2:drop-shadow-web2-border'
+      'web2:bg-web2-cardBg web2:text-web2-text web2:hover:bg-web2-secondary web2:hover:bg-web2-success web2:border-web2-border web2:shadow-web2-border web2:drop-shadow-web2-border',
+      'cursor-pointer'
     )}
+    target="_blank"
+    rel="noopener noreferrer"
     onClick={createRipple}
   >
     <DynamicIcon
