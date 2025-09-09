@@ -1,0 +1,167 @@
+# DigiCard - Windsurf AI Rules
+
+## Project Overview
+DigiCard is a React-based digital portfolio/business card application featuring multiple dynamic themes and interactive console easter eggs. The application showcases projects, social links, and a featured post in various visual styles.
+
+## Architecture Reference
+Always reference `docs/architecture.md` for the high-level technical architecture overview. This document contains the authoritative information about:
+- Core technologies (React, Vite, Tailwind CSS, Contentful)
+- Project structure and organization
+- Data flow patterns
+- Deployment strategy
+- Tooling and standards
+
+## Key Technologies & Patterns
+
+### Frontend Stack
+- **React 18** - Modern functional components with hooks
+- **Vite** - Fast development server and build tool with SWC
+- **Tailwind CSS** - Utility-first styling with custom theme variants
+- **Contentful** - Headless CMS for dynamic content
+- **Testing** - Vitest with React Testing Library
+
+### Build & Development
+- **Package Manager**: npm (use npm, not yarn or pnpm)
+- **Development Server**: `npm run dev` 
+- **Build**: `npm run build`
+- **Testing**: `npm test` (Vitest), `npm run test:watch`
+- **Linting**: `npm run lint` (ESLint with strict rules)
+- **Formatting**: `npm run format` (Prettier)
+
+## Project Structure Guidelines
+
+### File Organization
+```
+src/
+├── components/        # Reusable React components
+├── hooks/            # Custom React hooks (notably useContentful.js)
+├── utils/            # Helper functions and utilities
+├── assets/           # Static assets (images, fonts)
+└── main.jsx         # Application entry point
+```
+
+### Component Patterns
+- **Functional Components**: Use only functional components with hooks
+- **Props**: Pass `theme` prop to components that need theme-aware styling
+- **Error Boundaries**: Wrap external data components in ErrorBoundary
+- **Loading States**: Use Loading component for async operations
+
+## Styling Guidelines
+
+### Tailwind Usage
+- Use **utility classes** for styling, avoid custom CSS when possible
+- **Theme Variants**: Use custom variants `matrix:`, `web2:`, `csszen:` for theme-specific styles
+- **Conditional Classes**: Use `clsx` library for conditional class application
+- **Color System**: Reference defined color palettes in `tailwind.config.js`:
+  - `dracula.*` - Dark theme colors
+  - `matrix.*` - Matrix theme (green terminal style)
+  - `web2.*` - Web 2.0 theme (blue gradients, early 2000s style)
+  - `csszen.*` - CSS Zen Garden theme (earthy tones)
+
+### Theme System
+- **Theme State**: Managed in `App.jsx` with sessionStorage persistence
+- **Theme Classes**: Applied to `document.documentElement` and `document.body`
+- **Component Theming**: Pass theme prop down to components needing theme-aware rendering
+- **Supported Themes**: `dark`, `light`, `matrix`, `web2`, `csszen`
+
+## Development Guidelines
+
+### Code Style
+- **No Comments**: Do not add code comments unless explicitly requested
+- **ESLint Compliance**: All code must pass ESLint with max-warnings 0
+- **Prettier Formatting**: All code must be properly formatted
+- **File Naming**: Use PascalCase for components, camelCase for utilities
+
+### Testing Requirements
+- **Component Tests**: Write tests for new components using React Testing Library
+- **Setup**: Tests configured with Vitest and jsdom environment
+- **Coverage**: Maintain test coverage for critical functionality
+
+### Git Workflow
+- **Pre-commit Hooks**: Husky runs ESLint and Prettier on staged files
+- **Lint-staged**: Automatically formats and lints changed files
+- **Clean Commits**: Ensure all tests pass before committing
+
+## Content Management
+
+### Contentful Integration
+- **Data Fetching**: Use `useContentful` hook for all Contentful API calls
+- **Client Setup**: Contentful client configured in `src/utils/contentful.js`
+- **Error Handling**: Always handle loading and error states
+- **Content Types**: Blog posts, projects, profile data managed via Contentful
+
+### External APIs
+- **Beehiiv**: Newsletter/blog integration via proxy in Vite config
+- **SoundCloud**: Embedded widget for audio content
+- **YouTube**: Embedded video content
+
+## Feature Implementation
+
+### Adding New Themes
+1. Add theme colors to `tailwind.config.js`
+2. Add theme variant using `addVariant` function
+3. Update theme switching logic in `App.jsx`
+4. Add conditional styling to relevant components
+5. Test theme persistence and body class application
+
+### Adding New Components
+1. Create component in `src/components/`
+2. Follow existing naming conventions
+3. Accept `theme` prop if styling varies by theme
+4. Import and use in appropriate parent component
+5. Add tests in `test/components/`
+
+### Adding New Utilities
+1. Create utility in `src/utils/`
+2. Export functions with clear, descriptive names
+3. Add any required cleanup functions
+4. Import and use where needed
+
+## Console Easter Eggs
+- **Implementation**: Located in `src/utils/consoleEasterEgg.js`
+- **Theme Commands**: Console commands can trigger theme changes
+- **Cleanup**: Always provide cleanup function for proper unmounting
+- **User Experience**: Hidden interactive features for engaged users
+
+## Performance Considerations
+- **Image Optimization**: Vite plugin handles image compression
+- **Code Splitting**: Leverage Vite's automatic code splitting
+- **Asset Loading**: Optimize asset loading strategies
+- **Lazy Loading**: Consider lazy loading for non-critical components
+
+## Deployment
+- **Platform**: Netlify with continuous deployment
+- **Build Command**: `npm run build`
+- **Environment**: Production builds are optimized and minified
+- **Domain**: Custom domain configured through Netlify
+
+## Common Tasks
+
+### Running the Project
+```bash
+npm install        # Install dependencies
+npm run dev       # Start development server
+npm run build     # Build for production
+npm run preview   # Preview production build
+```
+
+### Code Quality
+```bash
+npm run lint      # Check for linting errors
+npm run format    # Format code with Prettier
+npm test          # Run test suite
+```
+
+### Debugging
+- Use browser DevTools for React debugging
+- Check console for easter egg functionality
+- Verify theme switching works across all themes
+- Test responsive design on different screen sizes
+
+## Best Practices
+- Always test theme switching functionality when modifying components
+- Maintain consistent spacing and typography across themes
+- Use semantic HTML elements for accessibility
+- Keep components small and focused on single responsibilities
+- Handle loading and error states gracefully
+- Follow React best practices for hooks and state management
