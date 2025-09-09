@@ -66,7 +66,7 @@ const CSSZenLinks = ({ links }) => {
             .map((link, idx) => (
               <li key={idx}>
                 <a
-                  href={link.href}
+                  href={link.url}
                   className={clsx(
                     'text-[#b6a16b]',
                     'underline',
