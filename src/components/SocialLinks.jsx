@@ -3,12 +3,16 @@ import { getSocialLinks } from '../utils/contentful';
 import DynamicIcon from './DynamicIcon';
 import clsx from 'clsx';
 
-const SocialLinks = () => {
+const SocialLinks = ({ theme }) => {
   const { data: socialLinks, loading, error } = useContentful(getSocialLinks);
 
   if (loading) return <div>Loading social links...</div>;
   if (error) return <div>Error loading social links: {error}</div>;
   if (!socialLinks || socialLinks.length === 0) return null;
+
+  if (theme === 'csszen') {
+    return <CSSZenLinks links={socialLinks} />;
+  }
 
   return (
     <section className="p-4">
@@ -39,6 +43,47 @@ const SocialLinks = () => {
           ))}
       </div>
     </section>
+  );
+};
+
+// CSS Zen sidebar: vertical, text-only links
+const CSSZenLinks = ({ links }) => {
+  return (
+    <aside
+      className={clsx(
+        'csszen-links-sidebar',
+        'p-4 bg-[#fffbe6] border-l border-[#b6a16b] rounded-xl shadow-md flex flex-col items-end'
+      )}
+    >
+      <h2 className={clsx('font-bold mb-4 text-[#b6a16b] text-lg')}>
+        Connect & Follow
+      </h2>
+      <nav>
+        <ul className={clsx('flex flex-col gap-3 items-end')}>
+          {links
+            .sort((a, b) => a.order - b.order)
+            .filter(link => !link.disabled)
+            .map((link, idx) => (
+              <li key={idx}>
+                <a
+                  href={link.url}
+                  className={clsx(
+                    'text-[#b6a16b]',
+                    'underline',
+                    'hover:text-[#8b7c4a]',
+                    'transition-colors',
+                    'text-base'
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
+        </ul>
+      </nav>
+    </aside>
   );
 };
 

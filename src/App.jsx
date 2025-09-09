@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 import AnalyticsProvider from './components/AnalyticsProvider';
 import Header from './components/Header';
 import Profile from './components/Profile';
-import Links from './components/Links';
 import Projects from './components/Projects';
 import FeaturedPost from './components/FeaturedPost';
 import YouTube from './components/YouTube';
 import SoundCloudWidget from './components/SoundCloudWidget';
-import Footer, { SuperFooter } from './components/Footer';
+import Footer from './components/Footer';
 import MountainFooter from './components/MountainFooter';
 import { Web2NavBar } from './components/NavBar';
+import ErrorBoundary from './components/ErrorBoundary';
 import consoleEasterEgg from './utils/consoleEasterEgg';
 import clsx from 'clsx';
 import cssZenBanner from './assets/css-zen-banner.png';
@@ -106,10 +106,16 @@ function App() {
             <Profile theme={theme} />
             {/* Only show Links inline for non-csszen and non-web2 themes */}
             {theme !== 'web2' && theme !== 'csszen' ? <SocialLinks /> : null}
-            <FeaturedPost theme={theme} />
+            <ErrorBoundary theme={theme}>
+              <FeaturedPost theme={theme} />
+            </ErrorBoundary>
             <Projects theme={theme} />
-            <YouTube theme={theme} />
-            <SoundCloudWidget theme={theme} />
+            <ErrorBoundary theme={theme}>
+              <YouTube theme={theme} />
+            </ErrorBoundary>
+            <ErrorBoundary theme={theme}>
+              <SoundCloudWidget theme={theme} />
+            </ErrorBoundary>
           </main>
 
           {theme === 'web2' ? <MountainFooter /> : <Footer theme={theme} />}
@@ -120,7 +126,7 @@ function App() {
             className="csszen-sidebar hidden md:block"
             style={{ minWidth: 180, marginLeft: -25, marginTop: '20rem' }}
           >
-            <Links theme={theme} />
+            <SocialLinks theme={theme} />
           </aside>
         )}
       </div>

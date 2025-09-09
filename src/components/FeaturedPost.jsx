@@ -1,39 +1,20 @@
-import { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import DynamicIcon from './DynamicIcon';
 import SectionHeading from './SectionHeading';
 
-import ClassicFeaturedPost from './ClassicFeaturedPost';
-import { getFeaturedPost } from '../utils/beehiiv';
+import Loading from './Loading';
+import { useBeeHiiv } from '../hooks/useBeeHiiv';
+import { useContentful } from '../hooks/useContentful';
+import { getSettings } from '../utils/contentful';
+import fallbackPostData from '../featuredPost.json';
 
 const FeaturedPost = ({ theme }) => {
-  const [beePost, setBeePost] = useState(null);
-  const [beePostLoading, setBeePostLoading] = useState(true);
-  const [fallbackPost, setFallbackPost] = useState(null);
-  const [fallbackLoading, setFallbackLoading] = useState(true);
+  const { post, loading } = useBeeHiiv();
+  const { data: settings, loading: settingsLoading } =
+    useContentful(getSettings);
 
-  // Fallback to JSON file if Beehiiv fails or returns no data
-  useEffect(() => {
-    const fetchBeehiivPost = async () => {
-      setBeePostLoading(true);
-      const post = await getFeaturedPost();
-      if (!post) {
-        setFallbackPost(post);
-        setFallbackLoading(false);
-      }
-      setBeePost(post);
-      setBeePostLoading(false);
-    };
-    fetchBeehiivPost();
-  }, []);
-
-  const loading = beePostLoading || fallbackLoading;
-  const featuredPost = beePost || fallbackPost;
-
-  if (loading && !featuredPost) return <div>Loading featured post...</div>;
-  if (!featuredPost) return null;
-
-  const isBeePost = !!featuredPost?.web_url;
+  if (settingsLoading) return <Loading />;
+  const { blogArchiveUrl } = settings;
 
   const sectionClassName = clsx(
     'p-5',
@@ -43,63 +24,30 @@ const FeaturedPost = ({ theme }) => {
     'matrix:shadow-lg'
   );
 
-  if (isBeePost && !beePostLoading) {
-    return (
-      <section className={sectionClassName}>
-        <SectionHeading>Latest Post</SectionHeading>
-        <BeehiivPost post={featuredPost} />
-      </section>
-    );
-  }
-
-  if (theme === 'web2' || theme === 'csszen') {
-    return <ClassicFeaturedPost featuredPost={featuredPost} theme={theme} />;
-  }
+  if (loading && !post) return <Loading />;
 
   return (
     <section className={sectionClassName}>
       <SectionHeading>Latest Post</SectionHeading>
-      <FallbackPost post={featuredPost} />
+      <Post
+        post={post || fallbackPostData}
+        theme={theme}
+        blogArchiveUrl={blogArchiveUrl}
+      />
     </section>
   );
 };
 
-const BeehiivPost = ({ post }) => {
-  return (
-    <>
-      <img src={post.thumbnail_url} alt={post.title} />
-      <h4 className="text-xl font-bold mt-4 font-heading text-github-blue dark:text-dracula-purple web2:text-web2-text matrix:text-matrix-highlight">
-        {post.title}
-      </h4>
-      <p className="mt-2 mb-4 font-body text-github-text dark:text-dracula-foreground web2:text-web2-text matrix:text-matrix-highlight">
-        {post.subtitle}
-      </p>
-      <a
-        className={clsx(
-          'block text-center py-2 bg-github-blue text-white no-underline transition-colors hover:bg-github-lightBlue',
-          'dark:bg-dracula-purple dark:hover:bg-dracula-pink',
-          'web2:bg-web2-primary web2:text-white web2:hover:bg-web2-secondary web2:hover:bg-web2-success web2:border-web2-border web2:shadow-web2-border web2:drop-shadow-web2-border',
-          'matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)] matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg',
-          'relative overflow-hidden'
-        )}
-        href={post.web_url}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span
-          className={clsx(
-            'inline-flex items-center gap-2 text-matrix-green font-medium'
-          )}
-        >
-          Read More
-          <DynamicIcon iconName="FaArrowRight" />
-        </span>
-      </a>
-    </>
-  );
-};
-
-const FallbackPost = ({ post }) => {
+const Post = ({ post, theme, blogArchiveUrl }) => {
+  if (theme === 'web2' || theme === 'csszen') {
+    return (
+      <ClassicFeaturedPost
+        featuredPost={post}
+        theme={theme}
+        blogArchiveUrl={blogArchiveUrl}
+      />
+    );
+  }
   return (
     <div
       className={clsx(
@@ -107,18 +55,18 @@ const FallbackPost = ({ post }) => {
         'matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:hover:shadow-matrix-glow',
         'web2:bg-web2-cardBg web2:border-web2-border',
         'rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all',
-        'border dark:border-dracula-purple matrix:border-matrix-glow web2:border-web2-border dark:hover:border-'
+        'border dark:border-dracula-purple matrix:border-matrix-glow web2:border-web2-border dark:hover:border-bg-dracula-currentLine'
       )}
     >
       <a
-        href={post.link}
+        href={post.link || post.web_url}
         target="_blank"
         rel="noopener noreferrer"
         className={clsx('block no-underline text-inherit')}
       >
         <div className={clsx('aspect-video overflow-hidden')}>
           <img
-            src={post.image}
+            src={post.thumbnail_url || post.image}
             alt="Featured post thumbnail"
             className={clsx(
               'w-full h-full object-cover transition-transform duration-500 hover:scale-105'
@@ -127,7 +75,9 @@ const FallbackPost = ({ post }) => {
         </div>
         <div className={clsx('p-4')}>
           <h3 className={clsx('text-lg font-semibold mb-2')}>{post.title}</h3>
-          <p className={clsx('mb-4')}>{post.description}</p>
+          <p className={clsx('mb-4')}>
+            {post.description || post.preview_text}
+          </p>
           <span
             className={clsx(
               'inline-flex items-center gap-2 text-matrix-green font-medium'
@@ -139,6 +89,83 @@ const FallbackPost = ({ post }) => {
         </div>
       </a>
     </div>
+  );
+};
+
+const ClassicFeaturedPost = ({ featuredPost, theme, blogArchiveUrl }) => {
+  if (!featuredPost) return null;
+  return (
+    <section
+      className={clsx(
+        'p-6',
+        'bg-web2-background',
+        theme !== 'web2' && 'border-t border-web2-border',
+        'rounded-xl',
+        'mb-6'
+      )}
+    >
+      <div
+        className={clsx(
+          'flex flex-row items-start gap-6',
+          'bg-white/70 rounded-lg'
+        )}
+      >
+        <img
+          src={featuredPost.thumbnail_url || featuredPost.image}
+          alt="Featured post thumbnail"
+          className={clsx(
+            'w-32 h-32 object-cover rounded shadow-sm',
+            'border border-web2-border',
+            'mt-2 mb-2'
+          )}
+          style={{ float: 'left' }}
+        />
+        <div className="flex-1">
+          <a
+            href={featuredPost.link || featuredPost.web_url}
+            className={clsx(
+              'inline-flex items-center gap-2 underline hover:text-web2-primary transition-colors text-base',
+              'web2:hover:text-web2-accent',
+              'csszen:hover:text-[#8b7c4a]'
+              // 'font-bold'
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h3
+              className={clsx(
+                'text-xl',
+                'web2:text-web2-primary csszen:text-csszen-text',
+                'web2:hover:text-web2-accent',
+                'mb-1'
+              )}
+            >
+              {featuredPost.title}
+            </h3>
+          </a>
+          <p className={clsx('text-web2-text', 'mb-2')}>
+            {featuredPost.description || featuredPost.preview_text}
+          </p>
+        </div>
+      </div>
+      <a
+        href={blogArchiveUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={clsx(
+          'mt-4 block',
+          'underline',
+          'web2:text-web2-primary csszen:text-csszen-text',
+          'hover:text-blue-800 csszen:hover:text-[#8b7c4a]',
+          'transition-colors',
+          'text-base',
+          'font-normal',
+          'web2:hover:text-web2-accent'
+        )}
+      >
+        View Archives
+      </a>
+    </section>
   );
 };
 

@@ -116,7 +116,7 @@
   }
 
   .section-heading {
-    @apply text-2xl font-heading mb-4 text-github-text dark:text-dracula-foreground;
+    @apply text-2xl font-heading mb-4 text-github-text dark:text-dracula-foreground web2:text-web2-primaryDark matrix:text-matrix-text;
   }
 
   body.matrix-bg {

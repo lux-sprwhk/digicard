@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import DynamicIcon from './DynamicIcon';
 import { useContentful } from '../hooks/useContentful';
 import { getSoundCloudTrack } from '../utils/contentful';
+import Loading from './Loading';
 
 const SoundCloudWidget = ({ theme }) => {
   const {
@@ -16,7 +17,9 @@ const SoundCloudWidget = ({ theme }) => {
   // Fallback to JSON file if Contentful fails
   useEffect(() => {
     if (trackError) {
-      fetch('/soundcloudTrack.json')
+      const abortController = new AbortController();
+
+      fetch('/soundcloudTrack.json', { signal: abortController.signal })
         .then(res => {
           if (!res.ok) throw new Error('Failed to load SoundCloud track');
           return res.json();
@@ -25,16 +28,22 @@ const SoundCloudWidget = ({ theme }) => {
           setFallbackTrack(data);
           setFallbackLoading(false);
         })
-        .catch(() => {
-          setFallbackLoading(false);
+        .catch(error => {
+          if (error.name !== 'AbortError') {
+            setFallbackLoading(false);
+          }
         });
+
+      return () => {
+        abortController.abort();
+      };
     }
   }, [trackError]);
 
   const loading = trackLoading || (trackError && fallbackLoading);
   const track = cmsTrack || fallbackTrack;
 
-  if (loading) return <div>Loading featured track...</div>;
+  if (loading) return <Loading />;
   if (!track || track.active === false) return null;
 
   const embedUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(track.url)}&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true`;
@@ -54,7 +63,7 @@ const SoundCloudWidget = ({ theme }) => {
           iconName="FaSoundcloud"
           className="text-orange-500 text-2xl"
         />
-        <h2 className={clsx('section-heading')}>Featured Track</h2>
+        <h2 className={clsx('section-heading')}>Soundcloud</h2>
       </div>
       <div className="mx-auto max-w-2xl">
         <div

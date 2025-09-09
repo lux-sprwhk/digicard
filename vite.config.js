@@ -6,7 +6,7 @@ import viteImagemin from 'vite-plugin-imagemin';
 export default defineConfig({
   test: {
     environment: 'jsdom',
-    setupFiles: ['./src/test/setup.js'],
+    setupFiles: ['./test/setup.js'],
     globals: true,
   },
   plugins: [
