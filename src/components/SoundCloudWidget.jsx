@@ -54,7 +54,7 @@ const SoundCloudWidget = ({ theme }) => {
           iconName="FaSoundcloud"
           className="text-orange-500 text-2xl"
         />
-        <h2 className={clsx('section-heading')}>Featured Track</h2>
+        <h2 className={clsx('section-heading')}>Soundcloud</h2>
       </div>
       <div className="mx-auto max-w-2xl">
         <div

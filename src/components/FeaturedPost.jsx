@@ -5,6 +5,7 @@ import SectionHeading from './SectionHeading';
 
 import ClassicFeaturedPost from './ClassicFeaturedPost';
 import { getFeaturedPost } from '../utils/beehiiv';
+import fallbackPostData from '../featuredPost.json';
 
 const FeaturedPost = ({ theme }) => {
   const [beePost, setBeePost] = useState(null);
@@ -18,7 +19,7 @@ const FeaturedPost = ({ theme }) => {
       setBeePostLoading(true);
       const post = await getFeaturedPost();
       if (!post) {
-        setFallbackPost(post);
+        setFallbackPost(fallbackPostData);
         setFallbackLoading(false);
       }
       setBeePost(post);
@@ -107,7 +108,7 @@ const FallbackPost = ({ post }) => {
         'matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:hover:shadow-matrix-glow',
         'web2:bg-web2-cardBg web2:border-web2-border',
         'rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all',
-        'border dark:border-dracula-purple matrix:border-matrix-glow web2:border-web2-border dark:hover:border-'
+        'border dark:border-dracula-purple matrix:border-matrix-glow web2:border-web2-border dark:hover:border-bg-dracula-currentLine'
       )}
     >
       <a

@@ -34,7 +34,11 @@ The application follows a unidirectional data flow.
 2.  **State Management:** The data fetched from Contentful is stored in the state of the components that use the `useContentful` hook.
 3.  **Rendering:** Components render the data received from their state and props. User interactions can trigger new data fetches or state updates.
 
-## 5. Tooling & Standards
+## 5. Deployment
+
+The application is deployed on [Netlify](https://netlify.com/), providing continuous deployment from the main branch with automatic builds and optimized performance.
+
+## 6. Tooling & Standards
 
 - **Linting:** [ESLint](https://eslint.org/) is configured to enforce code quality and consistency.
 - **Formatting:** [Prettier](https://prettier.io/) is used for automatic code formatting.
