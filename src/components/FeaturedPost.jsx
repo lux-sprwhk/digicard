@@ -149,7 +149,7 @@ const ClassicFeaturedPost = ({ featuredPost, theme, blogArchiveUrl }) => {
         </div>
       </div>
       <a
-        href={blogArchiveUrl}
+        href={`https://${blogArchiveUrl}`}
         target="_blank"
         rel="noopener noreferrer"
         className={clsx(
