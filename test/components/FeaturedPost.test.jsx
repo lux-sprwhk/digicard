@@ -2,10 +2,23 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import FeaturedPost from '../../src/components/FeaturedPost';
 import * as useBeeHiivHook from '../../src/hooks/useBeeHiiv';
+import * as useContentfulHook from '../../src/hooks/useContentful';
 
 vi.mock('../../src/hooks/useBeeHiiv');
+vi.mock('../../src/hooks/useContentful');
 
 describe('FeaturedPost', () => {
+  const mockSettings = { blogArchiveUrl: 'https://example.com/blog' };
+
+  beforeEach(() => {
+    // Mock useContentful for settings
+    useContentfulHook.useContentful.mockReturnValue({
+      data: mockSettings,
+      loading: false,
+      error: null,
+    });
+  });
+
   it('renders without crashing', () => {
     useBeeHiivHook.useBeeHiiv.mockReturnValue({
       post: null,
@@ -16,6 +29,13 @@ describe('FeaturedPost', () => {
   });
 
   it('renders loading state when data is loading', () => {
+    // Override the beforeEach mock to simulate settings loading
+    useContentfulHook.useContentful.mockReturnValue({
+      data: null,
+      loading: true,
+      error: null,
+    });
+
     useBeeHiivHook.useBeeHiiv.mockReturnValue({
       post: null,
       loading: true,

@@ -8,8 +8,8 @@ export const handler = async event => {
   }
 
   // Get environment variables
-  const API_KEY = process.env.VITE_BEEHIIV_API_KEY;
-  const PUBLICATION_ID = process.env.VITE_BEEHIIV_PUBLICATION_ID;
+  const API_KEY = process.env.BEEHIIV_API_KEY;
+  const PUBLICATION_ID = process.env.BEEHIIV_PUBLICATION_ID;
 
   if (!API_KEY || !PUBLICATION_ID) {
     return {

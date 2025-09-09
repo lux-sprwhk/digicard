@@ -4,10 +4,17 @@ import SectionHeading from './SectionHeading';
 
 import Loading from './Loading';
 import { useBeeHiiv } from '../hooks/useBeeHiiv';
+import { useContentful } from '../hooks/useContentful';
+import { getSettings } from '../utils/contentful';
 import fallbackPostData from '../featuredPost.json';
 
 const FeaturedPost = ({ theme }) => {
   const { post, loading } = useBeeHiiv();
+  const { data: settings, loading: settingsLoading } =
+    useContentful(getSettings);
+
+  if (settingsLoading) return <Loading />;
+  const { blogArchiveUrl } = settings;
 
   const sectionClassName = clsx(
     'p-5',
@@ -22,14 +29,24 @@ const FeaturedPost = ({ theme }) => {
   return (
     <section className={sectionClassName}>
       <SectionHeading>Latest Post</SectionHeading>
-      <Post post={post || fallbackPostData} theme={theme} />
+      <Post
+        post={post || fallbackPostData}
+        theme={theme}
+        blogArchiveUrl={blogArchiveUrl}
+      />
     </section>
   );
 };
 
-const Post = ({ post, theme }) => {
+const Post = ({ post, theme, blogArchiveUrl }) => {
   if (theme === 'web2' || theme === 'csszen') {
-    return <ClassicFeaturedPost featuredPost={post} theme={theme} />;
+    return (
+      <ClassicFeaturedPost
+        featuredPost={post}
+        theme={theme}
+        blogArchiveUrl={blogArchiveUrl}
+      />
+    );
   }
   return (
     <div
@@ -75,7 +92,7 @@ const Post = ({ post, theme }) => {
   );
 };
 
-const ClassicFeaturedPost = ({ featuredPost, theme }) => {
+const ClassicFeaturedPost = ({ featuredPost, theme, blogArchiveUrl }) => {
   if (!featuredPost) return null;
   return (
     <section
@@ -94,7 +111,7 @@ const ClassicFeaturedPost = ({ featuredPost, theme }) => {
         )}
       >
         <img
-          src={featuredPost.thumbnail_url}
+          src={featuredPost.thumbnail_url || featuredPost.image}
           alt="Featured post thumbnail"
           className={clsx(
             'w-32 h-32 object-cover rounded shadow-sm',
@@ -105,7 +122,7 @@ const ClassicFeaturedPost = ({ featuredPost, theme }) => {
         />
         <div className="flex-1">
           <a
-            src={featuredPost.link}
+            href={featuredPost.link || featuredPost.web_url}
             className={clsx(
               'inline-flex items-center gap-2 underline hover:text-web2-primary transition-colors text-base',
               'web2:hover:text-web2-accent',
@@ -132,7 +149,7 @@ const ClassicFeaturedPost = ({ featuredPost, theme }) => {
         </div>
       </div>
       <a
-        href="https://luhsprwhk.beehiiv.com"
+        href={blogArchiveUrl}
         target="_blank"
         rel="noopener noreferrer"
         className={clsx(

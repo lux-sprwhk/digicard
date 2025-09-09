@@ -17,7 +17,9 @@ const SoundCloudWidget = ({ theme }) => {
   // Fallback to JSON file if Contentful fails
   useEffect(() => {
     if (trackError) {
-      fetch('/soundcloudTrack.json')
+      const abortController = new AbortController();
+
+      fetch('/soundcloudTrack.json', { signal: abortController.signal })
         .then(res => {
           if (!res.ok) throw new Error('Failed to load SoundCloud track');
           return res.json();
@@ -26,9 +28,15 @@ const SoundCloudWidget = ({ theme }) => {
           setFallbackTrack(data);
           setFallbackLoading(false);
         })
-        .catch(() => {
-          setFallbackLoading(false);
+        .catch(error => {
+          if (error.name !== 'AbortError') {
+            setFallbackLoading(false);
+          }
         });
+
+      return () => {
+        abortController.abort();
+      };
     }
   }, [trackError]);
 
