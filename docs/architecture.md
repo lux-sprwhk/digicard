@@ -25,6 +25,7 @@ The codebase is organized into the following key directories:
   - `src/main.jsx`: The main entry point of the application.
 - `public/`: Stores static assets that are not processed by the build tool (e.g., `favicon.png`).
 - `docs/`: Contains documentation for the project.
+- `test/`: Contains test files for the application.
 
 ## 4. Data Flow
 

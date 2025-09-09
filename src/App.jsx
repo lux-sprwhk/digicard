@@ -127,7 +127,7 @@ function App() {
             className="csszen-sidebar hidden md:block"
             style={{ minWidth: 180, marginLeft: -25, marginTop: '20rem' }}
           >
-            <Links theme={theme} />
+            <SocialLinks theme={theme} />
           </aside>
         )}
       </div>

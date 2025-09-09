@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import DynamicIcon from './DynamicIcon';
 import { useContentful } from '../hooks/useContentful';
 import { getSoundCloudTrack } from '../utils/contentful';
+import Loading from './Loading';
 
 const SoundCloudWidget = ({ theme }) => {
   const {
@@ -34,7 +35,7 @@ const SoundCloudWidget = ({ theme }) => {
   const loading = trackLoading || (trackError && fallbackLoading);
   const track = cmsTrack || fallbackTrack;
 
-  if (loading) return <div>Loading featured track...</div>;
+  if (loading) return <Loading />;
   if (!track || track.active === false) return null;
 
   const embedUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(track.url)}&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true`;
