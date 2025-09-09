@@ -10,6 +10,7 @@ import SoundCloudWidget from './components/SoundCloudWidget';
 import Footer, { SuperFooter } from './components/Footer';
 import MountainFooter from './components/MountainFooter';
 import { Web2NavBar } from './components/NavBar';
+import ErrorBoundary from './components/ErrorBoundary';
 import consoleEasterEgg from './utils/consoleEasterEgg';
 import clsx from 'clsx';
 import cssZenBanner from './assets/css-zen-banner.png';
@@ -106,10 +107,16 @@ function App() {
             <Profile theme={theme} />
             {/* Only show Links inline for non-csszen and non-web2 themes */}
             {theme !== 'web2' && theme !== 'csszen' ? <SocialLinks /> : null}
-            <FeaturedPost theme={theme} />
+            <ErrorBoundary theme={theme}>
+              <FeaturedPost theme={theme} />
+            </ErrorBoundary>
             <Projects theme={theme} />
-            <YouTube theme={theme} />
-            <SoundCloudWidget theme={theme} />
+            <ErrorBoundary theme={theme}>
+              <YouTube theme={theme} />
+            </ErrorBoundary>
+            <ErrorBoundary theme={theme}>
+              <SoundCloudWidget theme={theme} />
+            </ErrorBoundary>
           </main>
 
           {theme === 'web2' ? <MountainFooter /> : <Footer theme={theme} />}
