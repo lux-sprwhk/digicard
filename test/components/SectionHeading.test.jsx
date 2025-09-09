@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import SectionHeading from '../../components/SectionHeading';
+import SectionHeading from '../../src/components/SectionHeading';
 
 describe('SectionHeading', () => {
   it('renders children text', () => {
