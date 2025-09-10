@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import DynamicIcon from './DynamicIcon';
 import { useContentful } from '../hooks/useContentful';
 import { getYouTubeVideo } from '../utils/contentful';
+import Loading from './Loading';
 
 const YouTube = ({ theme }) => {
   const {
@@ -77,7 +78,7 @@ const YouTube = ({ theme }) => {
     }, 600);
   };
 
-  if (loading) return <div>Loading YouTube video...</div>;
+  if (loading) return <Loading />;
   if (!video || video.active === false) return null;
 
   const videoId = extractVideoId(video.url);
