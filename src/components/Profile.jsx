@@ -2,8 +2,40 @@ import profileImg from '../assets/profile.jpg';
 import { BasicBio } from './ProfileBio';
 import clsx from 'clsx';
 import DynamicIcon from './DynamicIcon';
+import { useContentful } from '../hooks/useContentful';
+import { getProfile } from '../utils/contentful';
 
 const Profile = ({ theme }) => {
+  const { data: profileData, loading, error } = useContentful(getProfile);
+
+  // Fallback data
+  const fallbackData = {
+    name: 'Luh Sprwhk',
+    title: 'Vaporware Dealer',
+    location: 'Austin, TX',
+    profileImage: profileImg,
+  };
+
+  // Use CMS data if available, otherwise fall back to static data
+  const data = profileData || fallbackData;
+
+  if (loading) {
+    return (
+      <section
+        className={clsx(
+          'relative text-center py-8 px-5 web2:bg-web2-primary overflow-hidden',
+          theme === 'web2' && 'pt-10 pb-44'
+        )}
+      >
+        <div className="text-center py-8">Loading profile...</div>
+      </section>
+    );
+  }
+
+  if (error) {
+    console.warn('Contentful error, using fallback data:', error);
+  }
+
   return (
     <section
       className={clsx(
@@ -40,7 +72,7 @@ const Profile = ({ theme }) => {
             )}
           >
             <img
-              src={profileImg}
+              src={data.profileImage}
               alt="Profile"
               className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
             />
@@ -58,7 +90,7 @@ const Profile = ({ theme }) => {
             'csszen:text-csszen-text'
           )}
         >
-          Luh Sprwhk
+          {data.name}
         </h1>
       )}
       {theme !== 'web2' && (
@@ -72,7 +104,7 @@ const Profile = ({ theme }) => {
             'csszen:text-csszen-green-dark'
           )}
         >
-          Vaporware Dealer
+          {data.title}
         </p>
       )}
       {theme !== 'web2' && (
@@ -85,11 +117,11 @@ const Profile = ({ theme }) => {
             'web2:text-web2-secondary'
           )}
         >
-          <DynamicIcon iconName="FaMapMarkerAlt" /> Austin, TX
+          <DynamicIcon iconName="FaMapMarkerAlt" /> {data.location}
         </p>
       )}
 
-      <BasicBio theme={theme} />
+      <BasicBio theme={theme} bio={data.bio} />
     </section>
   );
 };
