@@ -2,6 +2,7 @@ import { useContentful } from '../hooks/useContentful';
 import { getSocialLinks } from '../utils/contentful';
 import DynamicIcon from './DynamicIcon';
 import clsx from 'clsx';
+import MatrixHint from './MatrixHint';
 
 const SocialLinks = ({ theme }) => {
   const { data: socialLinks, loading, error } = useContentful(getSocialLinks);
@@ -16,7 +17,10 @@ const SocialLinks = ({ theme }) => {
 
   return (
     <section className="p-4">
-      <h2 className="text-xl font-bold mb-4">Connect</h2>
+      <h2 className="text-xl font-bold mb-4">
+        <MatrixHint>C</MatrixHint>
+        onnect
+      </h2>
       <div className="flex flex-col sm:flex-row gap-4 w-full">
         {socialLinks
           .filter(link => link.active && !link.disabled)
@@ -56,7 +60,8 @@ const CSSZenLinks = ({ links }) => {
       )}
     >
       <h2 className={clsx('font-bold mb-4 text-[#b6a16b] text-lg')}>
-        Connect & Follow
+        <MatrixHint>C</MatrixHint>
+        onnect & Follow
       </h2>
       <nav>
         <ul className={clsx('flex flex-col gap-3 items-end')}>
@@ -72,7 +77,9 @@ const CSSZenLinks = ({ links }) => {
                     'underline',
                     'hover:text-[#8b7c4a]',
                     'transition-colors',
-                    'text-base'
+                    'text-base',
+                    link.name.charAt(0).toUpperCase() === 'C' &&
+                      'inline-block animate-pulse hover:animate-bounce transition-all duration-300 cursor-pointer'
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
