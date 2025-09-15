@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import MatrixHint from '../../src/components/MatrixHint';
 
 describe('MatrixHint', () => {
@@ -28,5 +29,46 @@ describe('MatrixHint', () => {
     render(<MatrixHint>Hint</MatrixHint>);
     const hintElement = screen.getByText('Hint');
     expect(hintElement.tagName).toBe('SPAN');
+  });
+
+  it('shows tooltip on hover', () => {
+    render(<MatrixHint>Hint</MatrixHint>);
+    const hintElement = screen.getByText('Hint');
+
+    // Initially, tooltip should not be visible
+    expect(
+      screen.queryByText("Seek the console's hidden path...")
+    ).not.toBeInTheDocument();
+
+    // Simulate mouse enter
+    fireEvent.mouseEnter(hintElement);
+
+    // Tooltip should now be visible
+    expect(
+      screen.getByText("Seek the console's hidden path...")
+    ).toBeInTheDocument();
+
+    // Simulate mouse leave
+    fireEvent.mouseLeave(hintElement);
+
+    // Tooltip should no longer be visible
+    expect(
+      screen.queryByText("Seek the console's hidden path...")
+    ).not.toBeInTheDocument();
+  });
+
+  it('has correct tooltip text', () => {
+    render(<MatrixHint>Hint</MatrixHint>);
+    const hintElement = screen.getByText('Hint');
+
+    fireEvent.mouseEnter(hintElement);
+
+    const tooltip = screen.getByText("Seek the console's hidden path...");
+    expect(tooltip).toBeInTheDocument();
+    expect(tooltip).toHaveClass('absolute');
+    expect(tooltip).toHaveClass('bg-black');
+    expect(tooltip).toHaveClass('text-white');
+    expect(tooltip).toHaveClass('text-xs');
+    expect(tooltip).toHaveClass('rounded');
   });
 });
