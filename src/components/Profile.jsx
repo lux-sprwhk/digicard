@@ -2,39 +2,15 @@ import profileImg from '../assets/profile.jpg';
 import { BasicBio } from './ProfileBio';
 import clsx from 'clsx';
 import DynamicIcon from './DynamicIcon';
-import { useContentful } from '../hooks/useContentful';
-import { getProfile } from '../utils/contentful';
-
 const Profile = ({ theme }) => {
-  const { data: profileData, loading, error } = useContentful(getProfile);
-
   // Fallback data
-  const fallbackData = {
+  const data = {
     name: 'Luh Sprwhk',
-    title: 'Vaporware Dealer',
+    title: 'Creative Dev && Vaporware Dealer',
     location: 'Austin, TX',
     profileImage: profileImg,
+    bio: 'Web dev since the Flash days, now building digital experiences and making AI-powered art',
   };
-
-  // Use CMS data if available, otherwise fall back to static data
-  const data = profileData || fallbackData;
-
-  if (loading) {
-    return (
-      <section
-        className={clsx(
-          'relative text-center py-8 px-5 web2:bg-web2-primary overflow-hidden',
-          theme === 'web2' && 'pt-10 pb-44'
-        )}
-      >
-        <div className="text-center py-8">Loading profile...</div>
-      </section>
-    );
-  }
-
-  if (error) {
-    console.warn('Contentful error, using fallback data:', error);
-  }
 
   return (
     <section
