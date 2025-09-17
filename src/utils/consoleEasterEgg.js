@@ -89,7 +89,7 @@ const consoleEasterEgg = setTheme => {
           'color: #8be9fd;'
         );
         console.log(
-          "%c[Mind] Please define a function in a variable called 'noSpoon' that takes a value and returns:",
+          "%c[Mind] Please define a function inside a global var called 'noSpoon' that takes a value and returns:",
           'color: #f8f8f2;'
         );
         console.log(
@@ -97,6 +97,11 @@ const consoleEasterEgg = setTheme => {
           'color: #50fa7b;'
         );
         console.log('%c- false for any truthy value', 'color: #50fa7b;');
+        console.log('%c[Mind] Examples:', 'color: #7f8c8d;');
+        console.log(
+          '%c  var noSpoon = function(value) { ... }\n  noSpoon = function(value) { ... }\n',
+          'color: #7f8c8d; font-family: monospace;'
+        );
         console.log(
           '%c[Mind] Remember: There is no spoon.',
           'color: #7f8c8d; font-style: italic;'
