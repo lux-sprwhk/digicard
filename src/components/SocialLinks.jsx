@@ -66,8 +66,8 @@ const CSSZenLinks = ({ links }) => {
       <nav>
         <ul className={clsx('flex flex-col gap-3 items-end')}>
           {links
+            .filter(link => link.active && !link.disabled)
             .sort((a, b) => a.order - b.order)
-            .filter(link => !link.disabled)
             .map((link, idx) => (
               <li key={idx}>
                 <a
