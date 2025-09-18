@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import profileImg from '../assets/profile.jpg';
 import clsx from 'clsx';
-import ResumeDownloadButton from './ResumeDownloadButton';
 import DynamicIcon from './DynamicIcon';
 
 const Footer = ({ theme }) => {
@@ -18,7 +17,10 @@ const Footer = ({ theme }) => {
   }, []);
 
   return (
-    <footer className="text-center py-5 px-4 text-sm text-gray-500 dark:text-gray-400 relative">
+    <footer className="text-center pb-5 px-4 text-sm text-gray-500 dark:text-gray-400 relative">
+      <div className="flex justify-end items-center gap-2 mb-2">
+        <ViewSourceButton />
+      </div>
       <p>&copy; {currentYear}. All rights reserved.</p>
       <br />
       <div className="footer-details mt-2">
@@ -63,6 +65,19 @@ const techBadges = [
     color: 'bg-cyan-100 border-cyan-400',
   },
 ];
+
+const ViewSourceButton = () => {
+  return (
+    <a
+      href="https://github.com/luhsprwhk/digicard"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-xs text-web2-primaryDark dark:text-blue-400"
+    >
+      View Source
+    </a>
+  );
+};
 
 const SuperFooter = () => {
   const [currentYear] = useState(new Date().getFullYear());
@@ -142,6 +157,8 @@ const SuperFooter = () => {
               </a>
             ))}
           </div>
+          <hr className="my-4 border-gray-300 dark:border-gray-600 border-t-2 border-solid w-1/2 mx-auto" />
+          <ViewSourceButton />
           <p className="text-xs text-gray-500 dark:text-gray-400 mt-10">
             &copy; {currentYear}. All rights reserved.
           </p>
