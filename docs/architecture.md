@@ -8,10 +8,10 @@ The application is a modern single-page application (SPA) built using React and 
 
 ## 2. Core Technologies
 
-- **Frontend Library:** [React](https.react.dev/) is used for building the user interface from components.
-- **Build Tool:** [Vite](https://vitejs.dev/) provides a fast development server and bundles the application for production.
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/) is used for utility-first styling.
-- **Content Management:** [Contentful](https://www.contentful.com/) is used as a headless CMS to manage dynamic content like blog posts, project details, etc.
+- _Frontend Library:_ [React](https.react.dev/) is used for building the user interface from components.
+- _Build Tool:_ [Vite](https://vitejs.dev/) provides a fast development server and bundles the application for production.
+- _Styling:_ [Tailwind CSS](https://tailwindcss.com/) is used for utility-first styling.
+- _Content Management:_ [Contentful](https://www.contentful.com/) is used as a headless CMS to manage dynamic content like blog posts, project details, etc.
 
 ## 3. Project Structure
 
@@ -31,9 +31,9 @@ The codebase is organized into the following key directories:
 
 The application follows a unidirectional data flow.
 
-1.  **Content Fetching:** The `useContentful` custom hook is responsible for communicating with the Contentful API.
-2.  **State Management:** The data fetched from Contentful is stored in the state of the components that use the `useContentful` hook.
-3.  **Rendering:** Components render the data received from their state and props. User interactions can trigger new data fetches or state updates.
+1. _Content Fetching:_ The `useContentful` custom hook is responsible for communicating with the Contentful API.
+2. _State Management:_ The data fetched from Contentful is stored in the state of the components that use the `useContentful` hook.
+3. _Rendering:_ Components render the data received from their state and props. User interactions can trigger new data fetches or state updates.
 
 ## 5. Deployment
 
@@ -41,6 +41,10 @@ The application is deployed on [Netlify](https://netlify.com/), providing contin
 
 ## 6. Tooling & Standards
 
-- **Linting:** [ESLint](https://eslint.org/) is configured to enforce code quality and consistency.
-- **Formatting:** [Prettier](https://prettier.io/) is used for automatic code formatting.
-- **Development Server:** Vite's development server provides hot module replacement (HMR) for a seamless development experience.
+- _Linting:_ [ESLint](https://eslint.org/) is configured to enforce code quality and consistency.
+- _Formatting:_ [Prettier](https://prettier.io/) is used for automatic code formatting.
+- _Development Server:_ Vite's development server provides hot module replacement (HMR) for a seamless development experience.
+
+## Testing
+
+The application is tested using [Vitest](https://vitest.dev/), a fast and modern test runner for JavaScript and TypeScript. The tests are located in the `test/` directory.
