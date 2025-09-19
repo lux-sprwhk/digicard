@@ -2,6 +2,9 @@ import profileImg from '../assets/profile.jpg';
 import { BasicBio } from './ProfileBio';
 import clsx from 'clsx';
 import DynamicIcon from './DynamicIcon';
+import styles from './Profile.module.css';
+import { createThemeClassGetter } from './helpers/themeClassHelper';
+
 const Profile = ({ theme }) => {
   // Fallback data
   const data = {
@@ -12,17 +15,25 @@ const Profile = ({ theme }) => {
     bio: 'Web dev since the Flash days, now building digital experiences and making AI-powered art',
   };
 
+  // Create theme class getter for this component's styles
+  const getThemeClass = createThemeClassGetter(styles);
+
   return (
     <section
       className={clsx(
-        'relative text-center py-8 px-5 web2:bg-web2-primary overflow-hidden',
-        theme === 'web2' && 'pt-10 pb-44'
+        'relative py-8 px-5',
+        theme === 'web2' && 'pt-10 pb-44',
+        styles.profileSection,
+        theme === 'web2' && styles.profileSectionWeb2
       )}
     >
       {/* Clouds BG at bottom */}
       {theme === 'web2' && (
         <div
-          className="absolute left-0 right-0 bottom-0 w-full h-24 clouds-bg pointer-events-none z-0"
+          className={clsx(
+            'absolute left-0 right-0 bottom-0 w-full h-24 pointer-events-none z-0',
+            'clouds-bg'
+          )}
           aria-hidden="true"
         ></div>
       )}
@@ -40,17 +51,14 @@ const Profile = ({ theme }) => {
           <div
             className={clsx(
               theme === 'matrix' ? 'w-20 h-20' : 'w-36 h-36',
-              'rounded-full overflow-hidden border-3 border-github-blue',
-              'dark:border-dracula-purple',
-              'matrix:border-matrix-glow',
-              'web2:bg-web2-primary',
-              'web2:border-web2-border'
+              styles.profileImage,
+              getThemeClass(theme, 'profileImage')
             )}
           >
             <img
               src={data.profileImage}
               alt="Profile"
-              className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+              className={clsx('w-full h-full', styles.profilePhoto)}
             />
           </div>
         )}
@@ -58,12 +66,9 @@ const Profile = ({ theme }) => {
       {theme !== 'web2' && (
         <h1
           className={clsx(
-            'font-heading font-semibold text-4xl mb-1',
-            'text-github-text',
-            'dark:text-dracula-foreground',
-            'matrix:text-matrix-highlight matrix:drop-shadow-[0_0_5px_theme(colors.matrix.glow)]',
-            'web2:text-white',
-            'csszen:text-csszen-text'
+            'mb-1',
+            styles.profileName,
+            getThemeClass(theme, 'profileName')
           )}
         >
           {data.name}
@@ -72,12 +77,9 @@ const Profile = ({ theme }) => {
       {theme !== 'web2' && (
         <p
           className={clsx(
-            'text-xl font-light mb-2',
-            'text-github-blue',
-            'dark:text-dracula-purple',
-            'matrix:text-matrix-highlight',
-            'web2:text-white',
-            'csszen:text-csszen-green-dark'
+            'mb-2',
+            styles.profileTitle,
+            getThemeClass(theme, 'profileTitle')
           )}
         >
           {data.title}
@@ -86,11 +88,9 @@ const Profile = ({ theme }) => {
       {theme !== 'web2' && (
         <p
           className={clsx(
-            'text-sm mb-4 opacity-80 flex justify-center items-center gap-1',
-            'text-github-secondaryText',
-            'dark:text-dracula-pink',
-            'matrix:text-matrix-glow',
-            'web2:text-web2-secondary'
+            'mb-4 flex justify-center items-center gap-1',
+            styles.profileLocation,
+            getThemeClass(theme, 'profileLocation')
           )}
         >
           <DynamicIcon iconName="FaMapMarkerAlt" /> {data.location}

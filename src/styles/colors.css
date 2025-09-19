@@ -1,0 +1,69 @@
+/* CSS Custom Properties for Color Palette */
+
+:root {
+  /* Web2 Theme Colors */
+  --web2-primary: #0088cc;
+  --web2-primary-light: #33aadd;
+  --web2-primary-dark: #005580;
+  --web2-secondary: #f9f9f9;
+  --web2-accent: #ff9900;
+  --web2-text: #333333;
+  --web2-text-light: #666666;
+  --web2-border: #cccccc;
+  --web2-success: #66cc66;
+  --web2-error: #ff6666;
+  --web2-background: #ffffff;
+  --web2-card-bg: #f2f2f2;
+  --web2-highlight: #e6f7ff;
+  --web2-divider: #dddddd;
+  --web2-debug: #ff0000;
+
+  /* GitHub Theme Colors */
+  --github-white: #ffffff;
+  --github-text: #24292e;
+  --github-blue: #0366d6;
+  --github-light-blue: #005cc5;
+  --github-gray: #6a737d;
+  --github-light-gray: #e1e4e8;
+  --github-green: #22863a;
+  --github-bg-gray: #f6f8fa;
+  --github-secondaryText: #6a737d;
+
+  /* Dracula Theme Colors */
+  --dracula-background: #282a36;
+  --dracula-current-line: #44475a;
+  --dracula-foreground: #f8f8f2;
+  --dracula-comment: #6272a4;
+  --dracula-cyan: #8be9fd;
+  --dracula-green: #50fa7b;
+  --dracula-orange: #ffb86c;
+  --dracula-pink: #ff79c6;
+  --dracula-purple: #bd93f9;
+  --dracula-red: #ff5555;
+  --dracula-yellow: #f1fa8c;
+
+  /* Matrix Theme Colors */
+  --matrix-background: #000000;
+  --matrix-text: #00ff00;
+  --matrix-glow: #0f0;
+  --matrix-dim-text: #003b00;
+  --matrix-highlight: #00ff41;
+  --matrix-shadow: #003b00;
+  --matrix-terminal: #0d0208;
+  --matrix-rain: #008f11;
+
+  /* CSS Zen Garden Theme Colors */
+  --csszen-brown-light: #d3cbb8;
+  --csszen-brown: #9b8e70;
+  --csszen-brown-dark: #776b53;
+  --csszen-green-light: #e2eddf;
+  --csszen-green: #c0cba2;
+  --csszen-green-dark: #8fa061;
+  --csszen-cream: #f8f7f3;
+  --csszen-accent: #6d7e59;
+  --csszen-text: var(--csszen-brown-dark);
+
+  /* Font Families */
+  --font-heading: 'Raleway', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+}
