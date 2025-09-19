@@ -1,15 +1,19 @@
 import { useRef, useEffect } from 'react';
 import clsx from 'clsx';
-import sbBukowskisImg from '../assets/sb-bukowskis.jpg';
-import hypehallImg from '../assets/hypehall-thumb.jpg';
-import liveLaughDieImg from '../assets/LiveLaughDie-thumb.png';
-import liveLaughDieWideImg from '../assets/LiveLaughDie-thumb-wide.png';
-import rubberDuckTarotIMG from '../assets/RDTBanner.png';
-import ClassicProjectsList from './ClassicProjectsList';
-import { useContentful } from '../hooks/useContentful';
-import { getProjects } from '../utils/contentful';
-import DynamicIcon from './DynamicIcon';
-import SectionHeading from './SectionHeading';
+import sbBukowskisImg from '../../assets/sb-bukowskis.jpg';
+import hypehallImg from '../../assets/hypehall-thumb.jpg';
+import liveLaughDieImg from '../../assets/LiveLaughDie-thumb.png';
+import liveLaughDieWideImg from '../../assets/LiveLaughDie-thumb-wide.png';
+import rubberDuckTarotIMG from '../../assets/RDTBanner.png';
+import { useContentful } from '../../hooks/useContentful';
+import { getProjects } from '../../utils/contentful';
+import DynamicIcon from '../DynamicIcon';
+import SectionHeading from '../SectionHeading';
+import styles from './Projects.module.css';
+import { createThemeClassGetter } from '../helpers/themeClassHelper';
+
+// Theme class resolver for this component
+const getThemeClass = createThemeClassGetter(styles);
 
 const ProjectCard = ({
   img,
@@ -20,14 +24,13 @@ const ProjectCard = ({
   icon,
   refCb,
   createRipple,
+  theme,
 }) => (
   <div
     className={clsx(
-      'rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1',
-      'bg-white dark:bg-dracula-currentLine',
-      'web2:bg-web2-cardBg',
-      'matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg matrix:hover:shadow-matrix-glow',
-      'flex flex-col min-h-[22rem]'
+      'flex flex-col min-h-[22rem]', // layout only
+      styles.cardBase,
+      getThemeClass(theme, 'card')
     )}
     ref={refCb}
   >
@@ -36,11 +39,12 @@ const ProjectCard = ({
         src={img}
         alt={alt}
         className={clsx(
-          'w-full h-full transition-transform duration-500 hover:scale-110',
-          img === liveLaughDieImg && 'object-contain object-bottom',
-          img === hypehallImg && 'object-fill object-center',
-          img === sbBukowskisImg && 'object-cover object-center',
-          img === rubberDuckTarotIMG && 'object-cover object-center'
+          'w-full h-full', // layout only
+          styles.imageBase,
+          img === liveLaughDieImg && styles.imgContainBottom,
+          img === hypehallImg && styles.imgObjectFillCenter,
+          img === sbBukowskisImg && styles.imgObjectCoverCenter,
+          img === rubberDuckTarotIMG && styles.imgObjectCoverCenter
         )}
       />
     </div>
@@ -48,33 +52,19 @@ const ProjectCard = ({
       {icon && (
         <DynamicIcon
           iconName={icon}
-          className={clsx(
-            'text-github-blue',
-            'dark:text-dracula-purple',
-            'web2:text-web2-secondary',
-            'matrix:text-matrix-highlight'
-          )}
+          className={getThemeClass(theme, 'icon')}
           size={20}
         />
       )}
-      <h3
-        className={clsx(
-          'font-heading text-github-blue',
-          'dark:text-dracula-purple',
-          'web2:text-web2-secondary web2:font-web2Heading web2:text-web2-text',
-          'font-bold',
-          'matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)]'
-        )}
-      >
+      <h3 className={clsx(styles.titleBase, getThemeClass(theme, 'title'))}>
         {title}
       </h3>
     </div>
     <p
       className={clsx(
-        'px-4 pb-4 text-sm text-github-text',
-        'dark:text-dracula-foreground',
-        'web2:text-web2-text',
-        'matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)]'
+        'px-4 pb-4',
+        styles.descBase,
+        getThemeClass(theme, 'desc')
       )}
     >
       {description}
@@ -83,11 +73,9 @@ const ProjectCard = ({
     <a
       href={link}
       className={clsx(
-        'block text-center py-2 bg-github-blue text-white no-underline transition-colors hover:bg-github-lightBlue',
-        'dark:bg-dracula-purple dark:hover:bg-dracula-pink',
-        'web2:bg-web2-primary web2:text-white web2:hover:bg-web2-secondary web2:hover:bg-web2-success web2:border-web2-border web2:shadow-web2-border web2:drop-shadow-web2-border',
-        'matrix:text-matrix-highlight matrix:hover:text-matrix-glow matrix:hover:drop-shadow-[0_0_5px_theme(colors.matrix.glow)] matrix:bg-matrix-terminal matrix:border-matrix-glow matrix:shadow-lg',
-        'relative overflow-hidden'
+        'block text-center py-2 relative overflow-hidden', // layout only
+        styles.linkBase,
+        getThemeClass(theme, 'link')
       )}
       onClick={createRipple}
       target="_blank"
@@ -109,26 +97,6 @@ const fallbackProjects = [
     link: 'https://rubberducktarot.com',
     order: 1,
     active: true,
-  },
-  {
-    imgNormal: sbBukowskisImg,
-    alt: 'Seagull Bukowskis',
-    title: 'SQUAWK!: The Scavenger Diaries',
-    description:
-      'Nihilistic animals philosophize in Austin dumpsters - dark satire webcomic',
-    link: 'https://gjc.beehiiv.com/subscribe',
-    order: 2,
-    active: true,
-  },
-  {
-    imgNormal: hypehallImg,
-    alt: 'HypeHall',
-    title: 'HypeHall',
-    description:
-      'AI-powered app for discovering local bands through curated video feeds',
-    link: 'https://hypehall.beehiiv.com/subscribe',
-    order: 3,
-    active: false,
   },
   {
     imgNormal: liveLaughDieImg,
@@ -201,7 +169,13 @@ const Projects = ({ theme }) => {
 
   if (loading) {
     return (
-      <section className="p-5 border-t border-github-lightGray dark:border-dracula-currentLine">
+      <section
+        className={clsx(
+          'p-5',
+          styles.sectionBase,
+          getThemeClass(theme, 'section')
+        )}
+      >
         <SectionHeading>Projects</SectionHeading>
         <div className="text-center py-8">Loading projects...</div>
       </section>
@@ -213,7 +187,7 @@ const Projects = ({ theme }) => {
   }
 
   if (theme === 'web2' || theme === 'csszen') {
-    return <ClassicProjectsList projects={projects} />;
+    return <ClassicProjectsList theme={theme} projects={projects} />;
   }
 
   // sort projects by order
@@ -226,11 +200,8 @@ const Projects = ({ theme }) => {
     <section
       className={clsx(
         'p-5',
-        theme !== 'web2' && 'border-t',
-        'border-github-lightGray',
-        'dark:border-dracula-currentLine',
-        'matrix:border-matrix-glow',
-        'matrix:shadow-lg'
+        styles.sectionBase,
+        getThemeClass(theme, 'section')
       )}
     >
       <SectionHeading>Projects</SectionHeading>
@@ -258,6 +229,7 @@ const Projects = ({ theme }) => {
                 icon={projectItem.icon}
                 refCb={el => (projectRefs.current[idx] = el)}
                 createRipple={createRipple}
+                theme={theme}
               />
             );
           })}
@@ -265,5 +237,61 @@ const Projects = ({ theme }) => {
     </section>
   );
 };
+
+const ClassicProjectsList = ({ theme, projects }) => (
+  <section
+    className={clsx(
+      'p-6',
+      styles.classicSectionBase,
+      getThemeClass(theme, 'classicSection')
+    )}
+  >
+    <h2
+      className={clsx('text-2xl mb-6', getThemeClass(theme, 'classicHeading'))}
+    >
+      Projects
+    </h2>
+    <div className={clsx('flex flex-col gap-8')}>
+      {projects.map(project => (
+        <div
+          key={project.title}
+          className={clsx(
+            'flex flex-row items-start gap-6 pb-6 mb-4',
+            styles.classicItemBase,
+            getThemeClass(theme, 'classicItem'),
+            'last:border-b-0 last:mb-0 last:pb-0'
+          )}
+        >
+          <img
+            src={project.imgNormal}
+            alt={project.alt}
+            className={clsx(
+              'w-32 h-32 object-cover mt-2 mb-2 ml-2',
+              styles.classicImageBase,
+              getThemeClass(theme, 'classicImage')
+            )}
+            style={{ float: 'left' }}
+          />
+          <div className="flex-1">
+            <h3 className={clsx('text-xl mb-1')}>
+              <a
+                href={project.link}
+                className={clsx(getThemeClass(theme, 'classicLink'))}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {project.title}
+              </a>
+            </h3>
+            <p className={clsx('mb-2', getThemeClass(theme, 'classicDesc'))}>
+              {project.description}
+            </p>
+            {/* Optionally add meta info here */}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+);
 
 export default Projects;

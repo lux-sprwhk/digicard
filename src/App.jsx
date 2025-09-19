@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import AnalyticsProvider from './components/AnalyticsProvider';
 import Header from './components/Header';
 import Profile from './components/Profile';
-import Projects from './components/Projects';
+import Projects from './components/Projects/Projects';
 import FeaturedPost from './components/FeaturedPost';
 import YouTube from './components/YouTube';
 import SoundCloudWidget from './components/SoundCloudWidget';
