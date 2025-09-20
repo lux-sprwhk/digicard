@@ -49,15 +49,11 @@ src/
 ## Styling Guidelines
 
 ### Tailwind Usage
-- Use **utility classes** for styling, avoid custom CSS when possible
-- **Theme Variants**: Use custom variants `matrix:`, `web2:`, `csszen:` for theme-specific styles
-- **Conditional Classes**: Use `clsx` library for conditional class application
-- **Color System**: Reference defined color palettes in `tailwind.config.js`:
-  - `dracula.*` - Dark theme colors
-  - `matrix.*` - Matrix theme (green terminal style)
-  - `web2.*` - Web 2.0 theme (blue gradients, early 2000s style)
-  - `csszen.*` - CSS Zen Garden theme (earthy tones)
-
+- Use **Tailwind utilities for layout only** (spacing, sizing, flex/grid, positioning, responsive breakpoints).
+- Use **semantic CSS Modules for all visual styling** (colors, typography, borders, shadows, animations). See `docs/architecture.md`.
+- **Class composition**: Use `clsx` to combine Tailwind layout utilities with CSS Module classes.
+- **Theme classes**: Resolve via `createThemeClassGetter` in `src/components/helpers/themeClassHelper.js` (e.g., `getThemeClass(theme, "primaryButton")`). Avoid Tailwind theme variants for visual styling.
+- **Color tokens**: Source of truth is CSS custom properties in `src/styles/colors.css`. Do not introduce new Tailwind palette colors for themes.
 ### Theme System
 - **Theme State**: Managed in `App.jsx` with sessionStorage persistence
 - **Theme Classes**: Applied to `document.documentElement` and `document.body`

@@ -1,0 +1,355 @@
+/* Visual styles for Projects component, following DigiCard styling policy
+   - Layout (spacing, flex/grid, responsive) should remain in Tailwind utilities in JSX
+   - Visual styling (colors, typography, borders, shadows, animation) belongs here
+*/
+
+/* Section (modern layout only, classic web2/csszen use ClassicProjectsList) */
+.sectionBase {
+  border-top-width: 1px;
+  border-top-style: solid;
+}
+
+/* Classic layout (used for web2 and csszen themes) */
+.classicSectionBase {
+  border-top: 1px solid transparent;
+  border-radius: 0.75rem; /* rounded-xl */
+}
+.classicSectionWeb2 {
+  background: var(--web2-background);
+  border-top-color: var(--web2-border);
+}
+.classicSectionCsszen {
+  background: var(--csszen-cream);
+  border-top-color: var(--csszen-text);
+}
+.classicSectionGithub {
+  background: var(--github-white);
+  border-top-color: var(--github-light-gray);
+}
+.classicSectionDracula {
+  background: var(--dracula-current-line);
+  border-top-color: var(--dracula-current-line);
+}
+.classicSectionMatrix {
+  background: var(--matrix-terminal);
+  border-top-color: var(--matrix-glow);
+}
+
+.classicHeadingWeb2 {
+  color: var(--web2-primary-dark);
+}
+.classicHeadingCsszen {
+  color: var(--csszen-text);
+}
+.classicHeadingGithub {
+  color: var(--github-blue);
+}
+.classicHeadingDracula {
+  color: var(--dracula-purple);
+}
+.classicHeadingMatrix {
+  color: var(--matrix-highlight);
+}
+
+.classicItemBase {
+  border-bottom: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 0.5rem; /* rounded-lg */
+}
+.classicItemWeb2 {
+  border-bottom-color: var(--web2-border);
+}
+.classicItemCsszen {
+  border-bottom-color: var(--csszen-text);
+  background: var(--csszen-cream);
+}
+.classicItemGithub {
+  border-bottom-color: var(--github-light-gray);
+}
+.classicItemDracula {
+  border-bottom-color: var(--dracula-current-line);
+  background: var(--dracula-current-line);
+}
+.classicItemMatrix {
+  border-bottom-color: var(--matrix-glow);
+  background: var(--matrix-terminal);
+}
+
+.classicImageBase {
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.classicImageWeb2 {
+  border-color: var(--web2-border);
+}
+.classicImageCsszen {
+  border-color: var(--csszen-text);
+}
+.classicImageGithub {
+  border-color: var(--github-light-gray);
+}
+.classicImageDracula {
+  border-color: var(--dracula-current-line);
+}
+.classicImageMatrix {
+  border-color: var(--matrix-glow);
+}
+
+.classicLinkWeb2 {
+  color: var(--web2-primary);
+  text-decoration: underline;
+}
+.classicLinkWeb2:hover {
+  color: var(--web2-accent);
+}
+.classicLinkCsszen {
+  color: var(--csszen-text);
+  text-decoration: underline;
+}
+.classicLinkCsszen:hover {
+  color: #8b7c4a;
+}
+.classicLinkGithub {
+  color: var(--github-blue);
+  text-decoration: underline;
+}
+.classicLinkGithub:hover {
+  color: var(--github-light-blue);
+}
+.classicLinkDracula {
+  color: var(--dracula-purple);
+  text-decoration: underline;
+}
+.classicLinkDracula:hover {
+  color: var(--dracula-pink);
+}
+.classicLinkMatrix {
+  color: var(--matrix-highlight);
+  text-decoration: underline;
+}
+.classicLinkMatrix:hover {
+  color: var(--matrix-glow);
+}
+
+.classicDescWeb2 {
+  color: var(--web2-text);
+}
+.classicDescCsszen {
+  color: var(--csszen-text);
+}
+.classicDescGithub {
+  color: var(--github-text);
+}
+.classicDescDracula {
+  color: var(--dracula-foreground);
+}
+.classicDescMatrix {
+  color: var(--matrix-highlight);
+}
+.sectionGithub {
+  border-top-color: var(--github-light-gray);
+}
+.sectionDracula {
+  border-top-color: var(--dracula-current-line);
+}
+.sectionMatrix {
+  border-top-color: var(--matrix-glow);
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.35);
+}
+.sectionWeb2 {
+  border-top-color: var(--web2-border);
+}
+.sectionCsszen {
+  border-top-color: var(--csszen-text);
+}
+
+/* Project Card */
+.cardBase {
+  border-radius: 0.5rem; /* rounded-lg */
+  overflow: hidden;
+  transition:
+    transform 300ms ease,
+    box-shadow 300ms ease,
+    background-color 300ms ease,
+    color 200ms ease;
+}
+.cardBase:hover {
+  transform: translateY(-0.25rem); /* hover:-translate-y-1 */
+}
+.cardGithub {
+  background: var(--github-white);
+}
+.cardGithub:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+.cardDracula {
+  background: var(--dracula-current-line);
+}
+.cardDracula:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+.cardWeb2 {
+  background: var(--web2-card-bg);
+}
+.cardCsszen {
+  background: var(--csszen-cream);
+  border: 1px solid var(--csszen-text);
+}
+.cardMatrix {
+  background: var(--matrix-terminal);
+  border: 1px solid var(--matrix-glow);
+  box-shadow: 0 0 12px rgba(0, 255, 65, 0.25);
+}
+
+/* Image visual effects */
+.imageBase {
+  transition: transform 500ms ease;
+}
+.imageBase:hover {
+  transform: scale(1.1);
+}
+
+/* Object-fit variants for specific project images */
+.imgContainBottom {
+  object-fit: contain;
+  object-position: bottom;
+}
+.imgObjectFillCenter {
+  object-fit: fill;
+  object-position: center;
+}
+.imgObjectCoverCenter {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Icon colors */
+.iconGithub {
+  color: var(--github-blue);
+}
+.iconDracula {
+  color: var(--dracula-purple);
+}
+.iconWeb2 {
+  color: var(--web2-secondary);
+}
+.iconCsszen {
+  color: var(--csszen-text);
+}
+.iconMatrix {
+  color: var(--matrix-highlight);
+}
+
+/* Title */
+.titleBase {
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+.titleGithub {
+  color: var(--github-blue);
+}
+.titleDracula {
+  color: var(--dracula-purple);
+}
+.titleWeb2 {
+  color: var(--web2-text);
+}
+.titleCsszen {
+  color: var(--csszen-text);
+}
+.titleMatrix {
+  color: var(--matrix-highlight);
+}
+.titleMatrix:hover {
+  color: var(--matrix-glow);
+  text-shadow: 0 0 5px var(--matrix-glow);
+}
+
+/* Description */
+.descBase {
+  font-size: 0.875rem;
+}
+.descGithub {
+  color: var(--github-text);
+}
+.descDracula {
+  color: var(--dracula-foreground);
+}
+.descWeb2 {
+  color: var(--web2-text);
+}
+.descCsszen {
+  color: var(--csszen-text);
+}
+.descMatrix {
+  color: var(--matrix-highlight);
+}
+.descMatrix:hover {
+  color: var(--matrix-glow);
+  text-shadow: 0 0 5px var(--matrix-glow);
+}
+
+/* Link button */
+.linkBase {
+  transition:
+    color 200ms ease,
+    background 200ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease;
+}
+.linkGithub {
+  background: var(--github-blue);
+  color: #fff;
+}
+.linkGithub:hover {
+  background: var(--github-light-blue);
+}
+.linkDracula {
+  background: var(--dracula-purple);
+  color: #fff;
+}
+.linkDracula:hover {
+  background: var(--dracula-pink);
+}
+.linkWeb2 {
+  background: var(--web2-primary);
+  color: #fff;
+  border: 1px solid var(--web2-border);
+  box-shadow: 0 0 0 1px var(--web2-border);
+}
+.linkWeb2:hover {
+  background: var(--web2-success);
+}
+.linkCsszen {
+  background: var(--csszen-cream);
+  color: var(--csszen-text);
+  border: 1px solid var(--csszen-text);
+}
+.linkMatrix {
+  color: var(--matrix-highlight);
+  background: var(--matrix-terminal);
+  border: 1px solid var(--matrix-glow);
+  box-shadow: 0 0 12px rgba(0, 255, 65, 0.25);
+}
+.linkMatrix:hover {
+  color: var(--matrix-glow);
+  box-shadow: 0 0 16px rgba(0, 255, 65, 0.35);
+}
+
+/* Keep ripple as a global class to satisfy tests and allow direct DOM query selection */
+:global(.ripple) {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 600ms linear;
+  background: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
