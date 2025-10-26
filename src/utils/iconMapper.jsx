@@ -10,9 +10,10 @@ import {
   FaPlay,
   FaTerminal,
   FaRssSquare,
+  FaCoffee,
 } from 'react-icons/fa';
 
-import { FaThreads } from 'react-icons/fa6';
+import { FaThreads, FaMugHot } from 'react-icons/fa6';
 
 // No SimpleIcons currently used
 
@@ -30,9 +31,11 @@ const iconMap = {
   FaPlay,
   FaTerminal,
   FaRssSquare,
+  FaCoffee,
 
   // FontAwesome 6
   FaThreads,
+  FaMugHot,
 };
 
 export const getIcon = iconName => {

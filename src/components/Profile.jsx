@@ -8,8 +8,7 @@ import { createThemeClassGetter } from './helpers/themeClassHelper';
 const Profile = ({ theme }) => {
   // Fallback data
   const data = {
-    name: 'Luh Sprwhk',
-    title: 'Creative Dev && Vaporware Dealer',
+    name: 'Lux Sprwhk',
     location: 'Austin, TX',
     profileImage: profileImg,
     bio: 'Web dev since the Flash days, now building digital experiences and making AI-powered art',
@@ -73,17 +72,6 @@ const Profile = ({ theme }) => {
         >
           {data.name}
         </h1>
-      )}
-      {theme !== 'web2' && (
-        <p
-          className={clsx(
-            'mb-2',
-            styles.profileTitle,
-            getThemeClass(theme, 'profileTitle')
-          )}
-        >
-          {data.title}
-        </p>
       )}
       {theme !== 'web2' && (
         <p
