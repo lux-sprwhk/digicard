@@ -33,6 +33,19 @@
 
   <body>
     <div id="root"></div>
+    <script>
+      // Apply theme before React loads to prevent flicker
+      (function () {
+        const theme = sessionStorage.getItem('theme') || 'dark';
+        document.documentElement.classList.add(theme);
+        if (theme === 'matrix') {
+          document.body.classList.add('matrix-bg');
+        }
+        if (theme === 'csszen') {
+          document.body.classList.add('csszen', 'csszen-bg');
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
